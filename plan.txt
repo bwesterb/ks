@@ -1,0 +1,10 @@
+Introduction (no KS systems with 17 or less vertices)
+
+Theoretical improvements on graph generation. (bi-connectedness, minimal order three, tri-connectedness(?))
+
+Graph generation (check older results + order 18 via subgraphs, in order 19 a graph appears that has no known non-embeddable subgraph -> calculation -> find subgraph. Order 20 via cross products and more subrgraphs)
+
+Embeddability (simple embeddable graphs )
+
+
+

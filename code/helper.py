@@ -1,3 +1,30 @@
+def write_graph6(g):
+    """ Writes a graph to graph6 format """
+    ret = ''
+    if len(g) > 62:
+        raise NotImplementedError
+    keys = list(g)
+    ret += chr(len(g) + 63)
+    bitmap = []
+    x = 0
+    y = 1
+    while True:
+        bitmap.append(int(keys[y] in g[keys[x]]))
+        x += 1
+        if x == y:
+            x = 0
+            y += 1
+            if y == len(g):
+                break
+    for i in xrange(0, len(bitmap), 6):
+        v = 0
+        for m in xrange(6):
+            v *= 2
+            if i + m < len(bitmap):
+                v += bitmap[i + m]
+        ret += chr(v + 63)
+    return ret
+
 def load_graph6(s):
     """ Loads a graph from graph6 format """
     c = s[0]

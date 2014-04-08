@@ -1,6 +1,17 @@
 \documentclass[a4paper]{article}
 
+\usepackage{paralist}
 \usepackage{authblk}
+\usepackage{amsthm}
+
+\newcounter{main}
+\newtheorem{prop}[main]{Proposition}
+\newtheorem{thm}[main]{Theorem}
+\newtheorem{lem}[main]{Lemma}
+\theoremstyle{definition}
+\newtheorem{dfn}[main]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[main]{Remark}
 
 % TODO this suggests only one result: the improved lower bound
 %      reference to other results?
@@ -40,6 +51,8 @@
 \end{abstract}
     
 \section{Introduction}
+
+% TODO whose idea is this orthogonality graph
 TODO
 
 \section{The 33 vector system}
@@ -51,6 +64,15 @@ TODO
 \section{Embeddability}
 TODO
 
+\section{Acknowledgments}
+We wish to thank the following for their generous contribution to the
+distributed computation:
+    the Digital Security group, Intelligent Systems group
+    and the C\&CZ service of the Radboud University;
+    Wouter Geraedts and
+    Jille Timmermans.
+
+% attribute mckay for answering questions?
 \bibliography{main}{}
 \bibliographystyle{plain}
 

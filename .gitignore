@@ -1,4 +1,11 @@
 *.pyc
 *.aux
+*.bbl
+*.blg
 *.log
 *.pdf
+*.swp
+/main.d
+*.fls
+*.make
+*.make.temp

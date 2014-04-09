@@ -3,6 +3,7 @@
 \usepackage{draftwatermark}
 \usepackage{paralist}
 \usepackage{authblk}
+\usepackage{amsmath}
 \usepackage{amsthm}
 
 % TODO remove this in the final version
@@ -10,8 +11,10 @@
 
 \newcounter{main}
 \newtheorem{prop}[main]{Proposition}
+\newtheorem{cathm}[main]{Computer-aided Theorem}
 \newtheorem{thm}[main]{Theorem}
 \newtheorem{lem}[main]{Lemma}
+\newtheorem{fact}[main]{Fact}
 \theoremstyle{definition}
 \newtheorem{dfn}[main]{Definition}
 \newtheorem*{spin}{SPIN Axiom \cite{ck09}}
@@ -123,16 +126,137 @@ is of both theoretical and practical interest.
 In public lectures, Conway himself, stressed the search for small KS systems.
 
 % TODO refer to non-3d systems
-In \cite{aow11} Arends, Ouaknine and Wampler show that a KS system must have
-at least 18 vectors.  We have improved upon their result, abd
+In \cite{aow11} Arends, Ouaknine and Wampler give a computer aided proof
+that a KS system must have at least 18 vectors.  We improve their lower bound
+and show that a KS must have at least 22 vectors.
 
 \subsection{The 33 vector KS system of Penrose and Peres}
-
-
-\section{An improved lower bound}
 TODO
 
+\subsection{Kochen-Specker graphs}
+We follow \cite{aow11} and reduce the search for Kochen-Specker systems
+to the search of a certain class of graphs.
+First note that in a Kochen-Specker system we may replace a point with its
+antipodal point.  They are both orthogonal to the same points and hence
+the non-010-colorability is preserved.
+Thus, we may assume antipodal points are identified on the sphere.
+That is: a Kochen-Specker system is a finite subset of the projective plane
+that is not 010-colorable.
+\begin{dfn}
+Given a finite subset~$S$ of the projective plane
+(or equivalently, of the northern hemisphere without equator).
+Define its \keyword{orthogonality graph}~$G(S)$ as follows.
+The vertices are the points of~$S$.
+Two vertices are joined by an edge, if their corresponding points
+are orthogonal.
+\end{dfn}
+\begin{dfn}
+A graph~$G$ is called~\keyword{embeddable},
+if it occurs as a orthogonality graph;
+that is: if there is a finite subset~$S$ of the projective plane,
+such that~$G(S) = G$.
+\end{dfn}
+\begin{dfn}
+A graph is~\keyword{010-colorable}
+if there is a~$\{0,1\}$-coloring, such that
+\begin{enumerate}
+\item
+for each triangle there is exactly one vertex that is colored~$1$ and
+\item
+adjacent vertices are not both colored~$1$.
+\end{enumerate}
+\end{dfn}
+\begin{dfn}
+A \keyword{Kochen-Specker graph}
+is a embeddable graph that is not 010-colorable.
+\end{dfn}
+It is an easy, but important, consequence of the definitions that:
+\begin{fact}
+    A finite subset~$S$ of the projective plane
+    is a Kochen-Specker system,
+    if and only if its orthogonality graph~$G(S)$
+    is Kochen-Specker.
+\end{fact}
+To prove there is no Kochen-Specker system on~$17$ points,
+it is sufficient to enumerate all graphs on~$17$ vertices
+and check they are not 010-colorable or not embeddable.
+This is infeasable, there are~${\sim}10^{26}$ non-isomorphic
+graphs on~$17$ points.
+% TODO OEIS A000088
+However, we can restrict ourselves to certain classes of graphs.
+\begin{prop}[\cite{aow11}]
+    An embeddable graph does not contain a square.
+\end{prop}
+\begin{proof}
+    Given points~$a\neq b$.
+    Consider the points orthogonal to~$a$.
+    This is a great circle.
+    The points orthognal to~$b$ is a different great circle.
+    They intersect in precisely two antipodal points.
+    Hence, if~$c$ and~$d$ are both orthogonal to~$a$ and~$b$,
+    then~$c$ and~$d$ are equivalent.
+    Thus in an embeddable graph, there cannot be a square~$acbd$.
+\end{proof}
+The squarefreeness is a considerable restriction.  There are
+only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
+We can restrict ourselves to connected graphs.
+% TODO OEIS A006786
+\begin{prop}[\cite{aow11}]
+    A minimal Kochen-Specker graph is connected.
+\end{prop}
+\begin{proof}
+    Suppose~$G$ is a non-connected Kochen-Specker graph.
+    Then one of its components is not 010-colorable.
+    As a subgraph of an embeddable graph, is embeddable,
+    this component is embeddable as well.
+    Hence it is a smaller connected Kochen-Specker graph.
+\end{proof}
+The gain, however, is small.
+There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
+vertices that are not connected.
+We have verified the main result of \cite{aow11}:
+\begin{cathm}
+The unique non-010-colorable squarefree connected graph on~$17$
+vertices is. TODO
+It is not embeddable, see TODO, and hence a Kochen-Specker
+system has at least 18 points.
+\end{cathm}
+
+\section{An improved lower bound}
+Continuing their effort, we consider another restriction.
+\begin{prop}
+    A minimal Kochen-Specker graph has minimal vertex-order three.
+\end{prop}
+\begin{proof}
+    Given a Kochen-Specker graph~$G$.
+    Suppose~$v$ is a vertex with order less than~$2$.
+    Let~$G'$ be~$G$ with~$v$ removed.
+    Clearly~$G'$ is embeddable.
+    Suppose~$G'$ is 010-colorable.
+    Then we can extend the coloring to a coloring of~$G$ as follows.
+    If~$v$ is adjacent to only one or no vertex,
+    then we can color~$v$ with~$0$.
+    Suppose~$v$ is adjacent to two vertices, say~$w$ and~$w'$.
+    If one of~$w$ or~$w'$ is colored~$1$, we can color~$v$ with~$0$.
+    If both~$w$ and~$w'$ are colored~$0$, we can color~$v$ with~$1$.
+    Thus~$G$ is 010-colorable, quod non.  Thus~$G'$ is a smaller
+    Kochen-Specker graph.
+\end{proof}
+There are only~${\sim}10^7$
+squarefree non-isomorphic graphs on 17 vertices with minimal vertex order 3.
+Even though Arends, Ouaknine and Wampler
+note this restriction once,
+surprisingly, they did not restrict their graph enumeration
+to graphs with minimal vertex order 3.
+
+\begin{prop}
+    
+\end{prop}
+
 \section{Embeddability}
+TODO
+
+\section{Future research}
 TODO
 
 \section{Acknowledgments}

@@ -11,7 +11,8 @@
 
 \newcounter{main}
 \newtheorem{prop}[main]{Proposition}
-\newtheorem{cathm}[main]{Computer-aided Theorem}
+\newtheorem{comp}[main]{Computation}
+\newtheorem{cor}[main]{Corollary}
 \newtheorem{thm}[main]{Theorem}
 \newtheorem{lem}[main]{Lemma}
 \newtheorem{fact}[main]{Fact}
@@ -201,7 +202,7 @@ The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
 We can restrict ourselves to connected graphs.
 % TODO OEIS A006786
-\begin{prop}[\cite{aow11}]
+\begin{prop}[\cite{aow11}]\label{prop:ks-conn}
     A minimal Kochen-Specker graph is connected.
 \end{prop}
 \begin{proof}
@@ -215,12 +216,12 @@ The gain, however, is small.
 There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
 vertices that are not connected.
 We have verified the main result of \cite{aow11}:
-\begin{cathm}
+\begin{comp}
 The unique non-010-colorable squarefree connected graph on~$17$
 vertices is. TODO
 It is not embeddable, see TODO, and hence a Kochen-Specker
 system has at least 18 points.
-\end{cathm}
+\end{comp}
 
 \section{An improved lower bound}
 Continuing their effort, we consider another restriction.
@@ -249,9 +250,29 @@ note this restriction once,
 surprisingly, they did not restrict their graph enumeration
 to graphs with minimal vertex order 3.
 
+We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
 \begin{prop}
-    
+A minimal Kochen-Specker graph is biconnected,
+that is: removing any single edge leaves the graph connected.
 \end{prop}
+\begin{proof}
+    TODO (Sander)
+\end{proof}
+We believe a minimal KS graph is also triconnected.
+Although these arguments are pleasing,
+they are of little use:
+% TODO Add argument or computation for {2,3}-connected
+\begin{comp}
+    There are five non-isomorphic minimal
+    squarefree connected graphs
+    with minimal vertex order 3 and they have 10 vertices.
+\end{comp}
+\begin{cor}
+    Any unconnected
+    squarefree graph with minimal vertex order 3
+    has at least 20 vertices, for it has two connected components,
+    each with at least 10 vertices.
+\end{cor}
 
 \section{Embeddability}
 TODO

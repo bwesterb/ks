@@ -153,10 +153,11 @@ are orthogonal.
 \end{dfn}
 \begin{dfn}
 A graph~$G$ is called~\keyword{embeddable},
-if it occurs as a orthogonality graph;
+if it occurs as a subgraph of an orthogonality graph;
 that is: if there is a finite subset~$S$ of the projective plane,
-such that~$G(S) = G$.
+such that~$G \leq G(S)$.
 \end{dfn}
+% TODO add remark on subgraph definition?
 \begin{dfn}
 A graph is~\keyword{010-colorable}
 if there is a~$\{0,1\}$-coloring, such that
@@ -256,13 +257,47 @@ A minimal Kochen-Specker graph is biconnected,
 that is: removing any single edge leaves the graph connected.
 \end{prop}
 \begin{proof}
-Suppose we have a connected but not biconnected graph. Then we can decompose this graph in biconnected subgraphs which are 
+Suppose we have a connected but not biconnected graph~$G$.
+Then we can decompose
+this graph into its biconnected components.  A biconnected components
+is a maximal subgraph that is biconnected.
+We can consider the graph of biconnected components~$B(G)$:
+two biconnected components are adjacent if there is an edge
+between a vertex in one component and a vertex in the other.
+Note that there can at most be one edge between 
+the vertices of biconnected components.
+$B(G)$~does not contain loops: if it would
+then the union of the biconnected components in the graph,
+would be itself biconnected.
 
+Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
+Let~$B$ be the union of the remaining biconnected components.
+There is exactly one pair of vertices~$(a,b)$
+such that~$a \in A$, $b \in B$ and $a$ is adjacent to~$b$.
 
+Take any~$b_2 \in B$ with~$b_2 \neq b$.
+By assumption~$b_2$ is not adjacent to~$a$.
+Define~$G'$ to be the graph~$G$ extended with the edge~$(a,b_2)$.
+Clearly, $G'$ is not~010-colorable.  We will show that~$G'$ is embeddable.
 
+Consider an embedding of~$G$.
+Observe that a rotation of all (points corresponding to) elements of~$A$
+along the axis spanned
+by (the point corresponding to)~$b$, preserves all relevant
+orthogonality relations.
 
+Rotate the vectors of the embedding
+along~$b$ such that~$b_2$ becomes orthogonal to~$a$.
+It could that there are elements~$a'$ in~$A$
+and~$b'$ in~$B$ that are rotated onto the same point.
+Then consider rotations of all elements of~$B$ along~$a$.
+There are finitely many angles for which two elements will overlap.
+Hence, there is a rotation of all elements of~$B$ along~$a$
+such that~$A$ and~$B$ do not overlap.
+Note that all existing orthogonality relations are preserved.
 
-
+These two rotations yield a new set of points on the sphere,
+that demonstrate~$G'$ is embeddable. 
 \end{proof}
 We believe a minimal KS graph is also triconnected.
 Although these arguments are pleasing,

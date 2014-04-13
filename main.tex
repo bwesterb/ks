@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage{draftwatermark}
+\usepackage{algorithm2e}
 \usepackage{paralist}
 \usepackage{graphicx}
 \usepackage{authblk}
@@ -381,7 +382,8 @@ If we show one of them is embeddable, we have found a new KS system.
 If we demonstrate all of them are not embeddable, we have
 proven a lower bound on the size of a minimal KS system.
 
-In~\cite{aow11}, Arends, Wampler and Ouaknine discuss several methods
+In~\cite{aow11}, Arends, Wampler and Ouaknine discuss several
+computer-aided methods
 to test embeddability of a graph.  None of the methods could decide
 of all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
@@ -391,8 +393,8 @@ We propose a new method,
 which of all graphs we considered,
 could decide
 whether they were embeddable or not.
-It is based on the following derivation.
-\begin{prop}
+First we give a pen-and-paper example.
+\begin{prop}\label{prop:unemb-10-2}
 The graph in Figure~\ref{fig:unemb-10-2}
 is not embeddable.
 \end{prop}
@@ -444,6 +446,54 @@ Thus: $|v_1w_2\left<v,w\right>| < 1$.
 Contradiction.
 \end{proof}
 
+% TODO Can we prove: if G is embeddable, then we can add any new vertex of
+%      order 2 and G is still embeddable?
+
+In the previous proof, we fixed, without loss of generality, the position
+of a few vertices.  Then we derived cross-product expressions for the
+remaining vertices.  Finally, we find an equation relating some of
+the cross-product expressions and show it is unsatisfiable.
+We can automate this reasoning as follows.
+
+\begin{algorithm}
+    \While{there are unassigned vertices}{
+        pick an unassigned vertex~$v$\;
+        set~$V(v)=v$\;
+        mark~$v$ as free\;
+        \While{there are unassigned vertices adjacent to two
+                different assigned vertices}{
+            pick such a vertex~$w$ adjacent to the assigned ~$w_1$ and~$w_2$\;
+            set~$V(w)=V(w_1) \times V(w_2)$\;
+            mark edges~$(v,w_1)$ and~$(v,w_2)$ as accounted for\;
+        }   
+    }
+    \For{each pair of vertices~$(v_1, v_2)$}{
+        \If{$(v_1,v_2)$ is not an edge} {
+            record requirement:~``$V(v_1)$ is not collinear to $V(v_2)$''\;
+        }
+    }
+    \For{each edge~$(v_1,v_2)$ not accounted for}{
+        record requirement:~``$V(v_1)$ is orthogonal to~$V(v_2)$''\;
+    }
+\end{algorithm}
+At two points in the algorithm, there is a choice which vertex to pick.
+Depending on the vertices chosen, the number of recorded requirements
+and free points may significantly.  By considering all possible choices,
+one can find the one with least free points.
+
+The requirements can be mechanically converted
+to a formal sentence
+in the language of the real numbers.
+This sentence is true if and only if the graph is embeddable.
+Using variations on Tarski's quantifier elimination procedure,
+we can decide the truth of these sentences.
+We have used the redlog\cite{redlog} package of the reduce algebra
+system.  In Appendix~\ref{adx:unemb-10-2} the Reader can find
+the reduce script generated mechanically for the graph
+in Figure~\ref{fig:unemb-10-2}.
+% TODO references to quantifier elimination
+%
+
 \section{Future research}
 TODO
 
@@ -454,6 +504,62 @@ distributed computation:
     and the C\&CZ service of the Radboud University;
     Wouter Geraedts and
     Jille Timmermans.
+
+\appendix
+\section{Example reduce script}\label{adx:unemb-10-2}
+The following is (a part of) the reduce script mechanically generated
+to prove the non-embeddability of the graph of Figure~\ref{fig:unemb-10-2}.
+The algorithm choose a different assignment, than we did in the
+proof of Proposition~\ref{prop:unemb-10-2}.
+As free points it picked, in order,~$z$, $x$, $v$ and~$p_3$.
+The point~$w$ is assigned~$p_3 \times z$.
+\begin{verbatim}
+load_package redlog;
+rlset R;
+
+procedure d(x,y);
+    (first x) * (first y) +
+    (second x) * (second y) +
+    (third x) * (third y);
+
+procedure k(x,y);
+    {(second x)*(third y) - (third x)*(second y),
+     (third x)*(first y) - (first x)*(third y),
+     (first x)*(second y) - (second x)*(first y)};
+
+v0c1 := 1; v0c2 := 0; v0c3 := 0;
+v1c1 := 0; v1c2 := 1; v1c3 := 0;
+
+v0 := {v0c1, v0c2, v0c3}; 
+v1 := {v1c1, v1c2, v1c3}; 
+v2 := {v2c1, v2c2, v2c3}; 
+v3 := {v3c1, v3c2, v3c3}; 
+v2c1 := 0;
+neq0 := k(v0,k(v3,v1)); 
+\end{verbatim}
+\begin{center} \emph{(snip)} \end{center}
+\begin{verbatim}
+neq29 := k(k(k(k(v3,v1),v1),v2),k(k(v3,v0),v3)); 
+phi := 
+       (first neq0 neq 0 or
+        second neq0 neq 0 or
+        third neq0 neq 0) and 
+\end{verbatim}
+\begin{center} \emph{(snip)} \end{center}
+\begin{verbatim}
+       (first neq29 neq 0 or
+        second neq29 neq 0 or
+        third neq29 neq 0) and 
+       d(v2,v0) = 0 and 
+       d(k(k(v3,v0),v3),k(k(k(k(v3,v1),v1),v2),v2)) = 0 and 
+        true;
+rlqe ex(v3c3,
+     ex(v3c2,
+     ex(v3c1,
+     ex(v2c3,
+     ex(v2c2,phi)))));
+\end{verbatim}
+
 
 % attribute mckay for answering questions?
 \bibliography{main}{}

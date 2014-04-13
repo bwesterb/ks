@@ -62,9 +62,9 @@
     Deciding embeddability and the sheer number of graphs on more than~$17$
     vertices, proved the bottleneck in their search.
 
-    Continuing their effort, we restrict our enumeration to smaller class of
-    graphs and develop a practical decision procedure for embeddability, to
-    improve the lower bound to 21.
+    Continuing their effort, we prove a restriction on the class of graphs
+    we need to consider and develop a more practical decision procedure for
+    embeddability to improve the lower bound to 21.
 \end{abstract}
     
 \section{Introduction}
@@ -75,14 +75,14 @@
 % TODO correct description of experiment
 Consider the following experiment.  Shoot a deuterium atom,
 or any other spin-1 particle,
-along, say: the x-axis, through a inhomogenous magnetic field.
+along, say: the x-axis, through a inhomogeneous magnetic field.
 Depending on the direction of the magnetic field,
 the particle will move undisturbed
 or deviate.
 
 Quantum Mechanics only predicts the chance, given the initial configuration
 of the field, whether the particle will deviate.
-Its probabilistic prediction has been thouroughly tested.
+Its probabilistic prediction has been thoroughly tested.
 One wonders: is there a deterministic theory predicting the
 outcome of this experiment?
 
@@ -108,7 +108,12 @@ Their argument is based on the existence of a Kochen-Specker system.
     \end{enumerate}
 \end{dfn}
 % TODO shorten this proof.
-For suppose there is a KS system and  a deterministic theory satisfying
+A point on the sphere obviously corresponds to a direction in space.
+Because of this, the term point, vector and direction
+can be used interchangeably. Antipodal points correspond to oppositve
+vectors and these span the same direction in space.
+
+Suppose there is a KS system and  a deterministic theory satisfying
 the SPIN Axiom.
 Then we color a point of the system~$0$,
 whenever the theory predicts that the particle will deviate
@@ -138,7 +143,7 @@ and show that a KS system must have at least 21 vectors.
 
 First, in Subsection~\ref{sec:ks33} we consider the 33 vector KS system
 of Penrose and Peres.  Then, in Subsection~\ref{sec:ksgraphs},
-we repeat a part of AOW's work, in particuar the reduction of
+we repeat a part of AOW's work, in particular the reduction of
 KS systems to graphs.
 The bottleneck of their search was the sheer number of graphs
 and the deciding embeddability.
@@ -148,7 +153,7 @@ we improve upon their reduction,
 to cut down the number of graphs drastically,
 and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
-we describe our pratical embeddability test.
+we describe our practical embeddability test.
 
 \subsection{The 33 vector KS system of Penrose and Peres}
 \label{sec:ks33}
@@ -161,7 +166,7 @@ to the search of a certain class of graphs.
 First note that in a Kochen-Specker system we may replace a point with its
 antipodal point.  They are both orthogonal to the same points and hence
 the non-010-colorability is preserved.
-Thus, we may assume antipodal points are identified on the sphere.
+Therefore, we may assume antipodal points are identified on the sphere.
 That is: a Kochen-Specker system is a finite subset of the projective plane
 that is not 010-colorable.
 \begin{dfn}
@@ -201,24 +206,25 @@ It is an easy, but important, consequence of the definitions that:
     is Kochen-Specker.
 \end{fact}
 To prove there is no Kochen-Specker system on~$17$ points,
-it is sufficient to enumerate all graphs on~$17$ vertices
-and check they are not 010-colorable or not embeddable.
-This is infeasable, there are~${\sim}10^{26}$ non-isomorphic
+it would be sufficient to enumerate all graphs on~$17$ vertices
+and check these are not 010-colorable or not embeddable.
+However, this is infeasable as there are
+already~${\sim}10^{26}$ non-isomorphic
 graphs on~$17$ points.
 % TODO OEIS A000088
-However, we can restrict ourselves to certain classes of graphs.
+Luckily, we can restrict ourselves to certain classes of graphs.
 \begin{prop}[\cite{aow11}]
     An embeddable graph does not contain a square.
 \end{prop}
 \begin{proof}
-    Given points~$a\neq b$.
+    Given two non antipodal points~$a\neq b$.
     Consider the points orthogonal to~$a$.
     This is a great circle.
     The points orthognal to~$b$ is a different great circle.
     They intersect in precisely two antipodal points.
     Hence, if~$c$ and~$d$ are both orthogonal to~$a$ and~$b$,
     then~$c$ and~$d$ are equivalent.
-    Thus in an embeddable graph, there cannot be a square~$acbd$.
+    Therefore, an embeddable graph cannot contain a square.
 \end{proof}
 The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
@@ -247,13 +253,14 @@ system has at least 18 points.
 
 \section{An improved lower bound}
 \label{sec:ilb}
-Continuing their effort, we consider another restriction.
+Continuing the effort of Arends, Ouaknine and Wambler,
+we consider another restriction.
 \begin{prop}
     A minimal Kochen-Specker graph has minimal vertex-order three.
 \end{prop}
 \begin{proof}
     Given a Kochen-Specker graph~$G$.
-    Suppose~$v$ is a vertex with order less than~$2$.
+    Suppose~$v$ is a vertex with order less than or equal~$2$.
     Let~$G'$ be~$G$ with~$v$ removed.
     Clearly~$G'$ is embeddable.
     Suppose~$G'$ is 010-colorable.
@@ -263,8 +270,9 @@ Continuing their effort, we consider another restriction.
     Suppose~$v$ is adjacent to two vertices, say~$w$ and~$w'$.
     If one of~$w$ or~$w'$ is colored~$1$, we can color~$v$ with~$0$.
     If both~$w$ and~$w'$ are colored~$0$, we can color~$v$ with~$1$.
-    Thus~$G$ is 010-colorable, quod non.  Thus~$G'$ is a smaller
-    Kochen-Specker graph.
+    This would imply~$G$ is 010-colorable, quod non.
+    Therefore~$G'$ is a smaller
+    Kochen-Specker graph, which contradicts minimality.
 \end{proof}
 There are only~${\sim}10^7$
 squarefree non-isomorphic graphs on 17 vertices with minimal vertex order 3.

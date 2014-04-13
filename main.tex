@@ -128,14 +128,31 @@ is of both theoretical and practical interest.
 In public lectures, Conway himself, stressed the search for small KS systems.
 
 % TODO refer to non-3d systems
-In \cite{aow11} Arends, Ouaknine and Wampler give a computer aided proof
+\subsection{Overview}
+In \cite{aow11} Arends, Ouaknine and Wampler (AOW) give a computer aided proof
 that a KS system must have at least 18 vectors.  We improve their lower bound
-and show that a KS must have at least 21 vectors.
+and show that a KS system must have at least 21 vectors.
+
+First, in Subsection~\ref{sec:ks33} we consider the 33 vector KS system
+of Penrose and Peres.  Then, in Subsection~\ref{sec:ksgraphs},
+we repeat a part of AOW's work, in particuar the reduction of
+KS systems to graphs.
+The bottleneck of their search was the sheer number of graphs
+and the deciding embeddability.
+
+In Section~\ref{sec:ilb},
+we improve upon their reduction,
+to cut down the number of graphs drastically,
+and state the results of our main computation.
+Finally, in Section~\ref{sec:emb},
+we describe our pratical embeddability test.
 
 \subsection{The 33 vector KS system of Penrose and Peres}
+\label{sec:ks33}
 TODO
 
 \subsection{Kochen-Specker graphs}
+\label{sec:ksgraphs}
 We follow \cite{aow11} and reduce the search for Kochen-Specker systems
 to the search of a certain class of graphs.
 First note that in a Kochen-Specker system we may replace a point with its
@@ -226,6 +243,7 @@ system has at least 18 points.
 \end{comp}
 
 \section{An improved lower bound}
+\label{sec:ilb}
 Continuing their effort, we consider another restriction.
 \begin{prop}
     A minimal Kochen-Specker graph has minimal vertex-order three.
@@ -346,6 +364,7 @@ Now, we can state our main computation, which took roughly a week
 
 
 \section{Embeddability}
+\label{sec:emb}
 
 
 \section{Future research}

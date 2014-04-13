@@ -2,8 +2,10 @@
 
 \usepackage{draftwatermark}
 \usepackage{paralist}
+\usepackage{graphicx}
 \usepackage{authblk}
 \usepackage{amsmath}
+\usepackage{wrapfig}
 \usepackage{amsthm}
 
 % TODO replace 21 with 22
@@ -365,7 +367,82 @@ Now, we can state our main computation, which took roughly a week
 
 \section{Embeddability}
 \label{sec:emb}
+\begin{wrapfigure}{r}{0.40\textwidth}
+\begin{center}
+\includegraphics[width=50mm]{graphs/unemb-10-2.jpg}
+\end{center}
+\caption{One of the two minimal
+        non-embeddable graphs
+\label{fig:unemb-10-2}}
+\end{wrapfigure}
 
+Our computation has yielded a few hundred non-010-colorable graphs.
+If we show one of them is embeddable, we have found a new KS system.
+If we demonstrate all of them are not embeddable, we have
+proven a lower bound on the size of a minimal KS system.
+
+In~\cite{aow11}, Arends, Wampler and Ouaknine discuss several methods
+to test embeddability of a graph.  None of the methods could decide
+of all graphs considered, whether they were embeddable or not.
+% TODO give a small description of their deficiencies
+% TODO give intermediate computation.
+
+We propose a new method,
+which of all graphs we considered,
+could decide
+whether they were embeddable or not.
+It is based on the following derivation.
+\begin{prop}
+The graph in Figure~\ref{fig:unemb-10-2}
+is not embeddable.
+\end{prop}
+\begin{proof}
+Suppose it is embeddable.
+Consider~$p_1$.
+It is orthogonal to both~$a$ and~$v$.
+$a$ and~$v$ are not collinear,
+hence~$p_1$ must be collinear to~$v \times a$,
+the cross-product of~$v$ and~$a$.
+Similarly, $p_2$ is collinear to~$v \times p_1 = v \times (v \times a)$.
+Continuing in this fashion,
+we see that
+\begin{equation}\label{eq:ue1}
+    a \text{ is collinear to }
+    x \times (x \times( w \times (w\times (v \times (v \times a))))).
+\end{equation}
+Now, we may assume that~$z=(0,0,1)$ and $x=(1,0,0)$.
+Thus: $v=(v_1,v_2,0)$;
+$w = (w_1,w_2,0)$
+and $a = (0, a_2,a_3)$ for some~$-1 \leq v_1,v_2,w_1,w_2,a_2,a_3 \leq 1$
+with~$v_1^2+v_2^2 = 1$; $w_1^2+w_2^2=1$ and~$a_2^2 + a_3^2=1$.
+Now, \eqref{eq:ue1} becomes:
+\begin{equation*}
+\begin{pmatrix}
+0\\
+a_2\\
+a_3\\
+\end{pmatrix}
+\text{ is collinear to }
+\begin{pmatrix}
+0\\
+-a_2 v_1w_2 (v_1w_1 + v_2w_2) \\
+-a_3 (v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2)\\
+\end{pmatrix}.
+\end{equation*}
+And thus
+\begin{align*}
+v_1w_2 \left<v,w\right> & =
+v_1w_2 (v_1w_1 + v_2w_2) \\
+& = v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2 \\
+& = (v_1^2 + v_2^2)w_1^2 + (v_1^2 + v_2^2)w_2^2 \\
+& = w_1^2 + w_2^2 = 1.
+\end{align*}
+Since~$v$ and~$w$ are not collinear,
+we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
+Recall~$|v_1|, |w_2| \leq 1$.
+Thus: $|v_1w_2\left<v,w\right>| < 1$.
+Contradiction.
+\end{proof}
 
 \section{Future research}
 TODO

@@ -70,9 +70,9 @@
 \subsection{The experiment}
 
 % TODO correct description of experiment
-Let's perform the following experiment.  Shoot a deuterium atom,
+Consider the following experiment.  Shoot a deuterium atom,
 or any other spin-1 particle,
-along, say: the x-axis, through a uniform magnetic field.
+along, say: the x-axis, through a inhomogenous magnetic field.
 Depending on the direction of the magnetic field,
 the particle will move undisturbed
 or deviate.
@@ -324,15 +324,21 @@ Now, we can state our main computation, which took roughly a week
     Let~$C_n$ denote the number of non-010 colorable squarefree
     graphs with minimal vertex order 3 on~$n$ nodes.  Then:
 
-    \begin{tabular}{ll}
-        $n$ & $C_n$ \\
+    \begin{center}
+    \begin{tabular}{l|lllll}
+        $n$ & $\leq 16$
+            & $17$
+            & $18$
+            & $19$
+            & $20$ \\
         \hline
-        $\leq 16$ & $0$ \\
-        $17$ & $1$ \\
-        $18$ & $2$ \\
-        $19$ & $19$ \\
-        $20$ & $441$
+        $C_n$ & $0$
+            & $1$
+            & $2$
+            & $19$
+            & $441$
     \end{tabular}
+    \end{center}
 
     All these 463 graphs are not embeddable.
     % TODO add reference

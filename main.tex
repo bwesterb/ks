@@ -86,7 +86,6 @@ One wonders: is there a deterministic noncontextual theory predicting the
 outcome of this experiment?
 
 Kochen and Specker proved that such a theory cannot satisfy:
-% TODO note contextuality
 \begin{spin}
     Given three pairwise orthogonal directions.
     In exactly one of the directions, the particle will not deviate.
@@ -381,7 +380,7 @@ Now, we can state our main computation, which took roughly a week
     \end{center}
 
     All these 463 graphs are not embeddable.
-    % TODO add reference
+    See Computation~\ref{comp:unemb20}.
 \end{comp}
 
 
@@ -534,7 +533,7 @@ With this method, we have decided in an hour the embeddability
 of every squarefree graph with minimal vertex order three of 13
 vertices of less.
 In particular:
-\begin{comp}
+\begin{comp}\label{comp:unemb20}
     Every squarefree graph of minimal vertex order three
     that is not 010-colorable
     of order less than or equal to 20
@@ -553,14 +552,19 @@ For the second graph, we also have a similar direct proof. The third graph is sh
 Arends, Ouaknine and Wampler struggled with two problems:
 enumerating candidate graphs of less than 31 vertices
 and testing their embeddability.
-We have verified most of their computation claims.
-Then, we enumerated all candidate graphs
-up to 21 vertices.
-Furthermore, we have proposed a new decision procedure
-which was able to decide embeddability,
+We have verified most of their computations.
+Then we enumerated all candidate graphs
+up to and including 20 vertices.
+Furthermore, we have proposed a new decision procedure,
+which was able to decide embeddability
 for all candidate graphs we found.
 Therefore, we demonstrate: a Kochen-Specker system must have at least
 21 points.
+At the time of writing,
+we are computing
+whether there is a KS system of 21 vertices.\footnote{
+The authors have a wager whether there is a minimal KS system of less
+than 25 vertices.}
 
 Enumerating all candidate graphs of less than 31 vertices
 is computationally infeasable.

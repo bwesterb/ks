@@ -100,9 +100,10 @@ Their argument is based on the existence of a Kochen-Specker system.
     A $010$-coloring is a~$\{0,1\}$-coloring of the points such that
         \footnote{
                 In other papers, like \cite{aow11},
-                the~$0$ and~$1$ are swapped, they consider 101-colorings.
-                These colorings are of course equivalent and the difference
-                arises from considering either squared spin measurements $S^2$, or $1-S^2$.
+                the~$0$ and~$1$ are swapped; they consider 101-colorings.
+                These colorings are of course equivalent and the
+                difference arises from considering either squared
+                spin measurements $S^2$, or $1-S^2$.
                 %Then the colors correspond directly to the squared measurement
                	%outcome of the spin.
                	}
@@ -124,13 +125,17 @@ Suppose there is a KS system and a noncontextual deterministic theory satisfying
 the SPIN Axiom.
 Then we color a point of this system~$0$,
 whenever this theory predicts that the particle will deviate
-if the spin is measured in the direction corresponding to that point, and~$1$ otherwise.
+if the spin is measured in the direction corresponding to that
+point, and~$1$ otherwise.
 Given two orthogonal points of the system,
 we can find a third point orthogonal to both of them.
-The SPIN axiom implies exactly one of them is colored~$1$, so they cannot both be colored~$1$.
+The SPIN axiom implies exactly one of them is colored~$1$, so they
+cannot both be colored~$1$.
 Similarly, given three pairwise orthogonal vectors in the system,
 the SPIN axiom implies exactly one of them is colored~$1$.
-Hence there would be a 010-coloring of the KS system, quod non. Therefore a deterministic noncontextual theory cannot satisfy the SPIN Axiom.\\
+Hence there would be a 010-coloring of the KS system, quod non.
+Therefore a deterministic noncontextual theory cannot satisfy the
+SPIN Axiom.
 
 The KS system proposed by Kochen and Specker contained 117 points\cite{ks}.
 Penrose and Peres\cite{peres} independently found a smaller system of 33 points.
@@ -299,7 +304,9 @@ $B(G)$~does not contain loops: if it would
 then the union of the biconnected components in the graph,
 would be itself biconnected.
 
-Now consider a leaf~$A$ in the biconnected component graph~$B(G)$. That is, $A$ is a component which is only connected to one other component.
+Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
+That is, $A$ is a biconnected component which is
+only connected to one other biconnected component.
 Let~$B$ be the union of the remaining biconnected components.
 There is exactly one pair of vertices~$(a,b)$
 such that~$a \in A$, $b \in B$ and $a$ is adjacent to~$b$.
@@ -327,7 +334,10 @@ Note that all existing orthogonality relations are preserved.
 
 These two rotations yield a new set of points on the sphere,
 that demonstrate~$G'$ is embeddable.
-Therefore, in generating all relevant graphs, we find both $G$ and $G'$. Since they have the same order, we might as well ignore the graph $G$. This shows it is sufficient to consider only biconnected graphs.
+Therefore, in generating all relevant graphs, we find both $G$ and
+$G'$. Since they have the same order, we might as well ignore the
+graph $G$. This shows it is sufficient to consider only biconnected
+graphs.
 \end{proof}
 We believe a minimal KS graph is also triconnected.
 Although these arguments are pleasing,
@@ -512,7 +522,8 @@ yield a sentence that could not be decided (directly).
 Therefore, when determining embeddability of a graph,
 we try several assignments in parallel.
 
-In this way, there were still a few graphs that we could not decide.
+In this way, there were still a few (010-colorable) graphs of which
+we could not decide embeddability.
 By hand, we determined these graphs to be embeddable.
 We addapted the algorithm, to in parallel for some assignments
 to guess the position of one of the vectors.  If the corresponding

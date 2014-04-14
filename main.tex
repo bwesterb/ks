@@ -530,8 +530,9 @@ to guess the position of one of the vectors.  If the corresponding
 sentence turns out false, we know nothing.  However,
 if the sentence is true, we know the graph is embeddable.
 
-With this method, we have decided the embeddability of every squarefree
-graph with minimal vertex order three of 13 vertices of less.
+With this method, we have decided in an hour the embeddability
+of every squarefree graph with minimal vertex order three of 13
+vertices of less.
 In particular:
 \begin{comp}
     Every squarefree graph of minimal vertex order three
@@ -549,7 +550,29 @@ See Proposition~\ref{prop:unemb-10-2}.
 For the second graph, we also have a direct proof.
 
 \section{Conclusion and future research}
-TODO
+Arends, Ouaknine and Wampler struggled with two problems:
+enumerating candidate graphs of less than 31 vertices
+and testing their embeddability.
+We have verified most of their computation claims.
+Then, we enumerated all candidate graphs
+up to 21 vertices.
+Furthermore, we have proposed a new decision procedure
+which was able to decide embeddability,
+for all candidate graphs we found.
+Therefore, we demonstrate: a Kochen-Specker system must have at least
+21 points.
+
+Enumerating all candidate graphs of less than 31 vertices
+is computationally infeasable.
+To bridge the enormous the gap between 21 and 31,
+requires a new insight.
+For instance: another restriction on which graphs to consider.
+
+The Reader, interested in pursuing this line of research,
+is encouraged to read the master thesis\cite{a09} of Arends,
+in which he discusses in detail several other
+properties that a minimal KS system must enjoy, as well as
+some failed attempts.
 
 \section{Acknowledgments}
 We wish to thank the following for their generous contribution to the

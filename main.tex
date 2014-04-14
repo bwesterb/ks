@@ -26,8 +26,6 @@
 \theoremstyle{remark}
 \newtheorem{rem}[main]{Remark}
 
-% TODO this suggests only one result: the improved lower bound
-%      reference to other results?
 \title{A Kochen-Specker system has at least 21 vertices}
 
 \author{Sander Uijlen}
@@ -99,6 +97,12 @@ Their argument is based on the existence of a Kochen-Specker system.
     for which each pair is not antipodal and
     there is no~\keyword{010-coloring}.
     A $010$-coloring is a~$\{0,1\}$-coloring of the points such that
+        \footnote{
+                In other papers, like \cite{aow11},
+                the~$0$ and~$1$ are swapped:
+                101-colorings.
+                Then the colors correspond directly to the squared measurement
+                outcome of the spin.}
     \begin{enumerate}
         \item
             no pair of orthogonal points are both colored~$1$ and
@@ -128,9 +132,8 @@ Hence the KS system is 010-colorable, quod non.  Thus the deterministic theory
 cannot satisfy the SPIN Axiom.
 
 The KS system proposed by Kochen and Specker contained 117 points\cite{ks}.
-% TODO reference (x2)
-Penrose and Peres independently found a smaller system of 33 points.
-The current record is the 31 point system of Conway.
+Penrose and Peres\cite{peres} independently found a smaller system of 33 points.
+The current record is the 31 point system of Conway\cite[p.~197]{qtcm}.
 As pointed out by \cite{c00,aow11}, finding small KS systems
 is of both theoretical and practical interest.
 In public lectures, Conway himself, stressed the search for small KS systems.
@@ -141,8 +144,7 @@ In \cite{aow11} Arends, Ouaknine and Wampler (AOW) give a computer aided proof
 that a KS system must have at least 18 vectors.  We improve their lower bound
 and show that a KS system must have at least 21 vectors.
 
-First, in Subsection~\ref{sec:ks33} we consider the 33 vector KS system
-of Penrose and Peres.  Then, in Subsection~\ref{sec:ksgraphs},
+First, in Subsection~\ref{sec:ksgraphs},
 we repeat a part of AOW's work, in particular the reduction of
 KS systems to graphs.
 The bottleneck of their search was the sheer number of graphs
@@ -150,14 +152,10 @@ and the deciding embeddability.
 
 In Section~\ref{sec:ilb},
 we improve upon their reduction,
-to cut down the number of graphs drastically,
+to cut down the number of graphs to consider drastically,
 and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
 we describe our practical embeddability test.
-
-\subsection{The 33 vector KS system of Penrose and Peres}
-\label{sec:ks33}
-TODO
 
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
@@ -493,16 +491,18 @@ The requirements can be mechanically converted
 to a formal sentence
 in the language of the real numbers.
 This sentence is true if and only if the graph is embeddable.
-Using variations on Tarski's quantifier elimination procedure,
-we can decide the truth of these sentences.
+Famously, Tarski proved\cite{tarski}
+that such sentences are decidable.
+His decision procedure has an impractical complexity.
+However, its practical value has been improved
+by, for instance, the method of cylindrical algebraic decomposition\cite{qecad}.
 We have used the redlog\cite{redlog} package of the reduce algebra
-system.  In Appendix~\ref{adx:unemb-10-2} the Reader can find
+system, which implements a variant of Tarski's quantifier elimination.
+In Appendix~\ref{adx:unemb-10-2} the Reader can find
 the reduce script generated mechanically for the graph
 in Figure~\ref{fig:unemb-10-2}.
-% TODO references to quantifier elimination
-%
 
-\section{Future research}
+\section{Conclusion and future research}
 TODO
 
 \section{Acknowledgments}
@@ -570,6 +570,7 @@ rlqe ex(v3c3,
 
 
 % attribute mckay for answering questions?
+% TODO attribute geng
 \bibliography{main}{}
 \bibliographystyle{plain}
 

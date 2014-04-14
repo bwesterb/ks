@@ -1,7 +1,7 @@
-\documentclass[a4paper,titlepage]{article}
+\documentclass[a4paper]{article}
 
-\usepackage{draftwatermark}
 \usepackage{algorithm2e}
+\usepackage{hyperref}
 \usepackage{paralist}
 \usepackage{graphicx}
 \usepackage{authblk}
@@ -45,7 +45,7 @@
     At the heart of the Conway's Free Will theorems and Kochen and Specker's
         argument against noncontextual hidden variable theories
     is the existence of a Kochen-Specker (KS) system:
-    a set of points on the sphere,
+    a set of points on the sphere
     that has no~$\{0,1\}$-coloring such that
     at most one of two orthogonal points are colored~$1$
     and of three pairwise orthogonal points exactly one
@@ -58,13 +58,16 @@
     Arends, Ouaknine and Wampler have shown that a KS system has at least
     18 vectors, by reducing the problem to the existence of graphs
     with a topological embeddability and non-colorability property.
-    Deciding embeddability and the sheer number of graphs on more than~$17$
-    vertices, proved the bottleneck in their search.
+    The bottleneck in their search
+    proved to be the sheer number of graphs on more than~$17$
+    vertices and deciding embeddability.
 
     Continuing their effort, we prove a restriction on the class of graphs
     we need to consider and develop a more practical decision procedure for
     embeddability to improve the lower bound to 21.
 \end{abstract}
+
+\clearpage
     
 \section{Introduction}
 
@@ -93,7 +96,12 @@ Kochen and Specker proved that such a theory cannot satisfy:
 Their argument is based on the existence of a Kochen-Specker system.
 \begin{dfn}
     A \keyword{Kochen-Specker (KS) system} is
-    a finite set of points on the sphere
+    a finite set of points on the sphere\footnote{
+            We define KS systems to be three dimensional,
+            as in the original proof of Kochen and Specker.
+            Later, higher dimensional systems have been studied.
+            See, for instance~\cite[p.~201]{qtcm}.
+        }
     for which each pair is not antipodal and
     there is no~\keyword{010-coloring}.
     A $010$-coloring is a~$\{0,1\}$-coloring of the points such that
@@ -229,14 +237,6 @@ Luckily, we can restrict ourselves to certain classes of graphs.
     then~$c$ and~$d$ are equivalent.
     Therefore, an embeddable graph cannot contain a square.
 \end{proof}
-\begin{wrapfigure}{r}{0.40\textwidth}
-\begin{center}
-\includegraphics[width=50mm]{graphs/c17.jpg}
-\end{center}
-\caption{Unique non 010-colorable squarefree connected
-            graph on 17 vertices.}
-\label{fig:c17}
-\end{wrapfigure}
 The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
 We can restrict ourselves to connected graphs.
@@ -254,12 +254,19 @@ We can restrict ourselves to connected graphs.
 The gain, however, is small.
 There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
 vertices that are not connected.
+In our computations, checking for connectedness
+required more time than would be gained by reducing the number of graphs.
+
 We have verified the main result of \cite{aow11}:
 \begin{comp}
 There is a unique non-010-colorable squarefree connected graph on~$17$ or less
-vertices. Its depicted in Figure~\ref{fig:c17}
+vertices:
+\begin{center}
+\includegraphics[width=50mm]{graphs/c17.jpg}
+\end{center}
 It is not embeddable, as the graph in Figure~\ref{fig:unemb-10-2}
-is an unembeddable subgraph.  See Proposition~\ref{prop:unemb-10-2}.
+is an unembeddable subgraph.  For our proof,
+see Proposition~\ref{prop:unemb-10-2}.
 Hence a Kochen-Specker
 system has at least 18 points.
 \end{comp}
@@ -349,8 +356,11 @@ graph $G$. This shows it is sufficient to consider only biconnected
 graphs.
 \end{proof}
 We believe a minimal KS graph is also triconnected.
-Although these arguments are pleasing,
-they are of little use:
+However, we did not find a proof.
+
+Although these restrictions are theoretically pleasing,
+they seem to be of little use as a practical restriction.
+Concerning excluding unconnected graphs:
 % TODO Add argument or computation for {2,3}-connected
 % TODO note that restricting to (bi/tri)-connected is a waste of time
 % TODO add graph 
@@ -364,11 +374,13 @@ they are of little use:
     squarefree graph with minimal vertex order 3
     has at least 20 vertices, for it has two connected components,
     each with at least 10 vertices.
+    With 20 vertices, there are exactly 25 of these.
 \end{cor}
+This justifies, at this stage, not checking for connectedness.
+Similarly, we believe there are very few connected but not biconnected graphs.
 
 % TODO is core x years a proper expression?
-Now, we can state our main computation, which took roughly a week
-    on a 64-core Opteron 6276.
+Now we can state our main computation.
 \begin{comp}
     Let~$C_n$ denote the number of non-010 colorable squarefree
     graphs with minimal vertex order 3 on~$n$ nodes.  Then:
@@ -392,7 +404,16 @@ Now, we can state our main computation, which took roughly a week
     All these 463 graphs are not embeddable.
     See Computation~\ref{comp:unemb20}.
 \end{comp}
-
+The computation took roughly a week on a 64-core Opteron 6276.
+It was executed as follows.
+We enumerated all squarefree graphs with minimal vertex
+order 3 on less than or equal~$20$ vertices,
+using the~\texttt{geng} util of the nauty software package,
+which uses the isomorphism-free exhaustive generation
+method of McKay\cite{geng}.
+The output of~\texttt{geng}, we passed through
+a custom heuristic backtracker written in~C++
+to decide 010-colorability of these graphs.
 
 \section{Embeddability}
 \label{sec:emb}
@@ -443,7 +464,7 @@ we see that
 Now, we may assume that~$z=(0,0,1)$ and $x=(1,0,0)$.
 Thus: $v=(v_1,v_2,0)$;
 $w = (w_1,w_2,0)$
-and $a = (0, a_2,a_3)$ for some~$-1 < v_1,v_2,w_1,w_2,a_2,a_3 < 1$,
+and $a = (0, a_2,a_3)$ for some~$-1 \leq v_1,v_2,w_1,w_2,a_2,a_3 \leq 1$,
 with~$v_1^2+v_2^2 = 1$; $w_1^2+w_2^2=1$ and~$a_2^2 + a_3^2=1$.
 Now, \eqref{eq:ue1} becomes:
 \begin{equation*}
@@ -486,12 +507,12 @@ We can automate this reasoning as follows.
 \begin{algorithm}
     \While{there are unassigned vertices}{
         pick an unassigned vertex~$v$\;
-        set~$V(v)=v$\;
+        assign~$V(v)=v$\;
         mark~$v$ as free\;
         \While{there are unassigned vertices adjacent to two
                 different assigned vertices}{
             pick such a vertex~$w$ adjacent to the assigned ~$w_1$ and~$w_2$\;
-            set~$V(w)=V(w_1) \times V(w_2)$\;
+            assign~$V(w)=V(w_1) \times V(w_2)$\;
             mark edges~$(v,w_1)$ and~$(v,w_2)$ as accounted for\;
         }   
     }
@@ -534,8 +555,9 @@ we try several assignments in parallel.
 In this way, there were still a few (010-colorable) graphs of which
 we could not decide embeddability.
 By hand, we determined these graphs to be embeddable.
-We addapted the algorithm, to in parallel for some assignments
-to guess the position of one of the vectors.  If the corresponding
+We addapted the algorithm, as to guess
+for some assignments the position of one of the vectors.
+If the corresponding
 sentence turns out false, we know nothing.  However,
 if the sentence is true, we know the graph is embeddable.
 
@@ -599,6 +621,7 @@ distributed computation:
 We are grateful to prof.~McKay for discussing
 the feasability of certain graph restrictions.
 
+\clearpage
 \appendix
 \section{Example reduce script}\label{adx:unemb-10-2}
 The following is (a part of) the reduce script mechanically generated
@@ -657,6 +680,7 @@ rlqe ex(v3c3,
 
 % attribute mckay for answering questions?
 % TODO attribute geng
+\clearpage
 \bibliography{main}{}
 \bibliographystyle{plain}
 

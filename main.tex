@@ -505,6 +505,38 @@ In Appendix~\ref{adx:unemb-10-2} the Reader can find
 the reduce script generated mechanically for the graph
 in Figure~\ref{fig:unemb-10-2}.
 
+Different assignments give different sentences.  In our tests,
+some assignments would yield sentences that were decided within milliseconds,
+whereas another assignment with less free vertices would
+yield a sentence that could not be decided (directly).
+Therefore, when determining embeddability of a graph,
+we try several assignments in parallel.
+
+In this way, there were still a few graphs that we could not decide.
+By hand, we determined these graphs to be embeddable.
+We addapted the algorithm, to in parallel for some assignments
+to guess the position of one of the vectors.  If the corresponding
+sentence turns out false, we know nothing.  However,
+if the sentence is true, we know the graph is embeddable.
+
+With this method, we have decided the embeddability of every squarefree
+graph with minimal vertex order three of 13 vertices of less.
+In particular:
+\begin{comp}
+    Every squarefree graph of minimal vertex order three
+    that is not 010-colorable
+    of order less than or equal 20
+    contains as a subgraph one of
+    \begin{center}
+        \includegraphics[width=120mm]{graphs/unemb-base-20.jpg}
+    \end{center}
+    which are unembeddable.  The left and middle graph
+    are the only minimal unembeddable squarefree graph.
+\end{comp}
+For the first graph, we have proven directly that it is unembeddable.
+See Proposition~\ref{prop:unemb-10-2}.
+For the second graph, we also have a direct proof.
+
 \section{Conclusion and future research}
 TODO
 

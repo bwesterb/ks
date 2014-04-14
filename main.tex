@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,titlepage]{article}
 
 \usepackage{draftwatermark}
 \usepackage{algorithm2e}
@@ -229,6 +229,14 @@ Luckily, we can restrict ourselves to certain classes of graphs.
     then~$c$ and~$d$ are equivalent.
     Therefore, an embeddable graph cannot contain a square.
 \end{proof}
+\begin{wrapfigure}{r}{0.40\textwidth}
+\begin{center}
+\includegraphics[width=50mm]{graphs/c17.jpg}
+\end{center}
+\caption{Unique non 010-colorable squarefree connected
+            graph on 17 vertices.}
+\label{fig:c17}
+\end{wrapfigure}
 The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
 We can restrict ourselves to connected graphs.
@@ -249,8 +257,10 @@ vertices that are not connected.
 We have verified the main result of \cite{aow11}:
 \begin{comp}
 There is a unique non-010-colorable squarefree connected graph on~$17$ or less
-vertices. It looks as follows TODO
-It is not embeddable, see TODO, and hence a Kochen-Specker
+vertices. Its depicted in Figure~\ref{fig:c17}
+It is not embeddable, as the graph in Figure~\ref{fig:unemb-10-2}
+is an unembeddable subgraph.  See Proposition~\ref{prop:unemb-10-2}.
+Hence a Kochen-Specker
 system has at least 18 points.
 \end{comp}
 

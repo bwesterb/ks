@@ -79,10 +79,10 @@ Depending on the direction of the magnetic field,
 the particle will move undisturbed
 or deviate.
 
-Quantum Mechanics only predicts the chance, given the initial configuration
+Quantum Mechanics only predicts the probability, given the configuration
 of the field, whether the particle will deviate.
 Its probabilistic prediction has been thoroughly tested.
-One wonders: is there a deterministic theory predicting the
+One wonders: is there a deterministic noncontextual theory predicting the
 outcome of this experiment?
 
 Kochen and Specker proved that such a theory cannot satisfy:
@@ -100,10 +100,12 @@ Their argument is based on the existence of a Kochen-Specker system.
     A $010$-coloring is a~$\{0,1\}$-coloring of the points such that
         \footnote{
                 In other papers, like \cite{aow11},
-                the~$0$ and~$1$ are swapped:
-                101-colorings.
-                Then the colors correspond directly to the squared measurement
-                outcome of the spin.}
+                the~$0$ and~$1$ are swapped, they consider 101-colorings.
+                These colorings are of course equivalent and the difference
+                arises from considering either squared spin measurements $S^2$, or $1-S^2$.
+                %Then the colors correspond directly to the squared measurement
+               	%outcome of the spin.
+               	}
     \begin{enumerate}
         \item
             no pair of orthogonal points are both colored~$1$ and
@@ -115,22 +117,20 @@ Their argument is based on the existence of a Kochen-Specker system.
 % TODO shorten this proof.
 A point on the sphere obviously corresponds to a direction in space.
 Because of this, the term point, vector and direction
-can be used interchangeably. Antipodal points correspond to oppositve
+can be used interchangeably. Antipodal points correspond to opposite
 vectors and these span the same direction in space.
 
-Suppose there is a KS system and  a deterministic theory satisfying
+Suppose there is a KS system and a noncontextual deterministic theory satisfying
 the SPIN Axiom.
-Then we color a point of the system~$0$,
-whenever the theory predicts that the particle will deviate
-if the magnetic field is directed along that point and~$1$ otherwise.
+Then we color a point of this system~$0$,
+whenever this theory predicts that the particle will deviate
+if the spin is measured in the direction corresponding to that point, and~$1$ otherwise.
 Given two orthogonal points of the system,
 we can find a third point orthogonal to both of them.
-The SPIN axiom implies exactly one of them is colored~$1$.
-Thus they cannot both be colored~$1$.
-And similarly, given three pairwise orthogonal vectors in the system,
+The SPIN axiom implies exactly one of them is colored~$1$, so they cannot both be colored~$1$.
+Similarly, given three pairwise orthogonal vectors in the system,
 the SPIN axiom implies exactly one of them is colored~$1$.
-Hence the KS system is 010-colorable, quod non.  Thus the deterministic theory
-cannot satisfy the SPIN Axiom.
+Hence there would be a 010-coloring of the KS system, quod non. Therefore a deterministic noncontextual theory cannot satisfy the SPIN Axiom.\\
 
 The KS system proposed by Kochen and Specker contained 117 points\cite{ks}.
 Penrose and Peres\cite{peres} independently found a smaller system of 33 points.
@@ -149,7 +149,7 @@ First, in Subsection~\ref{sec:ksgraphs},
 we repeat a part of AOW's work, in particular the reduction of
 KS systems to graphs.
 The bottleneck of their search was the sheer number of graphs
-and the deciding embeddability.
+and the deciding whether such graphs are embeddable.
 
 In Section~\ref{sec:ilb},
 we improve upon their reduction,
@@ -207,7 +207,7 @@ It is an easy, but important, consequence of the definitions that:
 To prove there is no Kochen-Specker system on~$17$ points,
 it would be sufficient to enumerate all graphs on~$17$ vertices
 and check these are not 010-colorable or not embeddable.
-However, this is infeasable as there are
+However, this is infeasible as there are
 already~${\sim}10^{26}$ non-isomorphic
 graphs on~$17$ points.
 % TODO OEIS A000088
@@ -244,8 +244,8 @@ There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
 vertices that are not connected.
 We have verified the main result of \cite{aow11}:
 \begin{comp}
-The unique non-010-colorable squarefree connected graph on~$17$
-vertices is. TODO
+There is a unique non-010-colorable squarefree connected graph on~$17$ or less
+vertices. It looks as follows TODO
 It is not embeddable, see TODO, and hence a Kochen-Specker
 system has at least 18 points.
 \end{comp}
@@ -299,7 +299,7 @@ $B(G)$~does not contain loops: if it would
 then the union of the biconnected components in the graph,
 would be itself biconnected.
 
-Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
+Now consider a leaf~$A$ in the biconnected component graph~$B(G)$. That is, $A$ is a component which is only connected to one other component.
 Let~$B$ be the union of the remaining biconnected components.
 There is exactly one pair of vertices~$(a,b)$
 such that~$a \in A$, $b \in B$ and $a$ is adjacent to~$b$.
@@ -326,7 +326,8 @@ such that~$A$ and~$B$ do not overlap.
 Note that all existing orthogonality relations are preserved.
 
 These two rotations yield a new set of points on the sphere,
-that demonstrate~$G'$ is embeddable. 
+that demonstrate~$G'$ is embeddable.
+Therefore, in generating all relevant graphs, we find both $G$ and $G'$. Since they have the same order, we might as well ignore the graph $G$. This shows it is sufficient to consider only biconnected graphs.
 \end{proof}
 We believe a minimal KS graph is also triconnected.
 Although these arguments are pleasing,
@@ -345,6 +346,7 @@ they are of little use:
     has at least 20 vertices, for it has two connected components,
     each with at least 10 vertices.
 \end{cor}
+
 % TODO is core x years a proper expression?
 Now, we can state our main computation, which took roughly a week
     on a 64-core Opteron 6276.
@@ -391,13 +393,13 @@ proven a lower bound on the size of a minimal KS system.
 
 In~\cite{aow11}, Arends, Wampler and Ouaknine discuss several
 computer-aided methods
-to test embeddability of a graph.  None of the methods could decide
-of all graphs considered, whether they were embeddable or not.
+to test embeddability of a graph.  None of these methods could decide
+for all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
 % TODO give intermediate computation.
 
 We propose a new method,
-which of all graphs we considered,
+which for all graphs we considered,
 could decide
 whether they were embeddable or not.
 First we give a pen-and-paper example.
@@ -422,7 +424,7 @@ we see that
 Now, we may assume that~$z=(0,0,1)$ and $x=(1,0,0)$.
 Thus: $v=(v_1,v_2,0)$;
 $w = (w_1,w_2,0)$
-and $a = (0, a_2,a_3)$ for some~$-1 \leq v_1,v_2,w_1,w_2,a_2,a_3 \leq 1$
+and $a = (0, a_2,a_3)$ for some~$-1 < v_1,v_2,w_1,w_2,a_2,a_3 < 1$,
 with~$v_1^2+v_2^2 = 1$; $w_1^2+w_2^2=1$ and~$a_2^2 + a_3^2=1$.
 Now, \eqref{eq:ue1} becomes:
 \begin{equation*}
@@ -438,7 +440,7 @@ a_3\\
 -a_3 (v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2)\\
 \end{pmatrix}.
 \end{equation*}
-And thus
+And therefore
 \begin{align*}
 v_1w_2 \left<v,w\right> & =
 v_1w_2 (v_1w_1 + v_2w_2) \\
@@ -485,7 +487,7 @@ We can automate this reasoning as follows.
 \end{algorithm}
 At two points in the algorithm, there is a choice which vertex to pick.
 Depending on the vertices chosen, the number of recorded requirements
-and free points may significantly.  By considering all possible choices,
+and free points may significantly vary. By considering all possible choices,
 one can find the one with least free points.
 
 The requirements can be mechanically converted

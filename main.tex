@@ -225,13 +225,21 @@ graphs on~$17$ points.
 % TODO OEIS A000088
 Luckily, we can restrict ourselves to certain classes of graphs.
 \begin{prop}[\cite{aow11}]
-    An embeddable graph does not contain a square.
+    An embeddable graph is squarefree.
+    That is: it does not contain the square as a subgraph.
+    \footnote{Some authors call a graph squarefree, if it does not
+        contain the square as induced subgraph.
+        For them the full graph on four nodes is squarefree.
+        We follow~Weisstein\cite{sf-weisstein} and~Sloane\cite{sf-sloane} and
+        call a graph squarefree if it does not
+        contain the square as subgraph.
+        For us the full graph on four nodes is not squarefree.}
 \end{prop}
 \begin{proof}
     Given two non antipodal points~$a\neq b$.
     Consider the points orthogonal to~$a$.
     This is a great circle.
-    The points orthognal to~$b$ is a different great circle.
+    The points orthogonal to~$b$ is a different great circle.
     They intersect in precisely two antipodal points.
     Hence, if~$c$ and~$d$ are both orthogonal to~$a$ and~$b$,
     then~$c$ and~$d$ are equivalent.
@@ -318,7 +326,7 @@ Note that there can at most be one edge between
 the vertices of biconnected components.
 $B(G)$~does not contain loops: if it would
 then the union of the biconnected components in the graph,
-would be itself biconnected.
+would be itself biconnected.  Thus~$B(G)$ is a tree.
 
 Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
 That is, $A$ is a biconnected component which is
@@ -340,7 +348,7 @@ orthogonality relations.
 
 Rotate the vectors of the embedding
 along~$b$ such that~$b_2$ becomes orthogonal to~$a$.
-It could that there are elements~$a'$ in~$A$
+It could be that there are elements~$a'$ in~$A$
 and~$b'$ in~$B$ that are rotated onto the same point.
 Then consider rotations of all elements of~$B$ along~$a$.
 There are finitely many angles for which two elements will overlap.
@@ -555,7 +563,7 @@ we try several assignments in parallel.
 In this way, there were still a few (010-colorable) graphs of which
 we could not decide embeddability.
 By hand, we determined these graphs to be embeddable.
-We addapted the algorithm, as to guess
+We adapted the algorithm, as to guess
 for some assignments the position of one of the vectors.
 If the corresponding
 sentence turns out false, we know nothing.  However,

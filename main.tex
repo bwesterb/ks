@@ -9,6 +9,8 @@
 \usepackage{wrapfig}
 \usepackage{amsthm}
 
+\usepackage{draftwatermark}
+
 % TODO replace 21 with 22
 % TODO remove this in the final version
 \newcommand{\keyword}[1]{\textbf{#1}}
@@ -40,6 +42,7 @@
 \begin{document}
 
 \maketitle
+\thispagestyle{empty}
 
 \begin{abstract}
     At the heart of the Conway's Free Will theorems and Kochen and Specker's
@@ -246,9 +249,9 @@ Luckily, we can restrict ourselves to certain classes of graphs.
     Therefore, an embeddable graph cannot contain a square.
 \end{proof}
 The squarefreeness is a considerable restriction.  There are
-only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$ vertices.
+only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$
+vertices.\cite{sf-sloane}
 We can restrict ourselves to connected graphs.
-% TODO OEIS A006786
 \begin{prop}[\cite{aow11}]\label{prop:ks-conn}
     A minimal Kochen-Specker graph is connected.
 \end{prop}

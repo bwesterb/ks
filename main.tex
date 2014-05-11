@@ -51,7 +51,7 @@
     and of three pairwise orthogonal points exactly one
     is colored~$1$.
     In public lectures, Conway encouraged the search for small
-    KS systems.  
+    KS systems.
     At the time of writing, the smallest known
     KS system has 31 vectors.  
 
@@ -149,7 +149,8 @@ Penrose and Peres\cite{peres} independently found a smaller system of 33 points.
 The current record is the 31 point system of Conway\cite[p.~197]{qtcm}.
 As pointed out by \cite{c00,aow11}, finding small KS systems
 is of both theoretical and practical interest.
-In public lectures, Conway himself, stressed the search for small KS systems.
+In public lectures, Conway himself, stressed the search for small KS
+systems.\cite{OC}
 
 % TODO refer to non-3d systems
 \subsection{Overview}
@@ -309,12 +310,83 @@ surprisingly, they did not restrict their graph enumeration
 to graphs with minimal vertex order 3.
 
 We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
-\begin{prop}
+\begin{prop}\label{prop:ks-biconn}
 A minimal Kochen-Specker graph is biconnected,
 that is: removing any single edge leaves the graph connected.
 \end{prop}
+We need some preparation, before we can prove this Proposition.
+\begin{dfn}
+Given a graph~$G$ and a vertex~$v$ of~$G$.
+We say, \keyword{$v$ has fixed color~$c$ (in~$G$)},
+if~$G$ is~$010$-colorable
+and for every~$010$-coloring of~$G$,
+the vertex~$v$ is assigned color~$c$.
+\end{dfn}
+We are interested in these graphs because of the following observation.
+\begin{lem}
+If there is an embeddable graph~$G$ on~$n$ vertices with a vertex
+with fixed color~$1$,
+then there is a Kochen-Specker graph on~$2n$ vertices.
+\end{lem}
 \begin{proof}
-Suppose we have a connected but not biconnected graph~$G$.
+Let~$G$ be a graph and~$v$ a vertex of~$G$ with fixed color~$1$.
+Consider two copies of the graph~$G$.
+Connect the two instances of~$v$ with an edge.
+Call this graph~$G'$.
+Clearly, $G'$ is not~$010$-colorable.
+
+We need to show~$G'$ is embeddable.
+Given an embedding~$S$ of~$G$.
+We may assume that the point in~$S$ corresponding to~$v$
+is the north pole.
+Furthermore, we may assume that there is no point on the $x$-axis,
+by rotating points along the north pole.
+Let~$S'$ be~$S$ rotated~$90$ degrees along the~$y$-axis.
+Some points of~$S$ and~$S'$ might overlap.
+That is: there might be a point~$s$ in~$S$ and~$s'$ in~$S'$
+that are equal or antipodal.
+Observe that if no points of~$S'$ and~$S$ overlap,
+then~$S \cup S'$ is an embedding of~$G'$.
+
+Suppose there are points in~$S'$ and~$S$
+that overlap.
+Note that the north pole (and south pole) is not in~$S'$. 
+Let~$S''$ be~$S'$ rotated along the north pole at some angle~$\alpha$.
+There are finitely many angles such that there are overlaping points.
+Thus there is an angle such that~$S \cup S''$ is an embedding of~$G'$.
+\end{proof}
+Unfortunately, these graphs are not small.
+\begin{comp}\label{comp:bic1}
+Let~$F^{3,1}_n$ denote the number of connected graphs
+with minimal vertex-order~$3$
+on~$n$ vertices
+with a vertex with fixed color~$1$.
+Then:
+\begin{center}
+\begin{tabular}{l|lll}
+    $n$ & $\leq 13$
+        & $14$
+        & $15$ \\
+    \hline
+    $F^{3,1}_n$ & $0$
+        & $4$
+        & $59$
+\end{tabular}
+\end{center}
+Using the methods of Section~\ref{sec:emb},
+we have determined these graphs unembeddable.
+\end{comp}
+We need one final computational result.
+\begin{comp}\label{comp:bic2}
+There are no connected graphs
+on less than~$15$ vertices
+with minimal vertex-order~$2$
+with a vertex with fixed color~$0$. 
+\end{comp}
+We are ready to prove that a minimal Kochen-Specker graph
+is biconnected.
+\begin{proof}[Proof of Proposition~\ref{prop:ks-biconn}]
+Suppose we are given a connected but not biconnected graph~$G$.
 Then we can decompose
 this graph into its biconnected components.  A biconnected components
 is a maximal subgraph that is biconnected.
@@ -327,40 +399,39 @@ $B(G)$~does not contain loops: if it would
 then the union of the biconnected components in the graph,
 would be itself biconnected.  Thus~$B(G)$ is a tree.
 
+Furthermore suppose~$G$ is a minimal Kochen-Specker graph.
 Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
-That is, $A$ is a biconnected component which is
-only connected to one other biconnected component.
-Let~$B$ be the union of the remaining biconnected components.
-There is exactly one pair of vertices~$(a,b)$
-such that~$a \in A$, $b \in B$ and $a$ is adjacent to~$b$.
+That is, $A$ is a biconnected component that is connected to only
+one other biconnected component.
+Let~$B$ be the remainder of the graph.
+There is exactly one pair~$(a,b)$ with~$a$ in~$A$ and~$b$ in~$B$
+and~$a$ adjacent to~$b$.
 
-Take any~$b_2 \in B$ with~$b_2 \neq b$.
-By assumption~$b_2$ is not adjacent to~$a$.
-Define~$G'$ to be the graph~$G$ extended with the edge~$(a,b_2)$.
-Clearly, $G'$ is not~010-colorable.  We will show that~$G'$ is embeddable.
+Note that~$A$ and~$B$ are~$010$-colorable.
+Suppose that~$a$ does not have fixed color~$1$ in~$A$.
+Then there is a~$010$-coloring of~$A$
+which assigns~$0$ to~$a$.
+But then~$G$ is~$010$-colorable, quod non.
+Thus~$A$ is an embeddable graph with a vertex with fixed color~$1$.
+Similarly~$B$ is an embeddable graph with a vertex with fixed color~$1$.
+We may assume~$G$ is two copies of~$A$ connected at the
+copies of the vertex with fixed color~$1$.
 
-Consider an embedding of~$G$.
-Observe that a rotation of all (points corresponding to) elements of~$A$
-along the axis spanned
-by (the point corresponding to)~$b$, preserves all relevant
-orthogonality relations.
+The graph~$G$ has minimal vertex-order~$3$.
+Thus every vertex of~$A$ has minimal order~$3$ except for~$a$,
+which has minimal order~$2$.
+Suppose~$a$ has minimal order~$3$ in~$A$.
+Then by Computation~\ref{comp:bic1},
+the graph~$A$ has at least~$16$ vertices.
+Thus~$G$ has at least~$32$ vertices, quod non.
 
-Rotate the vectors of the embedding
-along~$b$ such that~$b_2$ becomes orthogonal to~$a$.
-It could be that there are elements~$a'$ in~$A$
-and~$b'$ in~$B$ that are rotated onto the same point.
-Then consider rotations of all elements of~$B$ along~$a$.
-There are finitely many angles for which two elements will overlap.
-Hence, there is a rotation of all elements of~$B$ along~$a$
-such that~$A$ and~$B$ do not overlap.
-Note that all existing orthogonality relations are preserved.
-
-These two rotations yield a new set of points on the sphere,
-that demonstrate~$G'$ is embeddable.
-Therefore, in generating all relevant graphs, we find both $G$ and
-$G'$. Since they have the same order, we might as well ignore the
-graph $G$. This shows it is sufficient to consider only biconnected
-graphs.
+Thus~$a$ must have order~$2$ in~$A$.
+Let~$c,d \in A$ be the vertices connected to~$a$ in~$A$.
+For~$a$ to have fixed color~$1$ in~$A$,
+the vertices~$c$ and~$d$ must have fixed color~$0$ in~$A$.
+By Computation~\ref{comp:bic2},
+the graph~$A$ has at least~$15+1$ vertices.
+Thus~$G$ has at least~$32$ vertices. Contradiction.
 \end{proof}
 We believe a minimal KS graph is also triconnected.
 However, we did not find a proof.

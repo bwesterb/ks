@@ -326,7 +326,7 @@ and for every~$010$-coloring of~$G$,
 the vertex~$v$ is assigned color~$c$.
 \end{dfn}
 We are interested in these graphs because of the following observation.
-\begin{lem}
+\begin{lem}\label{lem:biconn}
 If there is an embeddable graph~$G$ on~$n$ vertices with a vertex
 with fixed color~$1$,
 then there is a Kochen-Specker graph on~$2n$ vertices.
@@ -402,7 +402,8 @@ $B(G)$~does not contain loops: if it would
 then the union of the biconnected components in the graph,
 would be itself biconnected.  Thus~$B(G)$ is a tree.
 
-Furthermore suppose~$G$ is a minimal Kochen-Specker graph.
+Furthermore suppose, reasoning towards contradication,
+that~$G$ is a minimal Kochen-Specker graph.
 Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
 That is, $A$ is a biconnected component that is connected to only
 one other biconnected component.
@@ -417,16 +418,21 @@ which assigns~$0$ to~$a$.
 But then~$G$ is~$010$-colorable, quod non.
 Thus~$A$ is an embeddable graph with a vertex with fixed color~$1$.
 Similarly~$B$ is an embeddable graph with a vertex with fixed color~$1$.
-We may assume~$G$ is two copies of~$A$ connected at the
-copies of the vertex with fixed color~$1$.
 
-The graph~$G$ has minimal vertex-order~$3$.
+Let~$A'$ denote the graph containing two copies of~$A$
+connected at the copies of the vertex with fixed color~$1$.
+Using the reasoning in the proof of Lemma~\ref{lem:biconn},
+we see~$A'$ is a Kochen-Specker graph that is not biconnected.
+Define~$B'$ similarly. Observe that~$A'$ and~$B'$ must have the same
+number of vertices as~$G$ by the minimality of~$G$.
+
+The graph~$A'$ has minimal vertex-order~$3$.
 Thus every vertex of~$A$ has minimal order~$3$ except for~$a$,
 which has minimal order~$2$.
 Suppose~$a$ has minimal order~$3$ in~$A$.
 Then by Computation~\ref{comp:bic1},
 the graph~$A$ has at least~$16$ vertices.
-Thus~$G$ has at least~$32$ vertices, quod non.
+Thus~$A'$ has at least~$32$ vertices, quod non.
 
 Thus~$a$ must have order~$2$ in~$A$.
 Let~$c,d \in A$ be the vertices connected to~$a$ in~$A$.
@@ -434,7 +440,7 @@ For~$a$ to have fixed color~$1$ in~$A$,
 the vertices~$c$ and~$d$ must have fixed color~$0$ in~$A$.
 By Computation~\ref{comp:bic2},
 the graph~$A$ has at least~$15+1$ vertices.
-Thus~$G$ has at least~$32$ vertices. Contradiction.
+Thus~$A'$ has at least~$32$ vertices. Contradiction.
 \end{proof}
 We believe a minimal KS graph is also triconnected.
 However, we did not find a proof.

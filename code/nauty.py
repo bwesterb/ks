@@ -1,6 +1,8 @@
 """ Interface to the nauty package. """
 
+from cStringIO import StringIO
 import subprocess
+
 from helper import load_graph6
 
 def geng(until=None, minimal_vertex_degree=3, squarefree=True,
@@ -25,3 +27,41 @@ def geng(until=None, minimal_vertex_degree=3, squarefree=True,
         if i == until:
             return
 
+def graph_to_nauty_format(g):
+    """ Convert a graph to a format nauty understands. """
+    io = StringIO()
+    for i in g:
+        io.write(str(i))
+        io.write(' : ')
+        for j in g[i]:
+            io.write(str(j))
+            io.write(' ')
+        io.write(';\n')
+    return io.getvalue()
+
+def orbits_of(g, fixed):
+    """ Determines the orbits of g using dreadnaut
+        with the given fixed nodes. """
+    instructions = StringIO()
+    instructions.write('n=%s\n' % len(g))
+    instructions.write('g\n')
+    instructions.write(graph_to_nauty_format(g))
+    if fixed:
+        instructions.write('f=[%s]\n' % '|'.join(map(str, fixed)))
+    instructions.write('x\n')
+    instructions.write('"start-of-the-orbits"\n')
+    instructions.write('o\n')
+    instructions.write('q\n')
+    p = subprocess.Popen(['dreadnaut'],
+                    stdin=subprocess.PIPE,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE)
+    p.stdin.write(instructions.getvalue())
+    orbit_line = p.stdout.read().split('start-of-the-orbits')[-1].replace(
+                        '\n', '').strip()
+    orbits = []
+    for orbit_bit in orbit_line.strip().split(';'):
+        if not orbit_bit:
+            continue
+        orbits.append(set(map(int, orbit_bit.strip().split(' '))))
+    return orbits

@@ -1,3 +1,4 @@
+from nauty import orbits_of
 
 def is_subgraph_of(smallg, largeg):
     """ Checks whether smallg is a subgraph of largeg """
@@ -13,10 +14,14 @@ def is_subgraph_of(smallg, largeg):
         N += 1
         mapping, todo, avail = stack.pop()
         if not todo:
-            return True
+            return mapping
         node = todo[0]
         todo = todo[1:]
-        for target in avail:
+        orbits = orbits_of(largeg, set(largeg)-avail)
+        for orbit in orbits:
+            target = tuple(orbit)[0]
+            if target not in avail:
+                continue
             if len(largeg[target]) < len(smallg[node]):
                 continue
             ok = True

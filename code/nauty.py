@@ -6,12 +6,14 @@ import subprocess
 from helper import load_graph6
 
 def geng(until=None, minimal_vertex_degree=3, squarefree=True,
-                            connected=False):
+                            connected=False, canonical_labeling=False):
     """ Generates graphs using the geng util """
     i = 0
     while True:
         i += 1
         args = '-d%s' % minimal_vertex_degree
+        if canonical_labeling:
+            args += 'l'
         if squarefree:
             args += 'f'
         if connected:

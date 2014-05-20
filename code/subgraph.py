@@ -1,40 +1,19 @@
-from nauty import orbits_of
+import igraph
 
-def is_subgraph_of(smallg, largeg):
-    """ Checks whether smallg is a subgraph of largeg """
-    todo = list(smallg)
-    avail = frozenset(largeg)
-    todo.sort(key=lambda node: -len(smallg[node]))
-    mapping = {}
-    for node in smallg:
-        mapping[node] = None
-    stack = [(mapping, tuple(todo), avail)]
-    N = 0
-    while stack:
-        N += 1
-        mapping, todo, avail = stack.pop()
-        if not todo:
-            return mapping
-        node = todo[0]
-        todo = todo[1:]
-        orbits = orbits_of(largeg, set(largeg)-avail)
-        for orbit in orbits:
-            target = tuple(orbit)[0]
-            if target not in avail:
-                continue
-            if len(largeg[target]) < len(smallg[node]):
-                continue
-            ok = True
-            for neighbour in smallg[node]:
-                if mapping[neighbour] is None:
-                    continue
-                if mapping[neighbour] not in largeg[target]:
-                    ok = False
-                    break
-            if not ok:
-                continue
-            new_mapping = dict(mapping)
-            new_avail = avail - frozenset([target])
-            new_mapping[node] = target
-            stack.append((new_mapping, todo, new_avail))
-    return False
+def to_igraph(g):
+    ret = igraph.Graph()
+    ret.add_vertices(len(g))
+    for v in g:
+        for w in g[v]:
+            if v >= w: continue
+            ret.add_edges([(v, w)])
+    return ret
+
+def find_mono(smallg, largeg):
+    """ Tries to find an embedding of smallg into largeg.
+        Returns None if there is none. """
+    found_one, mapping = to_igraph(largeg).subisomorphic_lad(to_igraph(smallg),
+                            return_mapping=True)
+    if not found_one:
+        return None
+    return mapping

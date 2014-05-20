@@ -1,7 +1,11 @@
 """ Tries to determine, using quantifier elimination, whether a graph is
     embeddable on the sphere. """
 
+import collections
+import subprocess
+import threading
 import StringIO
+import textwrap
 import random
 
 def find_assignments(g):
@@ -105,8 +109,8 @@ def find_assignments(g):
                 for v1, v2 in edges_without_duplicates - f.edges_used:
                     f.ortho.append((f.assign[v1], f.assign[v2]))
                     f = f._replace(easily_embeddable=False)
-                if f.easily_embeddable:
-                    return (True, 'easily')
+                #if f.easily_embeddable:
+                #    return (True, 'easily')
                 completed.append(f)
                 continue
             # If not: consider every possible node for the new variable
@@ -159,6 +163,11 @@ def check_sphere_embeddability(g, assignment, guess=False):
         find out, and if it does, it will be quite a bit faster than
         without guessing. """
     # Generate the reduce script.
+    edges = set()
+    for v in g:
+        for w in g[v]:
+            edges.add((v,w))
+    f = assignment
     def assign_to_reduce(x):
         if isinstance(x, tuple):
             return 'k({},{})'.format(*map(assign_to_reduce, x))
@@ -271,9 +280,9 @@ def check_sphere_embeddability(g, assignment, guess=False):
             embed = (bit == 'true')
             break
     assert embed is not None
-    if not embed and guessing:
+    if not embed and guess:
         return None
-    return embed
+    return (embed, io.getvalue())
 
 def popen_communicate_timeout(pipe, s, timeout=2.5):
     """ Communicates with a Popen object with a timeout """

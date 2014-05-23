@@ -279,7 +279,8 @@ def check_sphere_embeddability(g, assignment, guess=False):
         if bit in ('false', 'true'):
             embed = (bit == 'true')
             break
-    assert embed is not None
+    if embed is None:
+        return None
     if not embed and guess:
         return None
     return (embed, io.getvalue())

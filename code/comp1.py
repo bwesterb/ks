@@ -30,9 +30,11 @@ def write_result(graph, result):
 
 def main():
     minimal_unembeddable = []
+    minimal_unembeddable_names = set()
     print 'Loading previously computed minimally unembeddable fd3 graphs'
     with open('../graphs/min-unemb-fd3.g6', 'r') as f:
         for l in f:
+            minimal_unembeddable_names.add(l[:-1])
             minimal_unembeddable.append(load_graph6(l[:-1]))
     print 'Computing grids'
     grids = []
@@ -49,6 +51,7 @@ def main():
         found_unemb_subgraph = False
         print ' checking for unembeddable subgraph'
         for unemb in minimal_unembeddable:
+            assert write_graph6(graph) not in minimal_unembeddable_names
             mono = find_mono(unemb, graph)
             if mono is not None:
                 result['embeddable'] = False

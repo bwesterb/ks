@@ -28,6 +28,7 @@ This repository
 
 This repository contains the
 
- * LaTeX sourcecode of the preprint;
- * source code used for the computation and
- * source code of the website kochen-specker.info.
+ * LaTeX sourcecode of the preprint (under /paper);
+ * source code used for the computation (under /code,
+   in particular /code/comp<n>.py) and
+ * source code of the website kochen-specker.info (under /site).

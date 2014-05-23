@@ -6,7 +6,6 @@
 *.log
 *.pdf
 *.swp
-/main.d
 *.fls
 *.make
 *.make.temp

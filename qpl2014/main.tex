@@ -1,5 +1,7 @@
 \documentclass{beamer}
 
+\usepackage{wrapfig}
+
 \title{A Kochen-Specker system has at least 21 vertices}
 
 \author{Sander Uijlen \and Bas Westerbaan}
@@ -54,8 +56,134 @@
     \end{tabular}
 \end{frame}
 
+\begin{frame}{Conway's record}
+    \begin{center}
+        \includegraphics[width=7cm]{../graphs/ks31.png}
+    \end{center}
+\end{frame}
+
 \begin{frame}{It is a problem about graphs}
-    
+    Given a finite set of points~$S$ on the projective plane,
+    its \alert{orthogonality graph}~$\mathcal{G}(S)$
+    has as vertices the points
+    and two points are adjacent if and only if they are orthogonal.
+    \pause
+    \\~\\
+    A graph~$G$ is \alert{embeddable}
+    if there is a~$S$
+    such that~$G \leq \mathcal{G}(S)$.
+    \pause
+    \\~\\
+    A \alert{$010$-coloring} of a graph, is a~$\{0,1\}$-vertex coloring,
+    such that
+    \begin{enumerate}
+        \item every triangle is colored~$(1,0,0)$, $(0,1,0)$ or~$(0,0,1)$ and
+        \item no adjacent vertices are colored both~$1$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{It is a problem about graphs}
+    \begin{center}
+    There is a Kochen-Specker system with~$n$ points \\
+    if and only if \\
+    there is a \alert{embeddable} and \alert{non-$010$-colorable}
+            graph on~$n$ vertices.
+    \end{center}
+\end{frame}
+
+\begin{frame}{Restrict the search}
+    (The orthogonality graph of) a minimal Kochen-Specker system is
+    \begin{tabular}{ll}
+        \onslide<1->{connected;} &
+            \onslide<1->{$\sim 10^{26.4}$} \\
+        \onslide<2->{squarefree and} &
+            \onslide<2->{$\sim 10^{10.2}$} \\
+        \onslide<3->{has minimal vertex degree 3;} &
+            \onslide<3->{$\sim 10^{7.5}$} \\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{The candidates}
+Our computation found
+the following number of
+non $010$-colorable
+squarefree graphs
+with minimal vertex degree~$3$
+\begin{center}
+    \begin{tabular}{rl}
+        $\#V$ & $\#$ candidates \\
+        \hline
+        $\leq 16$ & $0$ \\
+        $17$ & $1$ \\
+        $18$ & $2$ \\
+        $19$ & $19$ \\
+        $20$ & $441$ \\
+        \onslide<2->{$21$} & \onslide<2->{$\geq 7616$}
+    \end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Unembeddable subgraphs}
+    All these candidates contain as a subgraph one of these
+    unembeddable graphs.
+    \begin{center}
+    \includegraphics[width=10cm]{../graphs/unemb-base-20.jpg}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Pen and paper proof of unembeddability}
+    \begin{wrapfigure}{l}{0.33\textwidth}
+        \includegraphics[width=0.35\textwidth]{../graphs/unemb-10-2.jpg}
+    \end{wrapfigure}
+Suppose this graph is embeddable.
+\\~\\
+
+Note that~$v$ and~$a$ are distinct points orthogonal to~$p_1$.
+Thus~$p_1$ is fixed.
+Observe: $p_1$ is collinear to~$v \times a$.
+\pause
+\\~\\
+Similarly: $p_2$ is collinear to~$v \times (v \times a)$.
+And so on.  We see 
+$a$ is collinear to $x \times (x \times (w \times (w \times (v \times
+                    (v \times a)))))$.
+\end{frame}
+
+\begin{frame}{Pen and paper proof of unembeddability}
+We may assume~$z=(0,0,1)$, $x=(1,0,0)$, $v=(v_1, v_2, 0)$, $w=(w_1,w_2,0)$
+    and~$a=(0,a_2,a_3)$. We have:
+\begin{equation*}
+ \left(
+\begin{smallmatrix}
+0\\
+a_2\\
+a_3\\
+\end{smallmatrix}
+\right)
+\text{is collinear to}
+\left(
+\begin{smallmatrix}
+0\\
+-a_2 v_1w_2 (v_1w_1 + v_2w_2) \\
+-a_3 (v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2)\\
+\end{smallmatrix}
+\right)
+\end{equation*}
+\pause
+That is:
+\begin{align*}
+v_1w_2 \left<v,w\right> & =
+v_1w_2 (v_1w_1 + v_2w_2) \\
+& = v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2 \\
+& = (v_1^2 + v_2^2)w_1^2 + (v_1^2 + v_2^2)w_2^2 \\
+& = w_1^2 + w_2^2 = 1.
+\end{align*}
+\pause
+Since~$v$ and~$w$ are not collinear,
+we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
+Note~$|v_1|, |w_2| \leq 1$.
+Thus: $|v_1w_2\left<v,w\right>| < 1$.
+Contradiction.
 \end{frame}
 
 \end{document}

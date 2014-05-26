@@ -28,7 +28,10 @@ This repository
 
 This repository contains the
 
- * LaTeX sourcecode of the preprint (under /paper);
- * source code used for the computation (under /code,
-   in particular /code/comp<n>.py) and
- * source code of the website kochen-specker.info (under /site).
+ * LaTeX sourcecode of the preprint (under `/paper`);
+ * source code used for the computation (under `/code`,
+   in particular `/code/comp<n>.py`) and
+ * source code of the website kochen-specker.info (under `/site`).
+    * First, in `/code`, run `python generateSite.py`.
+    * Then, in  `/site`, run `jekyll build`.
+    * Find the site in `/site/_site`.

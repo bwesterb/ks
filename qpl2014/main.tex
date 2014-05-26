@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{wrapfig}
+\usepackage{hyperref}
 
 \title{A Kochen-Specker system has at least 21 vertices}
 
@@ -184,6 +185,75 @@ we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
 Note~$|v_1|, |w_2| \leq 1$.
 Thus: $|v_1w_2\left<v,w\right>| < 1$.
 Contradiction.
+\end{frame}
+
+\begin{frame}[fragile]{Example of automized cross product chasing}
+    \fontsize{2}{1}
+\begin{verbatim}
+load_package redlog;
+rlset R;
+
+procedure d(x,y);
+    (first x) * (first y) +
+    (second x) * (second y) +
+    (third x) * (third y);
+
+procedure k(x,y);
+    {(second x)*(third y) - (third x)*(second y),
+     (third x)*(first y) - (first x)*(third y),
+     (first x)*(second y) - (second x)*(first y)};
+
+v0c1 := 1; v0c2 := 0; v0c3 := 0;
+v1c1 := 0; v1c2 := 1; v1c3 := 0;
+
+v0 := {v0c1, v0c2, v0c3}; 
+v1 := {v1c1, v1c2, v1c3}; 
+v2 := {v2c1, v2c2, v2c3}; 
+v3 := {v3c1, v3c2, v3c3}; 
+v2c1 := 0;
+neq0 := k(v0,k(v3,v1)); 
+\end{verbatim}
+\begin{center} \emph{(snip)} \end{center}
+\begin{verbatim}
+neq29 := k(k(k(k(v3,v1),v1),v2),k(k(v3,v0),v3)); 
+phi := 
+       (first neq0 neq 0 or
+        second neq0 neq 0 or
+        third neq0 neq 0) and 
+\end{verbatim}
+\begin{center} \emph{(snip)} \end{center}
+\begin{verbatim}
+       (first neq29 neq 0 or
+        second neq29 neq 0 or
+        third neq29 neq 0) and 
+       d(v2,v0) = 0 and 
+       d(k(k(v3,v0),v3),k(k(k(k(v3,v1),v1),v2),v2)) = 0 and 
+        true;
+rlqe ex(v3c3,
+     ex(v3c2,
+     ex(v3c1,
+     ex(v2c3,
+     ex(v2c2,phi)))));
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+    Source code, paper and experimental results can be found at
+    \begin{center}
+        \url{kochen-specker.info}
+    \end{center}
+    \pause
+    Some open problems:
+    \begin{itemize}
+        \item
+            If~$G$ is embeddable,
+            is there a~$S$ such that~$G = \mathcal{G}(S)$.
+        \item
+            Is every embeddable graph,
+            grid embeddable? That is: using points of the form
+            $(\frac{x}{\sqrt{n}}, \frac{y}{\sqrt{n}}, \frac{z}{\sqrt{n}})$
+            for~$x,y,z,n \in \mathbb{Z}$.
+    \end{itemize}
 \end{frame}
 
 \end{document}

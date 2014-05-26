@@ -1,0 +1,63 @@
+\documentclass{beamer}
+
+\title{A Kochen-Specker system has at least 21 vertices}
+
+\author{Sander Uijlen \and Bas Westerbaan}
+\institute{Radboud Universiteit Nijmegen}
+
+% we don't want those funny buttons down right.
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{}
+        A \alert{Kochen-Specker system} $S$ is a finite set
+        of points on the (open) northern hemisphere,
+        such that there is no~$010$-coloring; that is: there is no~
+        $\{0,1\}$-valued coloring with
+        \begin{enumerate}
+            \item
+                three pairwise orthogonal points are assigned~$(1,0,0)$,
+                        $(0,1,0)$ or~$(0,0,1)$ and
+            \item
+                two orthogonal points are not assigned~$(1,1)$.
+                \\~\\
+        \end{enumerate}
+    \begin{tabular}{ll}
+        point & $\sim$ direction of magnetic field
+                    in measurement of SPIN-1 \\
+        coloring & $\sim$ non-contextual deterministic theory
+    \end{tabular}
+    \pause
+    \begin{theorem}[Kochen-Specker]
+        There is a Kochen-Specker system.  Thus:
+        there is no non-contextual deterministic theory
+        predicting the measurement
+        of a SPIN-1 particle.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{The smallest Kochen-Specker system?}
+    \begin{tabular}{lrl}
+        Kochen-Specker & 1975 & $\leq 117$ \\
+        Penrose, Peres (indep.) & 1991 & \onslide<2->{$\leq 33$} \\
+        Conway & $\sim$ 1995 & \onslide<3->{$\leq 31$} \\
+               & & \\
+        \onslide<6->{U\&W}       & \onslide<6->{july?}&
+                \onslide<6->{$\geq 22$ or $=21$} \\
+        \onslide<5->{U\&W}       & \onslide<5->{may}& \onslide<5->{$\geq 21$} \\
+                Arends, Wampler, Oauknine & 2009 &\onslide<4->{$\geq 18$} 
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{It is a problem about graphs}
+    
+\end{frame}
+
+\end{document}
+
+% vim: ft=tex.latex

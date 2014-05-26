@@ -4,6 +4,9 @@
 *.blg
 *.out
 *.log
+*.nav
+*.toc
+*.snm
 *.pdf
 *.swp
 *.fls

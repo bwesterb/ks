@@ -13,3 +13,4 @@
 *.vrb
 *.make
 *.make.temp
+.DS_Store

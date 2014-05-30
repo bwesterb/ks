@@ -43,7 +43,7 @@ def main():
         grids.append((orthogonality_graph(vectors),
                         vectors))
     print 'Considering graphs'
-    for graph in nauty.geng(15, canonical_labeling=True):
+    for graph in nauty.geng(14, canonical_labeling=True):
         if check_for_result(graph):
             continue
         result = {}

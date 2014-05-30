@@ -1,11 +1,11 @@
 A Kochen-Specker System has at least 21 vertices
-------------------------------------------------
+================================================
 
 * Bas Westerbaan (bwesterb@cs.ru.nl)
 * Sander Uijlen (suijlen@cs.ru.nl)
 
 Abstract
-========
+--------
 At the heart of the Conway's Free Will theorems and Kochen and
 Specker's argument against non-contextual hidden variable theories
 is the existence of a Kochen-Specker (KS) system: a set of points
@@ -24,7 +24,7 @@ develop a more practical decision procedure for embeddability to
 improve the lower bound to 21.
 
 This repository
-===============
+---------------
 
 This repository contains the
 

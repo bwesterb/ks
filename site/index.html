@@ -1,0 +1,103 @@
+---
+layout: default
+title: Kochen-Specker
+---
+
+<div id="home">
+    <p>This website is dedicated <strong>the search
+        for the smallest
+        Kochen-Specker system</strong>.  See the
+    section <em>The experiment</em> below,
+  for an explanation what Kochen-Specker systems are and why they are
+  interesting.  At the moment, this website primarily lists
+  the results from <a href="/references.html#uw">a paper by Uijlen
+      and Westerbaan</a>.  Please feel
+  free to contribute: <a href="mailto:contact@kochen-specker.info">send
+      an e-mail</a> or <a href="http://github.com/bwesterb/ks">contribute
+              directly on github</a>.</p>
+  
+  <h2>The experiment</h2>
+  <p>Consider the following experiment.  Measure the SPIN of a spin 1 particle
+  along a direction.  Or more concretely: shoot a deuterium atom
+  through a certain fixed inhomogeneous magnetic field.
+  Depending on the direction it was shot through the field,
+  the particle will move undisturbed
+  or deviate.</p>
+  <p>Quantum Mechanics only predicts the probability, given the
+  direction, whether the particle will deviate.  Its probabilistic
+  prediction has been tested thoroughly.  One wonders: is there a deterministic
+  theory predicting the outcome of this experiment?</p>
+  <p>Kochen and Specker <a href="/references.html#ks">have shown</a>
+  that any such deterministic theory
+  must be odd: it cannot 
+  satisfy the plausible (non contextual) SPIN axiom,
+  that is: in exactly two out of three pairwise orthogonal directions
+  the particle will deviate.</p>
+  <p>They have proven this by giving 117 points on the sphere,
+  representing 117 directions,
+  for which there can be no special {0,1}-valued coloring
+  (called a 010-coloring),
+  which corresponds to the predictions of a deterministc theory.</p>
+  <img style="float: right; width: 25%" src="/misc/ks31.png"
+        title="Conway's 31 Kochen-Specker system" />
+  <p>After Kochen and Speckers original paper,
+  several people have tried to give a smaller set of points to demonstrate
+  this fact.  Such a finite set of points is called a <strong>Kochen-Specker
+      system</strong>.</p>
+  <h2>Smallest Kochen-Specker system</h2>
+  <p>The smallest <em>known</em> Kochen-Specker system is due to Conway.
+  It has 31 points and is shown on the right.
+  We also know that the smallest Kochen-Specker system must have
+  at least 21 points.  A short history:</p>
+  <p>
+  <table>
+      <thead><tr>
+              <th>by</th>
+              <th>year</th>
+              <th>bound</th>
+        </tr></thead>
+      <tbody>
+        <tr>
+            <td><a href="/references.html#ks">Kochen and Specker</a></td>
+            <td>1975</td>
+            <td>&leq; 117</td>
+        </tr>
+        <tr>
+            <td>Penrose, Peres (independently)</td>
+            <td>1991</td>
+            <td>&leq; 33</td>
+        </tr>
+        <tr>
+            <td>Conway</td>
+            <td>~1995</td>
+            <td>&leq; 31</td>
+        </tr>
+        <tr>
+            <td><a href="/references.html#uw">Uijlen and Westerbaan</a></td>
+            <td>2014</td>
+            <td>&geq; 21</td>
+        </tr>
+        <tr>
+            <td><a href="/references.html#aow11">Arends, Oauknine and
+                        Wampler</a></td>
+            <td>2009</td>
+            <td>&geq; 18</td>
+        </tr>
+      </tbody>
+  </table>
+  </p>
+  <h3>The lower bounds</h3>
+  <p>Arends, Oauknine and Wampler observed that a <em>n</em> point
+  Kochen-Specker system corresponds to a certain <em>n</em> vertex graph:
+  a graph that is both <em>(sphere) embeddable</em> and
+  not <em>010-colorable</em>.
+  They have shown there are no such graphs on less than 18 vertices.
+  Uijlen and Westerbaan demonstrated that there is also no such graph
+  on less than 21 vertices.</p>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo;
+              <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

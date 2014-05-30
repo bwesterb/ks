@@ -1,0 +1,69 @@
+---
+layout: default
+---
+<div id="home">
+<span id='nav'>&laquo; <a href="/">home</a>  &laquo; <a href="/smallgraphs">small graphs</a></span>
+<h1>The graph <code>{{ page.title }}</code></h1>
+{% if page.image %}
+<img class="graph" src="{{ page.image }}" />
+{% endif %}
+
+<!-- <p class="meta">...</p> -->
+
+<p>
+{% if page.embeddable %}
+This graph is embeddable.
+{% if page.gridEmbeddable != false %}
+It is even {{ page.gridEmbeddable }}-grid embeddable.
+{% else %}
+It is unknown whether this graph is grid embeddable.
+{% endif %}
+{% elsif page.embeddable == false %}
+This graph is not embeddable.
+{% else %}
+It is unknown whether this graph is embeddable or not.
+{% endif %}
+</p>
+
+{% if page.embedding %}
+<h2>Embedding</h2>
+<p>An embedding of this graph is given by.
+<div class="embedding"><ol start="0">
+{% for vec in page.embedding %}
+<li>({{ vec[0] }}, {{ vec[1] }}, {{ vec[2]}})</li>
+{% endfor %}
+</ol></div>
+</p>
+{% endif %}
+
+{% if page.unembeddableSubgraph != nil %}
+<h2>Unembeddable subgraph</h2>
+The graph <a href="/smallGraphs/{{ page.unembeddableSubgraph[1] }}.html"><code>
+            {{ page.unembeddableSubgraph[0] }}</code></a>
+    is a subgraph of this graph.  It is not embeddable.  Hence, this
+    graph is not embeddable either.  One possible monomorphism
+    of the unembeddable graph into this one, is given by:
+    <div class="embedding"><ul>
+        {% for v in page.unembeddableSubgraph[2] %}
+        <li>{{ forloop.index0 }} -&gt; {{ v }}</li>
+        {% endfor %}
+    </ul></div>
+{% endif %}
+
+{% if page.reduce_script != nil %}
+<h2>Reduce script</h2>
+<p>Embeddability of the graph reduces to the truth of a formula over the reals,
+which can be decided with the
+<a href="http://reduce-algebra.com">reduce algebra</a> package
+using the following script.</p>
+{% highlight text %}
+{{ page.reduce_script }}
+{% endhighlight %}
+{% endif %}
+
+<div class="post">
+
+{{ content }}
+
+</div>
+</div>

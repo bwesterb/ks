@@ -1,0 +1,16 @@
+---
+layout: default
+title: References
+---
+
+<div id="home">
+    <ul>
+        {% for ref in site.data.references %}
+            <li id="{{ ref[0] }}"><em>{{ ref[1].title }}</em>
+                by {{ ref[1].authors }}
+                {% for link in ref[1].links %}
+                    [ <a href="{{ link[1] }}">{{ link[0] }}</a> ]
+                {% endfor %}
+        {% endfor %}
+    </ul>
+</div>

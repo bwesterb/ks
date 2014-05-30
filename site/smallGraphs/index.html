@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<div id="home">
+<span id='nav'>&laquo; <a href="/">home</a></span>
+<h1>Small graphs</h1>
+<p>This is a list of all squarefree graphs of minimal vertex degree 3 with up
+to and including 14 vertices.  For almost every graph it has been
+decided whether it is embeddable on the sphere or not.</p>
+<table>
+    <thead><tr>
+            <th>#V</th>
+            <th>Canonical name</th>
+            <th>Embeddability</th>
+    </tr></thead>
+    <tbody>
+    {% for p in site.pages %}
+    {% if p.layout == "smallGraph" %}
+    <tr>
+        <td>{{ p.n_vertices }}</td>
+        <td><a href="/smallGraphs/{{ p.safe_name }}.html">
+                <code>{{ p.title }}</code></a></td>
+        <td>
+            {% if p.gridEmbeddable != false %}
+                {{ p.gridEmbeddable }}-grid embeddable
+            {% elsif p.embeddable %}
+                embeddable
+            {% elsif p.embeddable == false %}
+                {% if p.minimally_unembeddable %}
+                minimally unembeddable
+                {% else %}
+                unembeddable
+                {% endif %}
+            {% else %}
+                unknown
+            {% endif %}
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+</div>

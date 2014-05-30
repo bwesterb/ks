@@ -1,0 +1,15 @@
+ks:
+    title: The problem of hidden variables in quantum mechanics
+    authors: Simom Kochen and EP Specker
+    links:
+        springer: http://link.springer.com/chapter/10.1007/978-94-010-1795-4_17
+aow11:
+    title: On searching for Small Kochen-Specker Vector System
+    authors: Felix Arends, Joel Ouaknine and Charles W Wampler
+    links:
+        arxiv: http://arxiv.org/pdf/1111.3301v1.pdf
+uw:
+    title: A Kochen-Specker system has at least 22 vertices
+    authors: Sander Uijlen and Bas Westerbaan
+    links:
+        paper: http://westerbaan.name/~bas/math/ks-extended-abstract.pdf

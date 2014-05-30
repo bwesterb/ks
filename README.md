@@ -1,8 +1,8 @@
 A Kochen-Specker System has at least 21 vertices
 ------------------------------------------------
 
-Bas Westerbaan (bwesterb@cs.ru.nl)
-Sander Uijlen (suijlen@cs.ru.nl)
+* Bas Westerbaan (bwesterb@cs.ru.nl)
+* Sander Uijlen (suijlen@cs.ru.nl)
 
 Abstract
 ========

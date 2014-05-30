@@ -16,13 +16,15 @@ yaml.add_representer(literal_str, yaml_literal_str_representer)
 
 def main():
     dirname = '../graphs/class'
-    for fn in os.listdir(dirname):
+    fns = os.listdir(dirname)
+    for i, fn in enumerate(fns):
+        if i % 10 == 0:
+            print '%s/%s' % (i, len(fns))
         path = os.path.join(dirname, fn)
         with open(path) as f:
             result = json.load(f)
         graph_safe_name = fn.split('.')[0]
         graph_name = binascii.unhexlify(graph_safe_name)
-        print graph_name
         graph = load_graph6(graph_name)
         if len(graph) >= 14:
             continue

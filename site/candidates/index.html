@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<div id="home">
+<span id='nav'>&laquo; <a href="/">home</a></span>
+<h1>Candidates</h1>
+<p>This is the start of the list of all non 010-colorable squarefree
+graphs of minimal vertex degree 3 ordered by vertex count.
+If there is a Kochen-Specker system on 20 graphs,
+then there will be an embeddable graphs in this list.
+At the moment, all graphs in this list are unembeddable.</p>
+<table>
+    <thead><tr>
+            <th>#V</th>
+            <th>Name</th>
+            <th>Unembeddable subgraph</th>
+    </tr></thead>
+    <tbody>
+    {% for p in site.pages %}
+    {% if p.layout == "candidate" %}
+    <tr>
+        <td>{{ p.n_vertices }}</td>
+        <td><a href="/candidates/{{ p.safe_name }}.html">
+                <code>{{ p.title }}</code></a></td>
+        <td>
+        <a href="/smallGraphs/{{ p.unembeddableSubgraph[1] }}.html"><code>
+            {{ p.unembeddableSubgraph[0] }}</code></a>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<div id="home">
+<span id='nav'>&laquo; <a href="/">home</a>  &laquo; <a href="/candidates">candidates</a></span>
+<h1>The graph <code>{{ page.title }}</code></h1>
+{% if page.image %}
+<img class="graph" src="{{ page.image }}" />
+{% endif %}
+
+{% if page.unembeddableSubgraph != nil %}
+<h2>Unembeddable subgraph</h2>
+The graph <a href="/smallGraphs/{{ page.unembeddableSubgraph[1] }}.html"><code>
+            {{ page.unembeddableSubgraph[0] }}</code></a>
+    is a subgraph of this graph.  It is not embeddable.  Hence, this
+    graph is not embeddable either.  One possible monomorphism
+    of the unembeddable graph into this one, is given by:
+    <div class="embedding"><ul>
+        {% for v in page.unembeddableSubgraph[2] %}
+        <li>{{ forloop.index0 }} -&gt; {{ v }}</li>
+        {% endfor %}
+    </ul></div>
+{% endif %}
+
+<div class="post">
+
+{{ content }}
+
+</div>
+</div>

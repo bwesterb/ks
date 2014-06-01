@@ -16,7 +16,8 @@ At the moment, all graphs in this list are unembeddable.</p>
             <th>Unembeddable subgraph</th>
     </tr></thead>
     <tbody>
-    {% for p in site.pages %}
+    {% assign sorted_pages = site.pages | sort_by:"title" %}
+    {% for p in sorted_pages %}
     {% if p.layout == "candidate" %}
     <tr>
         <td>{{ p.n_vertices }}</td>

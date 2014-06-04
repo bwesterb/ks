@@ -14,7 +14,7 @@ decided whether it is embeddable on the sphere or not.</p>
             <th>Embeddability</th>
     </tr></thead>
     <tbody>
-    {% assign sorted_pages = site.pages | sort_by:"title" %}
+    {% assign sorted_pages = site.pages | sort:'title' %}
     {% for p in sorted_pages %}
     {% if p.layout == "smallGraph" %}
     <tr>

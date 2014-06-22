@@ -5,6 +5,7 @@ from helper import write_graph6, load_graph6
 from subgraph import find_mono
 
 import binascii
+import os.path
 import json
 
 def main():
@@ -21,6 +22,10 @@ def main():
     print 'Checking subgraphs ...'
     for i, g_pair in enumerate(candidates):
         gname, g = g_pair
+        gsname = binascii.hexlify(gname)
+        path = '../graphs/candidates/%s.json' % gsname
+        if os.path.exists(path):
+            continue
         if i % 100 == 0:
             print i, len(candidates)
         for j, ug_pair in enumerate(unemb):
@@ -29,8 +34,7 @@ def main():
             if mono is None:
                 continue
             break
-        gsname = binascii.hexlify(gname)
-        with open('../graphs/candidates/%s.json' % gsname, 'w') as f:
+        with open(path, 'w') as f:
             json.dump({'subgraph': ugname,
                        'mono': mono}, f)
 

@@ -1,3 +1,5 @@
+from cStringIO import StringIO
+
 def write_graph6(g):
     """ Writes a graph to graph6 format """
     ret = ''
@@ -51,3 +53,20 @@ def load_graph6(s):
             if y == n:
                 break
     return g
+
+def load_arends(g):
+    """ Loads a graph stored in the format used by Felix Arends. """
+    f = StringIO(g)
+    ret = {}
+    n = int(f.readline()[:-1])
+    for i in xrange(n):
+        ret[i] = set()
+    for v in xrange(n):
+        bits = map(int, f.readline()[:-1].split(' '))
+        assert bits[0] == len(bits) - 1
+        for w in bits[1:]:
+            ret[v].add(w)
+    for v in ret:
+        for w in ret[v]:
+            assert v in ret[w]
+    return ret

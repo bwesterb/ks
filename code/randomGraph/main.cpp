@@ -71,8 +71,10 @@ public:
             bool removed = this->removed.back();
             this->list.pop_back();
             this->removed.pop_back();
-            if (!removed)
+            if (!removed) {
+                this->map.erase(ret);
                 return ret;
+            }
         }
         assert(false);
     }
@@ -86,6 +88,7 @@ public:
     void remove(T t)
     {
         assert(this->ready);
+        assert(this->map.count(t));
         size_t index = this->map[t];
         this->map.erase(t);
         this->removed[index] = true;
@@ -95,6 +98,13 @@ public:
     {
         assert(this->ready);
         return this->map.count(t) == 1;
+    }
+
+    void add(T t)
+    {
+        assert(!this->ready);
+        this->list.push_back(t);
+        this->removed.push_back(false);
     }
 
     void emplace(T&& t)
@@ -109,7 +119,9 @@ template<std::size_t N>
 class graph : public base_graph
 {
 private:
+    std::array<popremoveset<node_t>, N> candidates_by_node;
     popremoveset<edge_t> candidates;
+    bool use_candidates_by_node;
 
     // basic structure
     std::array<std::array<bool, N>, N> adj;
@@ -123,20 +135,22 @@ private:
 
 public:
     graph()
-                : adj(), neigh(), ts_adj(), ts_neigh(), ts_mp(),
-                            triangles_of()
+                : candidates_by_node(), candidates(), adj(), neigh(), ts_adj(),
+                        ts_neigh(), ts_mp(), triangles_of()
     {
+        this->use_candidates_by_node = true;
+        for (int i = 0; i < N; i++) {
+            for (int j = i+1; j < N; j++) {
+                this->candidates_by_node[i].emplace(j);
+                this->candidates_by_node[j].emplace(i);
+            }
+        }
         for (int i = 0; i < N; i++)
-            for (int j = i+1; j < N; j++)
-                this->candidates.emplace(edge(i, j));
-        this->candidates.shuffle();
+            this->candidates_by_node[i].shuffle();
     }
 
     void add(const edge_t& e)
     {
-        assert(this->candidates.contains(e));
-        this->candidates.remove(e);
-
         // Update basic structures
         this->adj[e[0]][e[1]] = true;
         this->adj[e[1]][e[0]] = true;
@@ -176,23 +190,27 @@ public:
         }
 
         // Prevent squares
-        for(node_t v : this->ts_neigh[e[0]]) {
-            edge_t fe = edge(e[1], v);
-            if(this->candidates.contains(fe))
-                this->candidates.remove(fe);
-        }
-        for(node_t v : this->ts_neigh[e[1]]) {
-            edge_t fe = edge(e[0], v);
-            if(this->candidates.contains(fe))
-                this->candidates.remove(fe);
-        }
-        for(node_t v : this->neigh[e[0]]) {
-            for(node_t w : this->neigh[e[1]]) {
-                edge_t fe = edge(v, w);
-                if(this->candidates.contains(fe))
-                    this->candidates.remove(fe);
+        for(node_t v : this->ts_neigh[e[0]])
+            this->forbid(e[1], v);
+        for(node_t v : this->ts_neigh[e[1]])
+            this->forbid(e[0], v);
+        for(node_t v : this->neigh[e[0]])
+            for(node_t w : this->neigh[e[1]])
+                this->forbid(v, w);
+    }
+
+    void forbid(node_t e1, node_t e2)
+    {
+        if (this->use_candidates_by_node) {
+            if (this->candidates_by_node[e1].contains(e2)) {
+                this->candidates_by_node[e1].remove(e2);
+                this->candidates_by_node[e2].remove(e1);
             }
+            return;
         }
+        edge_t e = edge(e1, e2);
+        if(this->candidates.contains(e))
+            this->candidates.remove(e);
     }
 
     bool compare_nodes(const node_t& a, const node_t& b)
@@ -313,15 +331,41 @@ public:
 
     bool run()
     {
-        int i = 0;
-        while (!this->candidates.empty()) {
-            edge_t e = this->candidates.pop();
-            this->add(e);
-            i++;
+        // First, make sure every node has at least vertex degree 3.
+        for(int i = 0; i < N; i++) {
+            if(this->neigh[i].size() < 3) {
+                if(this->candidates_by_node[i].empty()) {
+                    std::cerr << "can't reach -d3" << std::endl;
+                    return false;
+                }
+                node_t n = this->candidates_by_node[i].pop();
+                this->candidates_by_node[n].remove(i);
+                this->add(edge(i, n));
+            }
         }
+
+        // Collect all candidates
+        // TODO improve performance
+        for (int i = 0; i < N; i++) {
+            while (!this->candidates_by_node[i].empty()) {
+                node_t n = this->candidates_by_node[i].pop();
+                this->candidates_by_node[n].remove(i);
+                this->candidates.emplace(edge(i, n));
+            }
+        }
+
+        this->candidates.shuffle();
+        this->use_candidates_by_node = false;
+
+        // Now, add as many edges as possible
+        while (!this->candidates.empty()) {
+            edge_t edge = this->candidates.pop();
+            this->add(edge);
+        }
+        
+        // Check colorability
         if(!this->find_010coloring()) {
             std::cout << this->to_graph6() << std::endl;
-            std::cout.flush();
             return true;
         }
         return false;
@@ -361,7 +405,8 @@ int main()
         N++;
         if(g.run())
             n++;
-        if(N % 10000 == 0)
-            std::cerr << n << "/" << N << std::endl;
+        if(N % 1000 == 0)
+            break;
+            //std::cerr << n << "/" << N << std::endl;
     }
 }

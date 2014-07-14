@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <random>
 #include <vector>
 #include <array>
 #include <stack>
@@ -20,6 +21,23 @@ public:
     void find_010coloring();
 };
 
+template<typename T>
+inline void vector_remove(std::vector<T> & v, const T & item)
+{
+    v.erase(std::remove(v.begin(), v.end(), item), v.end());
+}
+
+bool is_edge_of_triangle(edge_t e, triangle_t t)
+{
+    if(e[0] == t[0] && e[1] == t[1])
+        return true;
+    if(e[0] == t[1] && e[1] == t[2])
+        return true;
+    if(e[0] == t[0] && e[1] == t[2])
+        return true;
+    return false;
+}
+
 edge_t edge(node_t a, node_t b)
 {
     std::array<node_t, 2> ret = {{a, b}};
@@ -33,6 +51,8 @@ triangle_t triangle(node_t a, node_t b, node_t c)
     std::array<node_t, 3> ret = {{a, b, c}};
     if(ret[0] > ret[1])
         std::swap(ret[1], ret[0]);
+    if(ret[0] > ret[2])
+        std::swap(ret[2], ret[0]);
     if(ret[1] > ret[2])
         std::swap(ret[1], ret[2]);
     return ret;
@@ -135,8 +155,8 @@ private:
 
 public:
     graph()
-                : candidates_by_node(), candidates(), adj(), neigh(), ts_adj(),
-                        ts_neigh(), ts_mp(), triangles_of()
+                : candidates_by_node(), candidates(), adj(), neigh(),
+                         ts_adj(), ts_neigh(), ts_mp(), triangles_of()
     {
         this->use_candidates_by_node = true;
         for (int i = 0; i < N; i++) {
@@ -147,6 +167,26 @@ public:
         }
         for (int i = 0; i < N; i++)
             this->candidates_by_node[i].shuffle();
+    }
+
+    // Removes an edge.
+    // WARNING this will make this object inconsistent as it does not update
+    // several structures like ts_adj.
+    void _remove(const edge_t& e)
+    {
+        assert(this->adj[e[0]][e[1]]);
+        this->adj[e[0]][e[1]] = false;
+        this->adj[e[1]][e[0]] = false;
+        vector_remove(this->neigh[e[0]], e[1]);
+        vector_remove(this->neigh[e[1]], e[0]);
+        std::vector<triangle_t> triangles = this->triangles_of[e[0]];
+        for (triangle_t t : triangles) {
+            if (!is_edge_of_triangle(e, t))
+                continue;
+            vector_remove(this->triangles_of[t[0]], t);
+            vector_remove(this->triangles_of[t[1]], t);
+            vector_remove(this->triangles_of[t[2]], t);
+        }
     }
 
     void add(const edge_t& e)
@@ -356,19 +396,29 @@ public:
 
         this->candidates.shuffle();
         this->use_candidates_by_node = false;
+        std::vector<edge_t> path;
 
         // Now, add as many edges as possible
         while (!this->candidates.empty()) {
-            edge_t edge = this->candidates.pop();
-            this->add(edge);
+            edge_t e = this->candidates.pop();
+            this->add(e);
+            path.emplace_back(e);
         }
         
         // Check colorability
-        if(!this->find_010coloring()) {
-            std::cout << this->to_graph6() << std::endl;
-            return true;
+        std::string output;
+        bool found_coloring = false;
+        while(!this->find_010coloring()) {
+            found_coloring = true;
+            output = this->to_graph6();
+            this->_remove(path.back());
+            path.pop_back();
+            if(path.empty())
+                break;
         }
-        return false;
+        if(found_coloring)
+            std::cout << output << std::endl;
+        return found_coloring;
     }
 
     std::string to_graph6()
@@ -405,8 +455,7 @@ int main()
         N++;
         if(g.run())
             n++;
-        if(N % 1000 == 0)
-            break;
-            //std::cerr << n << "/" << N << std::endl;
+        if(N % 10000 == 0)
+            std::cerr << n << "/" << N << std::endl;
     }
 }

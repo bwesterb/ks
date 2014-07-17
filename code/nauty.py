@@ -3,7 +3,7 @@
 from cStringIO import StringIO
 import subprocess
 
-from helper import load_graph6
+from helper import load_graph6, write_graph6
 
 def geng(until=None, minimal_vertex_degree=3, squarefree=True,
                             connected=False, canonical_labeling=False):
@@ -40,6 +40,17 @@ def graph_to_nauty_format(g):
             io.write(' ')
         io.write(';\n')
     return io.getvalue()
+
+def canonize(g):
+    """ Canonizes the graph g. """
+    p = subprocess.Popen(['labelg'],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    stdin=subprocess.PIPE)
+    p.stdin.write(write_graph6(g))
+    p.stdin.write("\n")
+    p.stdin.close()
+    return load_graph6(p.stdout.readline())
 
 def orbits_of(g, fixed):
     """ Determines the orbits of g using dreadnaut

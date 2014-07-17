@@ -150,13 +150,12 @@ private:
     // derived structure
     std::array<std::array<bool, N>, N> ts_adj;
     std::array<std::vector<node_t>, N> ts_neigh;
-    std::map<edge_t, node_t> ts_mp;
     std::array<std::vector<triangle_t>, N> triangles_of;
 
 public:
     graph()
                 : candidates_by_node(), candidates(), adj(), neigh(),
-                         ts_adj(), ts_neigh(), ts_mp(), triangles_of()
+                         ts_adj(), ts_neigh(), triangles_of()
     {
         this->use_candidates_by_node = true;
         for (int i = 0; i < N; i++) {
@@ -216,7 +215,6 @@ public:
             this->ts_adj[v][e[1]] = true; 
             this->ts_neigh[e[1]].emplace_back(v);
             this->ts_neigh[v].emplace_back(e[1]);
-            this->ts_mp[edge(v, e[1])] = e[0];
         }
         for(node_t v : this->neigh[e[1]]) {
             if (v == e[0])
@@ -226,7 +224,6 @@ public:
             this->ts_adj[v][e[0]] = true; 
             this->ts_neigh[e[0]].emplace_back(v);
             this->ts_neigh[v].emplace_back(e[0]);
-            this->ts_mp[edge(v, e[0])] = e[1];
         }
 
         // Prevent squares

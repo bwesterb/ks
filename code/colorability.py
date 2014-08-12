@@ -24,6 +24,31 @@ def find_triangles(adj):
                     triangles.add(key)
     return triangles
 
+def find_ncoloring(adj, n):
+    """ Tries to find a n-coloring of the graph given by adj. """
+    mapping = {}
+    for node in adj:
+        mapping[node] = None
+    todo = list(adj)
+    stack = [(mapping, tuple(todo))]
+    N = 0
+    while stack:
+        N += 1
+        mapping, todo = stack.pop()
+        if not todo:
+            return mapping
+        node = todo[0]
+        allowed = set(range(n))
+        for neighbour in adj[node]:
+            color = mapping[neighbour]
+            if color in allowed:
+                allowed.remove(color)
+        for color in allowed:
+            new_mapping = dict(mapping)
+            new_mapping[node] = color
+            stack.append((new_mapping, todo[1:]))
+    return None
+
 def find_010coloring(adj):
     """ Tries to find a 010-coloring of the graph given by adj. """
     triangles = find_triangles(adj)

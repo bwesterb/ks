@@ -24,6 +24,7 @@ class base_graph
 {
 public:
     virtual void find_nontrivial_types() = 0;
+    virtual ~base_graph() {};
 };
 
 std::array<node_t, 3> triangle(node_t a, node_t b, node_t c)
@@ -88,9 +89,9 @@ public:
                     if (z < y) continue;
                     if(!this->adj[z][x]) continue;
                     triangle_t t = triangle(x, y, z);
-                    this->triangles_of[x].emplace_back(t);
-                    this->triangles_of[y].emplace_back(t);
-                    this->triangles_of[z].emplace_back(t);
+                    this->triangles_of[x].push_back(t);
+                    this->triangles_of[y].push_back(t);
+                    this->triangles_of[z].push_back(t);
                 }
             }
         }

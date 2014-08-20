@@ -10,14 +10,15 @@ def write_graph6(g):
     bitmap = []
     x = 0
     y = 1
-    while True:
-        bitmap.append(int(keys[y] in g[keys[x]]))
-        x += 1
-        if x == y:
-            x = 0
-            y += 1
-            if y == len(g):
-                break
+    if len(g) != 1:
+        while True:
+            bitmap.append(int(keys[y] in g[keys[x]]))
+            x += 1
+            if x == y:
+                x = 0
+                y += 1
+                if y == len(g):
+                    break
     for i in xrange(0, len(bitmap), 6):
         v = 0
         for m in xrange(6):

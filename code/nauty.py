@@ -74,7 +74,15 @@ def orbits_of(g, fixed):
                         '\n', '').strip()
     orbits = []
     for orbit_bit in orbit_line.strip().split(';'):
+        orbit = set()
         if not orbit_bit:
             continue
-        orbits.append(set(map(int, orbit_bit.strip().split(' '))))
+        orbit_elements = orbit_bit.strip().split(' ')
+        for orbit_element in orbit_elements:
+            if ':' in orbit_element:
+                start_end = map(int, orbit_element.split(':', 1))
+                orbit.update(range(start_end[0], start_end[1]+1))
+            else:
+                orbit.add(int(orbit_element))
+        orbits.append(orbit)
     return orbits

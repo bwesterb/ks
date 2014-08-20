@@ -1,7 +1,7 @@
 // Computation 5
 // Find all graphs squarefree connected graphs with less than 16 vertices
 // which contain non-trivial 1- or 2-types.
-// Use the run shellscript to build and run
+// Use comp5.py to run the computation
 
 #include <functional>
 #include <iostream>

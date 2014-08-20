@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -e
-
-cd build
-cmake ..
-make
-cd ..
-python comp5.py

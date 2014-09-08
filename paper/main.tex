@@ -130,6 +130,13 @@ Because of this, the term point, vector and direction
 can be used interchangeably. Antipodal points correspond to opposite
 vectors and these span the same direction in space.
 
+\begin{wrapfigure}{r}{0.30\textwidth}
+\begin{center}
+\includegraphics[width=40mm]{../graphs/ks31.pdf}
+\end{center}
+\caption{Conway's 31 vector Kochen-Specker system
+\label{fig:conway31}}
+\end{wrapfigure}
 Suppose there is a KS system and a non-contextual deterministic theory satisfying
 the SPIN Axiom.
 Then we color a point of this system~$0$,
@@ -503,16 +510,6 @@ a custom heuristic backtracker written in~C++
 to decide 010-colorability of these graphs.
 
 \section{Embeddability}
-\label{sec:emb}
-\begin{wrapfigure}{r}{0.40\textwidth}
-\begin{center}
-\includegraphics[width=50mm]{../graphs/unemb-10-2.jpg}
-\end{center}
-\caption{One of the two minimal
-        non-embeddable graphs
-\label{fig:unemb-10-2}}
-\end{wrapfigure}
-
 Our computation has yielded a few hundred non-010-colorable graphs.
 If we show one of them is embeddable, we have found a new KS system.
 If we demonstrate all of them are not embeddable, we have
@@ -524,6 +521,16 @@ to test embeddability of a graph.  None of these methods could decide
 for all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
 % TODO give intermediate computation.
+\label{sec:emb}
+\begin{wrapfigure}{r}{0.30\textwidth}
+\begin{center}
+\includegraphics[width=50mm]{../graphs/unemb10-1-a.pdf}
+\end{center}
+\caption{One of the two minimal
+        non-embeddable graphs
+\label{fig:unemb-10-2}}
+\end{wrapfigure}
+
 
 We propose a new method,
 which for all graphs we considered,
@@ -658,7 +665,9 @@ In particular:
     of order less than or equal to 20
     contains, as a subgraph, one of the following three graphs:
     \begin{center}
-        \includegraphics[width=120mm]{../graphs/unemb-base-20.jpg}
+        \includegraphics[width=30mm]{../graphs/unemb10-1.pdf} \qquad
+        \includegraphics[width=30mm]{../graphs/unemb10-2.pdf} \qquad
+        \includegraphics[width=30mm]{../graphs/unemb10-3.pdf}
     \end{center}
     These three graphs are unembeddable.  The left and middle graph
     are the only minimal unembeddable squarefree graph.
@@ -706,7 +715,9 @@ distributed computation:
     Jille Timmermans.
 
 We are grateful to prof.~McKay for discussing
-the feasibility of certain graph restrictions.
+the feasibility of certain graph restrictions and
+to Judith van Stegeren\footnote{\url{http://jd7h.com/}}
+for drawing the figures in this paper.
 
 \clearpage
 \appendix

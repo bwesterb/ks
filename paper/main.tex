@@ -1,15 +1,13 @@
-\documentclass[a4paper]{article}
+\documentclass[adraft,copyright,creativecommons]{eptcs}
 
 \usepackage{algorithm2e}
+\usepackage{breakurl}
 \usepackage{hyperref}
 \usepackage{paralist}
 \usepackage{graphicx}
-\usepackage{authblk}
 \usepackage{amsmath}
 \usepackage{wrapfig}
 \usepackage{amsthm}
-
-\usepackage{draftwatermark}
 
 % TODO replace 21 with 22
 \newcommand{\keyword}[1]{\textbf{#1}}
@@ -27,16 +25,20 @@
 \theoremstyle{remark}
 \newtheorem{rem}[main]{Remark}
 
-\title{A Kochen-Specker system has at least 21 vertices\\
+\title{A Kochen-Specker system has at least 21 vectors\\
         {\small (extended abstract)}}
+\def\titlerunning{A Kochen-Specker system has at least 21 vectors
+            (extended abstract)}
+\def\authorrunning{Uijlen \& Westerbaan}
 
-\author{Sander Uijlen}
-\author{Bas Westerbaan}
+\author{Sander Uijlen
+    \institute{Radboud Universiteit}
+    \email{suijlen@cs.ru.nl}
+\and
+    Bas Westerbaan
+    \institute{Radboud Universiteit}
+    \email{bwesterb@cs.ru.nl}}
 
-% TODO will we keep these @cs.ru.nl addresses?
-\affil{{\small Institute for Computing and Information Sciences\\
-        Radboud Universiteit Nijmegen}\\
-   \{\texttt{suijlen},\texttt{bwesterb}\}\texttt{@cs.ru.nl}}
 
 \begin{document}
 
@@ -769,7 +771,7 @@ rlqe ex(v3c3,
 % TODO attribute geng
 \clearpage
 \bibliography{main}{}
-\bibliographystyle{plain}
+\bibliographystyle{eptcs}
 
 
 \end{document}

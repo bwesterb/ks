@@ -197,6 +197,13 @@ the non-010-colorability is preserved.
 Therefore, we may assume antipodal points are identified on the sphere.
 That is: a Kochen-Specker system is a finite subset of the projective plane
 that is not 010-colorable.
+\begin{wrapfigure}{r}{0.25\textwidth}
+\begin{center}
+\includegraphics[width=40mm]{../graphs/kruisproduct.pdf}
+\end{center}
+\caption{squarefreeness of an embeddable graph
+\label{fig:crossproduct}}
+\end{wrapfigure}
 \begin{dfn}
 Given a finite subset~$S$ of the projective plane
 (or equivalently, a finite subset of the northern
@@ -253,12 +260,13 @@ Luckily, we can restrict ourselves to certain classes of graphs.
         For us the complete graph on four vertices is not squarefree.}
 \end{prop}
 \begin{proof}
-    Given two non antipodal points~$a\neq b$.
-    Consider the points orthogonal to~$a$.
+    Given two non antipodal points~$v\neq w$.
+    See Figure~\ref{fig:crossproduct}.
+    Consider the points orthogonal to~$v$.
     This is a great circle.
-    The points orthogonal to~$b$ is a different great circle.
+    The points orthogonal to~$w$ is a different great circle.
     They intersect in precisely two antipodal points.
-    Hence, if~$c$ and~$d$ are both orthogonal to~$a$ and~$b$,
+    Hence, if~$c$ and~$d$ are both orthogonal to~$v$ and~$w$,
     then~$c$ and~$d$ are equivalent.
     Therefore, an embeddable graph cannot contain a square.
 \end{proof}

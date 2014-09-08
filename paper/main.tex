@@ -11,7 +11,6 @@
 \usepackage{wrapfig}
 \usepackage{amsthm}
 
-% TODO replace 21 with 22
 \newcommand{\keyword}[1]{\textbf{#1}}
 
 \newcounter{main}
@@ -27,14 +26,14 @@
 \theoremstyle{remark}
 \newtheorem{rem}[main]{Remark}
 
-\title{A Kochen-Specker system has at least 21 vectors\\
-        {\small (extended abstract)
+\title{A Kochen-Specker system has at least 22 vectors\\
+        {\small (extended abstract)%
             \footnote{This is a condensed version of the article
                         to be published in Ohmsha-Springer's
                         New Generation Computing.
                     One can find a preprint of the full version at
                     \url{http://westerbaan.name/\~bas/math/ks.pdf}}}}
-\def\titlerunning{A Kochen-Specker system has at least 21 vectors
+\def\titlerunning{A Kochen-Specker system has at least 22 vectors
             (extended abstract)}
 \def\authorrunning{Uijlen \& Westerbaan}
 
@@ -74,7 +73,7 @@
 
     Continuing their effort, we prove a restriction on the class of graphs
     we need to consider and develop a more practical decision procedure for
-    embeddability to improve the lower bound to 21.
+    embeddability to improve the lower bound to 22.
 \end{abstract}
 
 \clearpage
@@ -113,7 +112,7 @@ Their argument is based on the existence of a Kochen-Specker system.
         }
     for which each pair is not antipodal and
     there is no~\keyword{010-coloring}.
-    A $010$-coloring is a~$\{0,1\}$-coloring of the points such that
+    A $010$-coloring is a~$\{0,1\}$-coloring of the points such that%
         \footnote{
                 In other papers, like \cite{aow11},
                 the~$0$ and~$1$ are swapped; they consider 101-colorings.
@@ -144,6 +143,7 @@ vectors and these span the same direction in space.
 \caption{Conway's 31 vector Kochen-Specker system
 \label{fig:conway31}}
 \end{wrapfigure}
+
 Suppose there is a KS system and a non-contextual deterministic theory satisfying
 the SPIN Axiom.
 Then we color a point of this system~$0$,
@@ -172,7 +172,7 @@ systems.\cite{OC}
 \subsection{Overview}
 In \cite{aow11} Arends, Ouaknine and Wampler (AOW) give a computer aided proof
 that a KS system must have at least 18 vectors.  We improve their lower bound
-and show that a KS system must have at least 21 vectors.
+and show that a KS system must have at least 22 vectors.
 
 First, in Subsection~\ref{sec:ksgraphs},
 we repeat a part of AOW's work, in particular the reduction of
@@ -187,6 +187,15 @@ and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
 we describe our practical embeddability test.
 
+\begin{wrapfigure}{r}{0.25\textwidth}
+\begin{center}
+\includegraphics[width=40mm]{../graphs/kruisproduct.pdf}
+\end{center}
+\caption{squarefreeness of an embeddable graph
+\label{fig:crossproduct}}
+\end{wrapfigure}
+
+
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
 We follow \cite{aow11} and reduce the search for Kochen-Specker systems
@@ -197,13 +206,7 @@ the non-010-colorability is preserved.
 Therefore, we may assume antipodal points are identified on the sphere.
 That is: a Kochen-Specker system is a finite subset of the projective plane
 that is not 010-colorable.
-\begin{wrapfigure}{r}{0.25\textwidth}
-\begin{center}
-\includegraphics[width=40mm]{../graphs/kruisproduct.pdf}
-\end{center}
-\caption{squarefreeness of an embeddable graph
-\label{fig:crossproduct}}
-\end{wrapfigure}
+
 \begin{dfn}
 Given a finite subset~$S$ of the projective plane
 (or equivalently, a finite subset of the northern
@@ -250,7 +253,7 @@ graphs on~$17$ points.\cite{oeisA000088}
 Luckily, we can restrict ourselves to certain classes of graphs.
 \begin{prop}[\cite{aow11}]
     An embeddable graph is squarefree.
-    That is: it does not contain the square as a subgraph.
+    That is: it does not contain the square as a subgraph.%
     \footnote{Some authors call a graph squarefree if it does not
         contain the square as induced subgraph.
         For them the complete graph on four vertices is squarefree.
@@ -495,28 +498,31 @@ Now we can state our main computation.
     graphs with minimal vertex order 3 on~$n$ nodes.  Then:
 
     \begin{center}
-    \begin{tabular}{l|lllll}
+    \begin{tabular}{l|llllll}
         $n$ & $\leq 16$
             & $17$
             & $18$
             & $19$
-            & $20$ \\
+            & $20$
+            & $21$ \\
         \hline
         $C_n$ & $0$
             & $1$
             & $2$
             & $19$
             & $441$
+            & $11876$
     \end{tabular}
     \end{center}
 
-    All these 463 graphs are not embeddable.
+    All these 12339 graphs are not embeddable.
     See Computation~\ref{comp:unemb20}.
 \end{comp}
-The computation took roughly a week on a 64-core Opteron 6276.
+The computation was distributed on approximately 300 CPU cores
+and took roughly three months.
 It was executed as follows.
 We enumerated all squarefree graphs with minimal vertex
-order 3 on less than or equal~$20$ vertices,
+order 3 on less than or equal~$21$ vertices,
 using the~\texttt{geng} util of the nauty software package,
 which uses the isomorphism-free exhaustive generation
 method of McKay\cite{geng}.
@@ -536,6 +542,7 @@ to test embeddability of a graph.  None of these methods could decide
 for all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
 % TODO give intermediate computation.
+
 \label{sec:emb}
 \begin{wrapfigure}{r}{0.30\textwidth}
 \begin{center}
@@ -670,9 +677,14 @@ If the corresponding
 sentence turns out false, we know nothing.  However,
 if the sentence is true, we know the graph is embeddable.
 
-With this method, we have decided in an hour the embeddability
-of every squarefree graph with minimal vertex order three of 13
-vertices of less.
+With this method, we have decided in an a day the embeddability
+of every squarefree graph with minimal vertex order three of 14
+vertices of less except for one.\footnote{
+A list of all squarefree graphs with minimal vertex order three of
+14 vertices of less together with their embeddability can
+be found here:
+\url{http://kochen-specker.info/smallGraphs/}
+}
 In particular:
 \begin{comp}\label{comp:unemb20}
     Every squarefree graph of minimal vertex order three
@@ -686,10 +698,16 @@ In particular:
     \end{center}
     These three graphs are unembeddable.  The left and middle graph
     are the only minimal unembeddable squarefree graph.
-\end{comp}
 For the first graph, we have proven directly that it is unembeddable.
 See Proposition~\ref{prop:unemb-10-2}.
 For the second graph, we also have a similar direct proof. The third graph is shown to not be embeddable using our algorithm.
+
+Every squarefree graph of minimal vertex order three that is
+not~$010$-colorable of order 21 contains an unembeddable subgraph.%
+\footnote{A list of these graphs together with their unembeddable
+subgraphs, can be found here:
+\url{http://kochen-specker.info/candidates/}}
+\end{comp}
 
 \section{Conclusion and future research}
 Arends, Ouaknine and Wampler struggled with two problems:
@@ -697,21 +715,21 @@ enumerating candidate graphs of less than 31 vertices
 and testing their embeddability.
 We have verified most of their computations.
 Then we enumerated all candidate graphs
-up to and including 20 vertices.
+up to and including 21 vertices.
 Furthermore, we have proposed a new decision procedure,
 which was able to decide embeddability
 for all candidate graphs we found.
 Therefore, we demonstrate: a Kochen-Specker system must have at least
-21 points.
+22 points.
 At the time of writing,
 we are computing
-whether there is a KS system of 21 vertices.\footnote{
+whether there is a KS system of 22 vertices.\footnote{
 The authors have a wager whether there is a minimal KS system of less
 than 25 vertices.}
 
 Enumerating all candidate graphs of less than 31 vertices
 is computationally infeasable.
-To bridge the enormous the gap between 21 and 31,
+To bridge the enormous the gap between 22 and 31,
 requires a new insight.
 For instance: another restriction on which graphs to consider.
 

@@ -726,8 +726,37 @@ In particular:
     of order less than or equal to 20
     contains, as a subgraph, one of the following three graphs:
     \begin{center}
-        \includegraphics[width=30mm]{../graphs/unemb10-1.pdf} \qquad
-        \includegraphics[width=30mm]{../graphs/unemb10-2.pdf} \qquad
+        \begin{tikzpicture}[thick,scale=1.4]
+            \draw
+                \foreach \x in {90,210,330} {
+                    (\x:0.7) node{} -- (0:0) node{}
+                    (\x-30:1.3) node{} -- (\x:0.7)
+                    (\x+30:1.3) node{} -- (\x:0.7)
+                    (\x-30:1.3) -- (\x+30:1.3) 
+                    (\x+30:1.3) -- (\x-30+120:1.3) 
+                }
+            ;
+        \end{tikzpicture}
+        \qquad
+        \begin{tikzpicture}[thick,scale=1.4]
+            \draw
+                \foreach \x in {0,180} {
+                    (\x+15:1.3) node{} -- (\x+90:0.9) node{}
+                    (\x+15:1.3) -- (\x+45:0.5) node{}
+                    (\x+45:0.5) -- (\x+90:0.9)
+
+                    (\x-15:1.3) node{} -- (\x-90:0.9)
+                    (\x-15:1.3) -- (\x-45:0.5) node{}
+                    (\x-45:0.5) -- (\x-90:0.9)
+
+                    (\x-15:1.3) -- (\x+15:1.3)
+                }
+                (45:0.5) -- (45+180:0.5)
+                (45+90:0.5) -- (45+90+180:0.5)
+
+            ;
+        \end{tikzpicture}
+        \qquad
         \includegraphics[width=30mm]{../graphs/unemb10-3.pdf}
     \end{center}
     These three graphs are unembeddable.  The left and middle graph

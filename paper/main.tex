@@ -580,7 +580,27 @@ for all graphs considered, whether they were embeddable or not.
 \label{sec:emb}
 \begin{wrapfigure}{r}{0.30\textwidth}
 \begin{center}
-\includegraphics[width=50mm]{../graphs/unemb10-1-a.pdf}
+        \begin{tikzpicture}[thick,scale=1.4]
+            \draw
+                \foreach \x in {90,210,330} {
+                    (\x:0.7) -- (0:0)
+                    (\x-30:1.3) -- (\x:0.7)
+                    (\x+30:1.3) -- (\x:0.7)
+                    (\x-30:1.3) -- (\x+30:1.3) 
+                    (\x+30:1.3) -- (\x-30+120:1.3) 
+                }
+                (90:0.7) node{$w$}
+                (210:0.7) node{$v$}
+                (330:0.7) node{$x$}
+                (0:0) node{$z$}
+                (90+30:1.3) node{$p_3$}
+                (90-30:1.3) node{$p_4$}
+                (210+30:1.3) node{$p_1$}
+                (210-30:1.3) node{$p_2$}
+                (330+30:1.3) node{$p_5$}
+                (330-30:1.3) node{$a$}
+                ;
+        \end{tikzpicture}
 \end{center}
 \caption{One of the two minimal
         non-embeddable graphs

@@ -514,8 +514,80 @@ By Computation~\ref{comp:bic2},
 the graph~$A$ has at least~$15+1$ vertices.
 Thus~$A'$ has at least~$32$ vertices. Contradiction.
 \end{proof}
-We believe a minimal KS graph is also triconnected.
-However, we did not find a proof.
+
+We can go one step further.
+\begin{prop}
+    A minimal Kochen-Specker graph is edge-triconnected.
+\end{prop}
+\begin{proof}
+    Given a minimal Kochen-Specker graph~$G$.
+    Suppose it is not edge-triconnected.
+    Then it splits into two graphs~$A$ and~$B$
+    together with verteces~$a_1, a_2 \in A$
+    and~$b_1,b_2 \in B$
+    such that~$(a_1, b_1)$ and~$(a_2,b_2)$
+    are the only edges between~$A$ and~$B$.
+    Note that~$A$ and~$B$ must be $010$-colorable,
+    for otherwise~$G$ would not be a minimal Kochen-Specker graph.
+    \begin{enumerate}
+    \item Suppose~$a_1 = a_2$ and~$b_1 = b_2$.
+                Then~$G$ is biconnected.  Contradiction with
+                    Proposition~\ref{prop:ks-biconn}.
+    \item Suppose~$a_1 \neq a_2$ and~$b_1 = b_2$.
+        \label{tricase1}
+        Suppose~$b_1=b_2$ does not have a fixed color in~$B$.
+        Then any coloring of~$A$ can be extended with some coloring
+        in~$B$ to a coloring of~$G$.  Contradiction.
+        Apparently~$b_1=b_2$ has a fixed color in~$B$.
+        \begin{enumerate}
+            \item
+            Suppose~$b_1=b_2$ has fixed color~$1$ in~$B$.
+            Note~$\#B \geq 16$.
+
+            Suppose there is a coloring of~$A$
+            in which both~$a_1$ and~$a_2$ have color~$0$.
+            Then, regardless whether~$a_1$ and~$a_2$ are adjacent or not,
+            this coloring can be extended with a coloring of~$B$
+            (in which~$b_1=b_2$ must be colored~$1$)
+            to a coloring~$G$.  Contradiction.
+
+            Thus the type of~$(a_1,a_2)$ in~$A$ cannot contain~$(0,0)$.
+            Thus~$\#A \geq 16$.
+            Consequently~$\#G \geq 32$. Contradiction with minimality.
+
+            \item
+            Apparently~$b_1=b_2$ has fixed color~$0$ in~$B$.
+            Note~$\#B \geq 15$.
+
+            Suppose~$a_1$ is not adjacent to~$a_2$.
+            Then any coloring of~$A$ can be extended with a coloring
+            of~$B$ to a coloring of~$G$. Contradiction.
+            
+            Apparently~$a_1$ is adjacent to~$a_2$.
+
+            The type of~$(a_1,a_2)$ in~$A$ cannot contain~$(1,0)$
+            or~$(0,1)$ for otherwise~$G$ can be colored.
+            It also cannot contain~$(1,1)$ as~$a_1$ and~$a_2$
+            are adjacent.
+            Thus both~$a_1$ and~$a_2$ have fixed color~$0$ in~$A$.
+            Hence~$\#A\geq 17$. (?) % FIXME check and ref
+            Consequently~$\#G \geq 32$. Contradiction
+            with minimality.
+        \end{enumerate}
+    \item Suppose~$a_1 = a_2$ and~$b_1 \neq b_2$.
+            This leads to a contradication in the same way
+            as in case~\ref{tricase1}.
+    \item Apparently~$a_1 \neq a_2$ and~$b_1 \neq b_2$.
+        The type of~$(a_1,a_2)$ in~$A$ cannot contain~$(0,0)$,
+        for otherwise~$G$ is colorable.
+        Similarly, the type of~$(b_1,b_2)$ in~$B$ cannot contain~$(0,0)$.
+        Thus both~$\#A \geq 16$ and~$\#B \geq 16$.
+        Hence~$\#G \geq 32$. Contradiction with minimality. \qedhere
+    \end{enumerate}
+
+
+\end{proof}
+
 
 Although these restrictions are theoretically pleasing,
 they seem to be of little use as a practical restriction.

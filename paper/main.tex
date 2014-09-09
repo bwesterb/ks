@@ -757,7 +757,33 @@ In particular:
             ;
         \end{tikzpicture}
         \qquad
-        \includegraphics[width=30mm]{../graphs/unemb10-3.pdf}
+        \begin{tikzpicture}[thick,scale=1.4]
+            \draw
+                (45:0.5) node{} -- (135:0.5) node{}
+                                -- (225:0.5) node{}
+                                -- (315:0.5) node{}
+                (15:1.3) node{}
+                (345:1.3) node{}
+                (195:1.3) node{}
+                (165:1.3) node{}
+
+                (75:1) node{} -- (15:1.3) -- (45:0.5) -- (75:1)
+                (285:1) node{} -- (345:1.3) -- (315:0.5) -- (285:1)
+
+                (0:1.3) node{} -- (180:0.8) node{}
+                (0:1.3) -- (15:1.3)
+                (0:1.3) -- (345:1.3)
+
+                (180:0.8) -- (195:1.3)
+                (180:0.8) -- (165:1.3)
+                (195:1.3) -- (165:1.3)
+                (180:0.8) -- (225:0.5)
+                (180:0.8) -- (135:0.5)
+                (195:1.3) -- (285:1)
+                (165:1.3) -- (75:1)
+
+            ;
+        \end{tikzpicture}
     \end{center}
     These three graphs are unembeddable.  The left and middle graph
     are the only minimal unembeddable squarefree graph.

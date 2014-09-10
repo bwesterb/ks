@@ -386,7 +386,7 @@ to graphs with minimal vertex order 3.
 
 We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
 \begin{prop}\label{prop:ks-biconn}
-A minimal Kochen-Specker graph is biconnected,
+A minimal Kochen-Specker graph is edge-biconnected,
 that is: removing any single edge leaves the graph connected.
 \end{prop}
 We need some preparation, before we can prove this Proposition.
@@ -459,26 +459,26 @@ with minimal vertex-order~$2$
 with a vertex with fixed color~$0$. 
 \end{comp}
 We are ready to prove that a minimal Kochen-Specker graph
-is biconnected.
+is edge-biconnected.
 \begin{proof}[Proof of Proposition~\ref{prop:ks-biconn}]
-Suppose we are given a connected but not biconnected graph~$G$.
+Suppose we are given a connected but not edge-biconnected graph~$G$.
 Then we can decompose
-this graph into its biconnected components.  A biconnected components
-is a maximal subgraph that is biconnected.
-We can consider the graph of biconnected components~$B(G)$:
-two biconnected components are adjacent if there is an edge
+this graph into its edge-biconnected components.  A edge-biconnected components
+is a maximal subgraph that is edge-biconnected.
+We can consider the graph of edge-biconnected components~$B(G)$:
+two edge-biconnected components are adjacent if there is an edge
 between a vertex in one component and a vertex in the other.
 Note that there can at most be one edge between 
-the vertices of biconnected components.
+the vertices of edge-biconnected components.
 $B(G)$~does not contain loops: if it would
-then the union of the biconnected components in the graph,
-would be itself biconnected.  Thus~$B(G)$ is a tree.
+then the union of the edge-biconnected components in the graph,
+would be itself edge-biconnected.  Thus~$B(G)$ is a tree.
 
 Furthermore suppose, reasoning towards contradication,
 that~$G$ is a minimal Kochen-Specker graph.
-Now consider a leaf~$A$ in the biconnected component graph~$B(G)$.
-That is, $A$ is a biconnected component that is connected to only
-one other biconnected component.
+Now consider a leaf~$A$ in the edge-biconnected component graph~$B(G)$.
+That is, $A$ is a edge-biconnected component that is connected to only
+one other edge-biconnected component.
 Let~$B$ be the remainder of the graph.
 There is exactly one pair~$(a,b)$ with~$a$ in~$A$ and~$b$ in~$B$
 and~$a$ adjacent to~$b$.
@@ -494,7 +494,7 @@ Similarly~$B$ is an embeddable graph with a vertex with fixed color~$1$.
 Let~$A'$ denote the graph containing two copies of~$A$
 connected at the copies of the vertex with fixed color~$1$.
 Using the reasoning in the proof of Lemma~\ref{lem:biconn},
-we see~$A'$ is a Kochen-Specker graph that is not biconnected.
+we see~$A'$ is a Kochen-Specker graph that is not edge-biconnected.
 Define~$B'$ similarly. Observe that~$A'$ and~$B'$ must have the same
 number of vertices as~$G$ by the minimality of~$G$.
 
@@ -518,6 +518,7 @@ Thus~$A'$ has at least~$32$ vertices. Contradiction.
 We can go one step further.
 \begin{prop}
     A minimal Kochen-Specker graph is edge-triconnected.
+    That is: removing any two edges keeps the graph connected.
 \end{prop}
 \begin{proof}
     Given a minimal Kochen-Specker graph~$G$.
@@ -531,7 +532,7 @@ We can go one step further.
     for otherwise~$G$ would not be a minimal Kochen-Specker graph.
     \begin{enumerate}
     \item Suppose~$a_1 = a_2$ and~$b_1 = b_2$.
-                Then~$G$ is not biconnected.  Contradiction with
+                Then~$G$ is not edge-biconnected.  Contradiction with
                     Proposition~\ref{prop:ks-biconn}.
     \item Suppose~$a_1 \neq a_2$ and~$b_1 = b_2$.
         \label{tricase1}
@@ -608,7 +609,8 @@ Concerning excluding unconnected graphs:
     With 20 vertices, there are exactly 25 of these.
 \end{cor}
 This justifies, at this stage, not checking for connectedness.
-Similarly, we believe there are very few connected but not biconnected graphs.
+Similarly, we believe there are very few connected but not
+edge-biconnected graphs.
 
 % TODO is core x years a proper expression?
 Now we can state our main computation.

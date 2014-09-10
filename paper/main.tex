@@ -515,11 +515,31 @@ the graph~$A$ has at least~$15+1$ vertices.
 Thus~$A'$ has at least~$32$ vertices. Contradiction.
 \end{proof}
 
+\begin{wrapfigure}{r}{0.20\textwidth}
+    \begin{tikzpicture}[thick,scale=1.4,
+        p/.style={circle, draw, fill=white,
+                        inner sep=0pt, minimum width=5pt}]
+            \draw [rotate=90] (0,-0.8) ellipse (0.8 and 0.5) ;
+            \draw [rotate=90] (0,0.8) circle (0.8 and 0.5) ;
+            \draw 
+                  (-0.7, 0.3) node[left] {$a_1$}
+                  (-0.7, -0.3) node[left] {$a_2$}
+                  (0.7, 0.3) node[right] {$b_1$}
+                  (0.7, -0.3) node[right] {$b_2$}
+                  (-0.7, -0.3) node[p] {} -- (0.7, -0.3) node[p] {}
+                  (-0.7, 0.3) node[p] {} -- (0.7, 0.3) node[p] {}
+                  (-0.8, -0.8) node[below] {$A$}
+                  (0.8, -0.8) node[below] {$B$}
+                ;
+        \end{tikzpicture}
+\end{wrapfigure}
+
 We can go one step further.
 \begin{prop}
     A minimal Kochen-Specker graph is edge-triconnected.
     That is: removing any two edges keeps the graph connected.
 \end{prop}
+
 \begin{proof}
     Given a minimal Kochen-Specker graph~$G$.
     Suppose it is not edge-triconnected.

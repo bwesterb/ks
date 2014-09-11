@@ -7,8 +7,10 @@
 \usepackage{hyperref}
 \usepackage{paralist}
 \usepackage{graphicx}
+\usepackage{mdwlist}
 \usepackage{amsmath}
 \usepackage{wrapfig}
+\usepackage{picins}
 \usepackage{amsthm}
 \usepackage{tikz}
 
@@ -23,6 +25,7 @@
 \newtheorem{fact}[main]{Fact}
 \theoremstyle{definition}
 \newtheorem{dfn}[main]{Definition}
+\newtheorem{exa}[main]{Example}
 \newtheorem*{spin}{SPIN Axiom \cite{ck09}}
 \theoremstyle{remark}
 \newtheorem{rem}[main]{Remark}
@@ -431,117 +434,136 @@ There are finitely many angles such that there are overlapping points.
 Thus there is an angle such that~$S \cup S''$ is an embedding of~$G'$.
 \end{proof}
 Unfortunately, these graphs are not small.
+
+
 \begin{comp}\label{comp:bic1}
-Let~$F^{3,1}_n$ denote the number of connected graphs
-with minimal vertex-order~$3$
-on~$n$ vertices
-with a vertex with fixed color~$1$.
-Then:
-\begin{center}
-\begin{tabular}{l|lll}
-    $n$ & $\leq 13$
-        & $14$
-        & $15$ \\
-    \hline
-    $F^{3,1}_n$ & $0$
-        & $4$
-        & $59$
-\end{tabular}
-\end{center}
-Using the methods of Section~\ref{sec:emb},
-we have determined these graphs unembeddable.
+    There are no embeddable graphs with fixed color~$1$
+    on less than 17 vertices.
 \end{comp}
-We need one final computational result.
-\begin{comp}\label{comp:bic2}
-There are no connected graphs
-on less than~$15$ vertices
-with minimal vertex-order~$2$
-with a vertex with fixed color~$0$. 
-\end{comp}
+
 We are ready to prove that a minimal Kochen-Specker graph
 is edge-biconnected.
 \begin{proof}[Proof of Proposition~\ref{prop:ks-biconn}]
-Suppose we are given a connected but not edge-biconnected graph~$G$.
-Then we can decompose
-this graph into its edge-biconnected components.  A edge-biconnected components
-is a maximal subgraph that is edge-biconnected.
-We can consider the graph of edge-biconnected components~$B(G)$:
-two edge-biconnected components are adjacent if there is an edge
-between a vertex in one component and a vertex in the other.
-Note that there can at most be one edge between 
-the vertices of edge-biconnected components.
-$B(G)$~does not contain loops: if it would
-then the union of the edge-biconnected components in the graph,
-would be itself edge-biconnected.  Thus~$B(G)$ is a tree.
-
-Furthermore suppose, reasoning towards contradication,
-that~$G$ is a minimal Kochen-Specker graph.
-Now consider a leaf~$A$ in the edge-biconnected component graph~$B(G)$.
-That is, $A$ is a edge-biconnected component that is connected to only
-one other edge-biconnected component.
-Let~$B$ be the remainder of the graph.
-There is exactly one pair~$(a,b)$ with~$a$ in~$A$ and~$b$ in~$B$
-and~$a$ adjacent to~$b$.
-
-Note that~$A$ and~$B$ are~$010$-colorable.
-Suppose that~$a$ does not have fixed color~$1$ in~$A$.
-Then there is a~$010$-coloring of~$A$
-which assigns~$0$ to~$a$.
-But then~$G$ is~$010$-colorable, quod non.
-Thus~$A$ is an embeddable graph with a vertex with fixed color~$1$.
-Similarly~$B$ is an embeddable graph with a vertex with fixed color~$1$.
-
-Let~$A'$ denote the graph containing two copies of~$A$
-connected at the copies of the vertex with fixed color~$1$.
-Using the reasoning in the proof of Lemma~\ref{lem:biconn},
-we see~$A'$ is a Kochen-Specker graph that is not edge-biconnected.
-Define~$B'$ similarly. Observe that~$A'$ and~$B'$ must have the same
-number of vertices as~$G$ by the minimality of~$G$.
-
-The graph~$A'$ has minimal vertex-order~$3$.
-Thus every vertex of~$A$ has minimal order~$3$ except for~$a$,
-which has minimal order~$2$.
-Suppose~$a$ has minimal order~$3$ in~$A$.
-Then by Computation~\ref{comp:bic1},
-the graph~$A$ has at least~$16$ vertices.
-Thus~$A'$ has at least~$32$ vertices, quod non.
-
-Thus~$a$ must have order~$2$ in~$A$.
-Let~$c,d \in A$ be the vertices connected to~$a$ in~$A$.
-For~$a$ to have fixed color~$1$ in~$A$,
-the vertices~$c$ and~$d$ must have fixed color~$0$ in~$A$.
-By Computation~\ref{comp:bic2},
-the graph~$A$ has at least~$15+1$ vertices.
-Thus~$A'$ has at least~$32$ vertices. Contradiction.
-\end{proof}
-
-\begin{wrapfigure}{r}{0.20\textwidth}
+Given a minimal Kochen-Specker graph~$G$.
+\parpic(0cm,1cm)[r]{%
     \begin{tikzpicture}[thick,scale=1.4,
         p/.style={circle, draw, fill=white,
                         inner sep=0pt, minimum width=5pt}]
-            \draw [rotate=90] (0,-0.8) ellipse (0.8 and 0.5) ;
-            \draw [rotate=90] (0,0.8) circle (0.8 and 0.5) ;
+            \draw [rotate=90] (0,-0.8) ellipse (0.6 and 0.5) ;
+            \draw [rotate=90] (0,0.8) circle (0.6 and 0.5) ;
             \draw 
-                  (-0.7, 0.3) node[left] {$a_1$}
-                  (-0.7, -0.3) node[left] {$a_2$}
-                  (0.7, 0.3) node[right] {$b_1$}
-                  (0.7, -0.3) node[right] {$b_2$}
-                  (-0.7, -0.3) node[p] {} -- (0.7, -0.3) node[p] {}
-                  (-0.7, 0.3) node[p] {} -- (0.7, 0.3) node[p] {}
-                  (-0.8, -0.8) node[below] {$A$}
-                  (0.8, -0.8) node[below] {$B$}
+                  (-0.7, 0.1) node[left] {$a$}
+                  (0.7, 0.1) node[right] {$b$}
+                  (-0.7, 0.1) node[p] {} -- (0.7, 0.1) node[p] {}
+                  (-0.8, -0.6) node[below] {$A$}
+                  (0.8, -0.6) node[below] {$B$}
                 ;
-        \end{tikzpicture}
-\end{wrapfigure}
+        \end{tikzpicture}}
+Recall it must be connected.  Suppose it is not edge-biconnected.
+Then there must be an edge~$(a,b)$ in~$G$,
+which removal disconnects~$G$.
+Thus~$G$ decomposes into two connected graphs~$A$ and~$B$
+such that~$a\in A$, $b \in B$ and~$(a,b)$ is the only edge
+between~$A$ and~$B$.
+Clearly~$A$ and~$B$ are embeddable.
+
+Note that~$A$ must be~$010$-colorable,
+for if it were not~$010$-colorable,
+then~$A$ is a Kochen-Specker graph,
+in contradiction with~$G$'s minimality.
+Similarly~$B$ is~$010$-colorable.
+Suppose there is a~$010$-coloring of~$A$ in which~$a$ is colored~$0$.
+Then we can extend this coloring with any $010$-coloring of~$B$
+to a~$010$-coloring of~$G$, which is absurd.
+Thus~$a$ must have fixed color~$1$ in~$A$.
+Similarly~$b$ must have fixed color~$1$ in~$B$.
+Thus by Computation~\ref{comp:bic1},
+we have~$\#A \geq 17$ and~$\#B \geq 17$.
+Consequently~$\#G \geq 34$.
+Contradiction with~$G$'s minimality.
+\end{proof}
 
 We can go one step further.
-\begin{prop}
+
+\begin{prop}\label{prop:ks-triconn}
     A minimal Kochen-Specker graph is edge-triconnected.
     That is: removing any two edges keeps the graph connected.
 \end{prop}
 
-\begin{proof}
+Again, we need some preparation for the proof.  First, we generalize
+the notion of fixed color.
+
+
+
+\begin{dfn}
+   Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
+   Let~$C(G)$ denote the set of $010$-colorings of~$G$.
+   The \keyword{type of~$(v_1,\ldots,v_n)$ (in~$G$)}
+   is the set of all possible ways it can be colored;
+   that is: $t_G(v_1, \ldots, v_n) := \{ (c(v_1), \ldots, c(v_n));
+                \ c \in C(G) \}.$ 
+    A type of~$n$ vertices is
+    called an~\keyword{$n$-type}.
+\end{dfn}
+
+Note that~$v$ has the~$1$-type~$(1)$ in~$G$ if and only if
+it has fixed color~$1$ in~$G$.
+Just like points with fixed color,
+we are interested in types,
+because they do not occur in small graphs.
+
+\begin{comp}\label{comp:types}
+    We have enumerated all embeddable graphs of less than~$17$ vertices
+    and determined a lower bound at which a particular $1$- or $2$-type occurs.
+    \begin{center}
+    \begin{tabular}{ll}
+        $1/2$-type & $\#G$ \\ \hline
+        $\{(0,0), (1,0), (0,1)\}$ &
+            non-trivially $\geq 10$\\ 
+        $\{(0,0), (1,0), (1,1)\}$ & $\geq 10$ \\
+        $\{(0,0), (0,1), (1,1)\}$ & $\geq 10$ \\
+        $\{(0,0), (0,1))\}$ & $\geq 15$ \\
+        $\{(0,0), (1,0))\}$ & $\geq 15$ \\
+        $\{(0)\}$ & $\geq 15$ \\
+        $\{(0,1),(1,0)\}$ & $\geq 16$ \\
+        other & $\geq 17$
+    \end{tabular}
+    \end{center}
+    The type~$\{(0,0),(1,0),(0,1)\}$ occurs in the embeddable two-vertex
+    graph.  However, since
+    \begin{tikzpicture}[thick,scale=1.4,
+        p/.style={circle, draw, fill=white,
+                        inner sep=0pt, minimum width=5pt}]
+            \draw
+            (0,0) node[p]{} -- (0.3,0) node[p]{} ;
+    \end{tikzpicture}
+    This occurance is called trivial, for the two vertices are adjacent.
+\end{comp}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:ks-triconn}]
+
+
     Given a minimal Kochen-Specker graph~$G$.
+
+\parpic(0cm,1cm)[r]{%
+\begin{tikzpicture}[thick,scale=1.4,
+p/.style={circle, draw, fill=white,
+                inner sep=0pt, minimum width=5pt}]
+    \draw [rotate=90] (0,-0.8) ellipse (0.8 and 0.5) ;
+    \draw [rotate=90] (0,0.8) circle (0.8 and 0.5) ;
+    \draw 
+          (-0.7, 0.3) node[left] {$a_1$}
+          (-0.7, -0.3) node[left] {$a_2$}
+          (0.7, 0.3) node[right] {$b_1$}
+          (0.7, -0.3) node[right] {$b_2$}
+          (-0.7, -0.3) node[p] {} -- (0.7, -0.3) node[p] {}
+          (-0.7, 0.3) node[p] {} -- (0.7, 0.3) node[p] {}
+          (-0.8, -0.8) node[below] {$A$}
+          (0.8, -0.8) node[below] {$B$}
+        ;
+\end{tikzpicture}}
+
     Suppose it is not edge-triconnected.
     Then it splits into two graphs~$A$ and~$B$
     together with verteces~$a_1, a_2 \in A$
@@ -550,6 +572,7 @@ We can go one step further.
     are the only edges between~$A$ and~$B$.
     Note that~$A$ and~$B$ must be $010$-colorable,
     for otherwise~$G$ would not be a minimal Kochen-Specker graph.
+
     \begin{enumerate}
     \item Suppose~$a_1 = a_2$ and~$b_1 = b_2$.
                 Then~$G$ is not edge-biconnected.  Contradiction with
@@ -563,7 +586,7 @@ We can go one step further.
         \begin{enumerate}
             \item
             Suppose~$b_1=b_2$ has fixed color~$1$ in~$B$.
-            Note~$\#B \geq 16$.
+            Note~$\#B \geq 17$ by Computation~\ref{comp:types}.
 
             Suppose there is a coloring of~$A$
             in which both~$a_1$ and~$a_2$ have color~$0$.
@@ -573,12 +596,12 @@ We can go one step further.
             to a coloring~$G$.  Contradiction.
 
             Thus the type of~$(a_1,a_2)$ in~$A$ cannot contain~$(0,0)$.
-            Thus~$\#A \geq 16$.
-            Consequently~$\#G \geq 32$. Contradiction with minimality.
+            Thus, by Computation~\ref{comp:types}, $\#A \geq 17$.
+            Consequently~$\#G \geq 34$. Contradiction with minimality.
 
             \item
             Apparently~$b_1=b_2$ has fixed color~$0$ in~$B$.
-            Note~$\#B \geq 15$.
+            Hence, by Computation~\ref{comp:types}, $\#B \geq 15$.
 
             Suppose~$a_1$ is not adjacent to~$a_2$.
             Then any coloring of~$A$ can be extended with a coloring
@@ -591,7 +614,7 @@ We can go one step further.
             It also cannot contain~$(1,1)$ as~$a_1$ and~$a_2$
             are adjacent.
             Thus both~$a_1$ and~$a_2$ have fixed color~$0$ in~$A$.
-            Hence~$\#A\geq 17$. (?) % FIXME check and ref
+            Hence~$\#A\geq 17$ by Computation~\ref{comp:types}.
             Consequently~$\#G \geq 32$. Contradiction
             with minimality.
         \end{enumerate}
@@ -602,13 +625,10 @@ We can go one step further.
         The type of~$(a_1,a_2)$ in~$A$ cannot contain~$(0,0)$,
         for otherwise~$G$ is colorable.
         Similarly, the type of~$(b_1,b_2)$ in~$B$ cannot contain~$(0,0)$.
-        Thus both~$\#A \geq 16$ and~$\#B \geq 16$.
-        Hence~$\#G \geq 32$. Contradiction with minimality. \qedhere
+        Thus both~$\#A \geq 17$ and~$\#B \geq 17$.
+        Hence~$\#G \geq 34$. Contradiction with minimality. \qedhere
     \end{enumerate}
-
-
 \end{proof}
-
 
 Although these restrictions are theoretically pleasing,
 they seem to be of little use as a practical restriction.

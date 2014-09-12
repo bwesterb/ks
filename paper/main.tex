@@ -228,7 +228,11 @@ that is not 010-colorable.
 \begin{dfn}
 Given a finite subset~$S$ of the projective plane
 (or equivalently, a finite subset of the northern
-hemisphere without equator).
+hemisphere without equator\footnote{%
+    A subset of the projective plane can be identified with
+    a subset of the closed northern hemisphere.
+    For a finite subset we can always rotate in such a way
+    that no points lie on the equator.}).
 Define its \keyword{orthogonality graph}~$G(S)$ as follows.
 The vertices are the points of~$S$.
 Two vertices are joined by an edge, if their corresponding points
@@ -242,8 +246,9 @@ such that~$G \leq G(S)$.
 \end{dfn}
 % TODO add remark on subgraph definition?
 \begin{dfn}
-A graph is~\keyword{010-colorable}
-if there is a~$\{0,1\}$-coloring, such that
+A graph is called~\keyword{010-colorable}
+if there is a~$\{0,1\}$-coloring of the vertices,
+such that
 \begin{enumerate}
 \item
 for each triangle there is exactly one vertex that is colored~$1$ and
@@ -294,7 +299,7 @@ Luckily, we can restrict ourselves to certain classes of graphs.
 The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$
 vertices.\cite{sf-sloane}
-We can restrict ourselves to connected graphs.
+Next, we show we can restrict ourselves to connected graphs.
 \begin{prop}[\cite{aow11}]\label{prop:ks-conn}
     A minimal Kochen-Specker graph is connected.
 \end{prop}
@@ -363,9 +368,10 @@ Continuing the effort of Arends, Ouaknine and Wambler,
 we consider another restriction.
 \begin{prop}
     A minimal Kochen-Specker graph has minimal vertex-order three.
+    That is: every vertex is adjacent to at least three other vertices.
 \end{prop}
 \begin{proof}
-    Given a Kochen-Specker graph~$G$.
+    Given a minimal Kochen-Specker graph~$G$.
     Suppose~$v$ is a vertex with order less than or equal~$2$.
     Let~$G'$ be~$G$ with~$v$ removed.
     Clearly~$G'$ is embeddable.
@@ -378,7 +384,7 @@ we consider another restriction.
     If both~$w$ and~$w'$ are colored~$0$, we can color~$v$ with~$1$.
     This would imply~$G$ is 010-colorable, quod non.
     Therefore~$G'$ is a smaller
-    Kochen-Specker graph, which contradicts minimality.
+    Kochen-Specker graph, which contradicts the minimality of~$G$.
 \end{proof}
 There are only~${\sim}10^7$
 squarefree non-isomorphic graphs on 17 vertices with minimal vertex order 3.
@@ -498,23 +504,33 @@ the notion of fixed color.
 \begin{dfn}
    Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
    Let~$C(G)$ denote the set of $010$-colorings of~$G$.
-   The \keyword{type of~$(v_1,\ldots,v_n)$ (in~$G$)}
-   is the set of all possible ways it can be colored;
-   that is: $t_G(v_1, \ldots, v_n) := \{ (c(v_1), \ldots, c(v_n));
+   The \keyword{type~$t$ of~$(v_1,\ldots,v_n)$ (in~$G$)}
+   is the set of all possible ways $\{v_1, \ldots, v_n\}$ can be colored;
+   that is: $t = \{ (c(v_1), \ldots, c(v_n));
                 \ c \in C(G) \}.$ 
     A type of~$n$ vertices is
     called an~\keyword{$n$-type}.
 \end{dfn}
 
-Note that~$v$ has the~$1$-type~$(1)$ in~$G$ if and only if
-it has fixed color~$1$ in~$G$.
-Just like points with fixed color,
+\begin{exa}
+\begin{itemize}
+\item The triangle has~$3$-type~$\{(1,0,0), (0,1,0), (0,0,1)\}$.
+\item Every vertex in a Kochen-Specker graph has type~$\emptyset$.
+\item
+    A vertex~$v$ has the~$1$-type~$\{(1)\}$ in~$G$ if and only if
+        it has fixed color~$1$ in~$G$.
+\end{itemize}
+\end{exa}
+
+Just as verteces with fixed color are rare,
 we are interested in types,
-because they do not occur in small graphs.
+because most types do not occur in small graphs.
 
 \begin{comp}\label{comp:types}
     We have enumerated all embeddable graphs of less than~$17$ vertices
-    and determined a lower bound at which a particular $1$- or $2$-type occurs.
+    and determined a lower bound at which a particular $1$- or $2$-type occurs,
+    omitting the trivial types~$\{(0),(1)\}$
+    and~$\{(0,0),(0,1),(1,0),(1,1)\}$.
     \begin{center}
     \begin{tabular}{ll}
         $1/2$-type & $\#G$ \\ \hline
@@ -693,7 +709,7 @@ a custom heuristic backtracker written in~C++
 to decide 010-colorability of these graphs.
 
 \section{Embeddability}
-Our computation has yielded a few hundred non-010-colorable graphs.
+Our computation has yielded over nine-thousand non-010-colorable graphs.
 If we show one of them is embeddable, we have found a new KS system.
 If we demonstrate all of them are not embeddable, we have
 proven a lower bound on the size of a minimal KS system.
@@ -762,8 +778,8 @@ is not embeddable.
 Suppose it is embeddable.
 Consider~$p_1$.
 It is orthogonal to both~$a$ and~$v$.
-$a$ and~$v$ are not collinear,
-hence~$p_1$ must be collinear to~$v \times a$,
+Since $a$ and~$v$ are not collinear,
+$p_1$ must be collinear to~$v \times a$,
 the cross-product of~$v$ and~$a$.
 Similarly, $p_2$ is collinear to~$v \times p_1 = v \times (v \times a)$.
 Continuing in this fashion,
@@ -791,19 +807,20 @@ a_3\\
 -a_3 (v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2)\\
 \end{pmatrix}.
 \end{equation*}
-And therefore
+Consequently
 \begin{align*}
-v_1w_2 \left<v,w\right> & =
-v_1w_2 (v_1w_1 + v_2w_2) \\
+    v_1w_2 (v_1w_1 + v_2w_2)
 & = v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2w_1^2 + v_2^2w_2^2 \\
 & = (v_1^2 + v_2^2)w_1^2 + (v_1^2 + v_2^2)w_2^2 \\
-& = w_1^2 + w_2^2 = 1.
+& = w_1^2 + w_2^2 \\
+&= 1.
 \end{align*}
 Since~$v$ and~$w$ are not collinear,
 we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
-Recall~$|v_1|, |w_2| \leq 1$.
-Thus: $|v_1w_2\left<v,w\right>| < 1$.
-Contradiction.
+Now we find the contradiction:
+\begin{equation*}
+1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1. \qedhere
+\end{equation*}
 \end{proof}
 
 % TODO Can we prove: if G is embeddable, then we can add any new vertex of
@@ -851,10 +868,11 @@ His decision procedure has an impractical complexity.
 However, its practical value has been improved
 by, for instance, the method of cylindrical algebraic decomposition\cite{qecad}.
 We have used the redlog\cite{redlog} package of the reduce algebra
-system, which implements a variant of Tarski's quantifier elimination.
-In Appendix~\ref{adx:unemb-10-2} the Reader can find
-the reduce script generated mechanically for the graph
-in Figure~\ref{fig:unemb-10-2}.
+system, which implements a variant of Tarski's quantifier
+elimination.\footnote{%
+    The reader can find the reduce script generated mechanically
+    for the graph in Figure~\ref{fig:unemb-10-2} here:
+    \url{http://kochen-specker.info/smallGraphs/49743f49514769444f.html}.  }
 
 Different assignments give different sentences.  In our tests,
 some assignments would yield sentences that were decided within milliseconds,
@@ -865,20 +883,25 @@ we try several assignments in parallel.
 
 In this way, there were still a few (010-colorable) graphs of which
 we could not decide embeddability.
-By hand, we determined these graphs to be embeddable.
-We adapted the algorithm, as to guess
+With some guessing,
+we determined embeddings for these graphs by hand.
+Once we knew the troublesome graphs were embeddable,
+we adapted the algorithm, as to guess
 for some assignments the position of one of the vectors.
 If the corresponding
 sentence turns out false, we know nothing.  However,
 if the sentence is true, we know the graph is embeddable.
 
-With this method, we have decided in an a day the embeddability
-of every squarefree graph with minimal vertex order three of 14
-vertices of less except for one.\footnote{
+With this method, we have decided in a day the embeddability
+of every squarefree graph with minimal vertex order three of
+less than 15, except for one.\footnote{
 A list of all squarefree graphs with minimal vertex order three of
-14 vertices of less together with their embeddability can
+less than 15 vertices together with their embeddability can
 be found here:
-\url{http://kochen-specker.info/smallGraphs/}
+\url{http://kochen-specker.info/smallGraphs/}.
+The graph for which we could not determine
+embeddability can be found
+here: \url{http://kochen-specker.info/smallGraphs/4d4b3f4b3f603f47414641654953625f3f.html}.
 }
 In particular:
 \begin{comp}\label{comp:unemb20}
@@ -1006,64 +1029,7 @@ distributed computation:
 We are grateful to prof.~McKay for discussing
 the feasibility of certain graph restrictions and
 to Judith van Stegeren\footnote{\url{http://jd7h.com/}}
-for drawing the first two figures in this paper.
-
-\clearpage
-\appendix
-\section{Example reduce script}\label{adx:unemb-10-2}
-The following is (a part of) the reduce script mechanically generated
-to prove the non-embeddability of the graph of Figure~\ref{fig:unemb-10-2}.
-The algorithm choose a different assignment, than we did in the
-proof of Proposition~\ref{prop:unemb-10-2}.
-As free points it picked, in order,~$z$, $x$, $v$ and~$p_3$.
-The point~$w$ is assigned~$p_3 \times z$.
-\begin{verbatim}
-load_package redlog;
-rlset R;
-
-procedure d(x,y);
-    (first x) * (first y) +
-    (second x) * (second y) +
-    (third x) * (third y);
-
-procedure k(x,y);
-    {(second x)*(third y) - (third x)*(second y),
-     (third x)*(first y) - (first x)*(third y),
-     (first x)*(second y) - (second x)*(first y)};
-
-v0c1 := 1; v0c2 := 0; v0c3 := 0;
-v1c1 := 0; v1c2 := 1; v1c3 := 0;
-
-v0 := {v0c1, v0c2, v0c3}; 
-v1 := {v1c1, v1c2, v1c3}; 
-v2 := {v2c1, v2c2, v2c3}; 
-v3 := {v3c1, v3c2, v3c3}; 
-v2c1 := 0;
-neq0 := k(v0,k(v3,v1)); 
-\end{verbatim}
-\begin{center} \emph{(snip)} \end{center}
-\begin{verbatim}
-neq29 := k(k(k(k(v3,v1),v1),v2),k(k(v3,v0),v3)); 
-phi := 
-       (first neq0 neq 0 or
-        second neq0 neq 0 or
-        third neq0 neq 0) and 
-\end{verbatim}
-\begin{center} \emph{(snip)} \end{center}
-\begin{verbatim}
-       (first neq29 neq 0 or
-        second neq29 neq 0 or
-        third neq29 neq 0) and 
-       d(v2,v0) = 0 and 
-       d(k(k(v3,v0),v3),k(k(k(k(v3,v1),v1),v2),v2)) = 0 and 
-        true;
-rlqe ex(v3c3,
-     ex(v3c2,
-     ex(v3c1,
-     ex(v2c3,
-     ex(v2c2,phi)))));
-\end{verbatim}
-
+for drawing figures for the draft version of this paper.
 
 % attribute mckay for answering questions?
 % TODO attribute geng

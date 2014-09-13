@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p build-dir
+pushd build-dir
+cmake .. && make && cp 010cc ..
+popd

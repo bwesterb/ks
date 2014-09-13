@@ -254,13 +254,15 @@ we repeat a part of AOW's work, in particular the reduction of
 KS systems to graphs.
 The bottleneck of their search was the sheer number of graphs
 and the deciding whether such graphs are embeddable.
-
 In Section~\ref{sec:ilb},
 we improve upon their reduction,
 to cut down the number of graphs to consider drastically,
 and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
 we describe our practical embeddability test.
+
+The software and results of the various computations performed for
+this paper, can be found here\cite{GH}.
 
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
@@ -513,7 +515,8 @@ Unfortunately, these graphs are not small.
 
 \begin{comp}\label{comp:bic1}
     There are no embeddable graphs with fixed color~$1$
-    on less than 17 vertices.
+    on less than 17 vertices.%
+        \footnote{Source code at \texttt{code/comp5.py} of \cite{GH}.}
 \end{comp}
 
 We are ready to prove that a minimal Kochen-Specker graph
@@ -599,7 +602,8 @@ because most types do not occur in small graphs.
     We have enumerated all embeddable graphs of less than~$17$ vertices
     and determined a lower bound at which a particular $1$- or $2$-type occurs,
     omitting the trivial types~$\{(0),(1)\}$
-    and~$\{(0,0),(0,1),(1,0),(1,1)\}$.
+    and~$\{(0,0),(0,1),(1,0),(1,1)\}$.%
+        \footnote{Source code at \texttt{code/comp5.py} of \cite{GH}.}
     \begin{center}
     \begin{tabular}{ll}
         $1/2$-type & $\#G$ \\ \hline
@@ -742,7 +746,8 @@ edge-biconnected graphs.
 Now we can state our main computation.
 \begin{comp}
     Let~$C_n$ denote the number of non-010 colorable squarefree
-    graphs with minimal vertex order 3 on~$n$ nodes.  Then:
+    graphs with minimal vertex order 3 on~$n$ nodes.  Then:%
+        \footnote{Source code at \texttt{code/comp6} of \cite{GH}.}
 
     \begin{center}
     \begin{tabular}{l|llllll}
@@ -1046,7 +1051,10 @@ Every squarefree graph of minimal vertex order three that is
 not~$010$-colorable of order 21 contains an unembeddable subgraph.%
 \footnote{A list of these graphs together with their unembeddable
 subgraphs, can be found here:
-\url{http://kochen-specker.info/candidates/}}
+\url{http://kochen-specker.info/candidates/}.
+The source code for this computation can be found
+at~\texttt{code/comp2.py} of~\cite{GH}.
+}
 \end{comp}
 
 \section{Conclusion and future research}

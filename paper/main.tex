@@ -262,28 +262,6 @@ and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
 we describe our practical embeddability test.
 
-\begin{wrapfigure}{r}{0.25\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=1.9,thick,
-    partial ellipse/.style args={#1:#2:#3}{
-            insert path={+ (#1:#3) arc (#1:#2:#3)}
-        }]
-    \draw (0,0) [partial ellipse=360:180:1 and 0.3] ;
-    \draw[gray,dashed] (0,0) [partial ellipse=0:180:1 and 0.3] ;
-    \draw (0,0) [rotate=315,partial ellipse=360:180:1 and 0.3] ;
-    \draw[gray,dashed] (0,0) [rotate=315,partial ellipse=0:180:1 and 0.3] ;
-    \draw (0,0) circle (1) ;
-    \node[circle,inner sep=1pt,fill] at (90:1) {};
-    \node[above] at (90:1) {$v$};
-    \node[circle,inner sep=1pt,fill] at (45:1) {};
-    \node[right] at (45:1) {$w$};
-\end{tikzpicture}
-\end{center}
-\caption{squarefreeness of an embeddable graph
-\label{fig:crossproduct}}
-\end{wrapfigure}
-
-
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
 We follow \cite{aow11} and reduce the search for Kochen-Specker systems
@@ -326,6 +304,8 @@ for each triangle there is exactly one vertex that is colored~$1$ and
 adjacent vertices are not both colored~$1$.
 \end{enumerate}
 \end{dfn}
+
+
 \begin{dfn}
 A \keyword{Kochen-Specker graph}
 is a embeddable graph that is not 010-colorable.
@@ -337,6 +317,7 @@ It is an easy, but important, consequence of the definitions that:
     if and only if its orthogonality graph~$G(S)$
     is Kochen-Specker.
 \end{fact}
+
 To prove there is no Kochen-Specker system on~$17$ points,
 it would be sufficient to enumerate all graphs on~$17$ vertices
 and check these are not 010-colorable or not embeddable.
@@ -355,9 +336,26 @@ Luckily, we can restrict ourselves to certain classes of graphs.
         contain the square as subgraph.
         For us the complete graph on four vertices is not squarefree.}
 \end{prop}
+
+\parpic[r]{%
+\begin{tikzpicture}[scale=1.0,thick,
+    partial ellipse/.style args={#1:#2:#3}{
+            insert path={+ (#1:#3) arc (#1:#2:#3)}
+        }]
+    \draw (0,0) [partial ellipse=360:180:1 and 0.3] ;
+    \draw[gray,dashed] (0,0) [partial ellipse=0:180:1 and 0.3] ;
+    \draw (0,0) [rotate=315,partial ellipse=360:180:1 and 0.3] ;
+    \draw[gray,dashed] (0,0) [rotate=315,partial ellipse=0:180:1 and 0.3] ;
+    \draw (0,0) circle (1) ;
+    \node[circle,inner sep=1pt,fill] at (90:1) {};
+    \node[above] at (90:1) {$v$};
+    \node[circle,inner sep=1pt,fill] at (45:1) {};
+    \node[right] at (45:1) {$w$};
+\end{tikzpicture}}
+
 \begin{proof}
     Given two non antipodal points~$v\neq w$.
-    See Figure~\ref{fig:crossproduct}.
+    See the figure on the right.
     Consider the points orthogonal to~$v$.
     This is a great circle.
     The points orthogonal to~$w$ is a different great circle.
@@ -366,6 +364,7 @@ Luckily, we can restrict ourselves to certain classes of graphs.
     then~$c$ and~$d$ are equivalent.
     Therefore, an embeddable graph cannot contain a square.
 \end{proof}
+
 The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$
 vertices.\cite{sf-sloane}
@@ -778,7 +777,7 @@ The output of~\texttt{geng}, we passed through
 a custom heuristic backtracker written in~C++
 to decide 010-colorability of these graphs.
 
-\section{Embeddability}
+\section{Embeddability}\label{sec:emb}
 Our computation has yielded over nine-thousand non-010-colorable graphs.
 If we show one of them is embeddable, we have found a new KS system.
 If we demonstrate all of them are not embeddable, we have
@@ -791,11 +790,11 @@ for all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
 % TODO give intermediate computation.
 
-\label{sec:emb}
-\begin{wrapfigure}{r}{0.30\textwidth}
-\begin{center}
-    \begin{tikzpicture}[thick,scale=1.4,
-        p/.style={circle, draw, fill=white,
+
+\piccaption{One of the two minimal non-embeddable graphs \label{fig:unemb-10-2}}
+\parpic[r]{%
+\begin{tikzpicture}[thick,scale=1.4,%
+        p/.style={circle, draw, fill=white,%
                         inner sep=0pt, minimum width=5pt}]
             \draw
                 \foreach \x in {90,210,330} {
@@ -815,7 +814,6 @@ for all graphs considered, whether they were embeddable or not.
                 (210-30:1.3) node[p]{}
                 (330+30:1.3) node[p]{}
                 (330-30:1.3) node[p]{}
-
                 (90:0.7) node[above]{$w$}
                 (210:0.7) node[above]{$v$}
                 (330:0.7) node[above]{$x$}
@@ -825,15 +823,8 @@ for all graphs considered, whether they were embeddable or not.
                 (210+30:1.3) node[below]{$p_1$}
                 (210-30:1.3) node[left]{$p_2$}
                 (330+30:1.3) node[right]{$p_5$}
-                (330-30:1.3) node[below]{$a$}
-                ;
-        \end{tikzpicture}
-\end{center}
-\caption{One of the two minimal
-        non-embeddable graphs
-\label{fig:unemb-10-2}}
-\end{wrapfigure}
-
+                (330-30:1.3) node[below]{$a$} ;
+\end{tikzpicture}}
 
 We propose a new method,
 which for all graphs we considered,
@@ -980,7 +971,7 @@ In particular:
     of order less than or equal to 20
     contains, as a subgraph, one of the following three graphs:
     \begin{center}
-    \begin{tikzpicture}[thick,scale=1.4,
+    \begin{tikzpicture}[thick,scale=1.0,
         p/.style={circle, draw, fill=white,
                         inner sep=0pt, minimum width=5pt}]
             \draw
@@ -994,7 +985,7 @@ In particular:
             ;
         \end{tikzpicture}
         \qquad
-    \begin{tikzpicture}[thick,scale=1.4,
+    \begin{tikzpicture}[thick,scale=1.0,
         p/.style={circle, draw, fill=white,
                         inner sep=0pt, minimum width=5pt}]
             \draw
@@ -1015,7 +1006,7 @@ In particular:
             ;
         \end{tikzpicture}
         \qquad
-    \begin{tikzpicture}[thick,scale=1.4,
+    \begin{tikzpicture}[thick,scale=1.0,
         p/.style={circle, draw, fill=white,
                         inner sep=0pt, minimum width=5pt}]
             \draw

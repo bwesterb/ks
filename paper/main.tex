@@ -6,6 +6,7 @@
 \usepackage{breakurl}
 \usepackage{hyperref}
 \usepackage{paralist}
+\usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{mdwlist}
 \usepackage{amsmath}
@@ -144,13 +145,79 @@ Because of this, the term point, vector and direction
 can be used interchangeably. Antipodal points correspond to opposite
 vectors and these span the same direction in space.
 
-\begin{wrapfigure}{r}{0.30\textwidth}
-\begin{center}
-\includegraphics[width=40mm]{../graphs/ks31.pdf}
-\end{center}
-\caption{Conway's 31 vector Kochen-Specker system
-\label{fig:conway31}}
-\end{wrapfigure}
+\piccaption{Conway's 31 vector Kochen-Specker system\label{fig:conway31}}
+\parpic[r]{%
+%  Based on  <http://www.latex-community.org/viewtopic.php?f=4&t=2111>
+\begin{tikzpicture}[scale=0.8,
+        style={inner sep=0pt,%
+              outer sep=2pt,%
+              mark coordinate/.style={%
+                inner sep=0pt,outer sep=0pt,minimum size=4pt,
+                fill=black,circle}%
+            }]
+\def\R{2.5} % sphere radius
+\def\St{1.41421356237}
+\def\ST{1.73205080757}
+\filldraw[ball color=white] (0,0) circle (\R);
+\coordinate[mark coordinate] (N) at (0,0);
+\coordinate[mark coordinate] (N) at (0,-\R/\St);
+\coordinate[mark coordinate] (N) at (0,-\R*\St);
+\coordinate[mark coordinate] (N) at (0,\R*\St/4);
+\coordinate[mark coordinate] (N) at (0,\R*\St/2);
+\coordinate[mark coordinate] (N) at (0,3*\R*\St/4);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/8,3*\R*\St/8);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/8,5*\R*\St/8);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,0);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,-\R*\St/4);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,-\R*\St/2);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,-3*\R*\St/4);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,\R*\St/4);
+\coordinate[mark coordinate] (N) at (-\R*\St*\ST/4,\R*\St/2);
+\coordinate[mark coordinate] (N) at (-3*\R*\St*\ST/8,\R*\St/8);
+\coordinate[mark coordinate] (N) at (-3*\R*\St*\ST/8,-\R*\St/8);
+\coordinate[mark coordinate] (N) at (-3*\R*\St*\ST/8,-3*\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/8,3*\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/8,5*\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/8,-\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/8,-3*\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/8,-5*\R*\St/8);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,0);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,\R*\St/4);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,\R*\St/2);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,-\R*\St/4);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,-\R*\St/2);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/4,-3*\R*\St/4);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/2,-\R/\St);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/2,0);
+\coordinate[mark coordinate] (N) at (\R*\St*\ST/2,\R/\St);
+\draw (0,0) -- (0,-\R*\St) -- (-\R*\St*\ST/2,-\R/\St) --  (-\R*\St*\ST/2,\R/\St)
+    --  (0,\R*\St) -- (\R*\St*\ST/2,\R/\St) 
+    -- (\R*\St*\ST/2,-\R/\St) -- (0,- \R*\St);
+\draw  (-\R*\St*\ST/2,\R/\St) -- (0,0) -- (\R*\St*\ST/2,\R/\St);
+\draw (-\R*\St*\ST/4, -3*\R*\St/4) -- (-\R*\St*\ST/4,\R*\St/4 )
+    -- (\R*\St*\ST/4, 3*\R*\St/4) ;
+\draw (\R*\St*\ST/4, -3*\R*\St/4) -- (\R*\St*\ST/4,\R*\St/4 )
+    -- (-\R*\St*\ST/4, 3*\R*\St/4) ;
+\draw  (-\R*\St*\ST/2,{\R/\St - \R*\St/4}) -- (0,- \R*\St/4)
+    -- (\R*\St*\ST/2,{\R/\St - \R*\St/4});
+\draw  (-\R*\St*\ST/2,{\R/\St - \R*\St/2}) -- (0,- \R*\St/2)
+    -- (\R*\St*\ST/2,{\R/\St - \R*\St/2});
+\draw  (-\R*\St*\ST/2,{\R/\St - 3*\R*\St/4}) -- (0,- 3*\R*\St/4)
+    -- (\R*\St*\ST/2,{\R/\St - 3*\R*\St/4});
+\draw(-\R*\St*\ST/8,-0.25*7*\R/\St) -- (-\R*\St*\ST/8,{-0.25*7*\R/\St + \R*\St})
+    -- (3*\R*\St*\ST/8,5*0.25*\R/\St);
+\draw(\R*\St*\ST/8,-0.25*7*\R/\St) -- (\R*\St*\ST/8,{-0.25*7*\R/\St + \R*\St})
+    -- (-3*\R*\St*\ST/8,5*0.25*\R/\St);
+\draw (-3*\R*\St*\ST/8,-5*0.25*\R/\St)
+    -- (-3*\R*\St*\ST/8,{-5*0.25*\R/\St + \R*\St})
+    -- (\R*\St*\ST/8,0.25*7*\R/\St);
+\draw (3*\R*\St*\ST/8,-5*0.25*\R/\St)
+    -- (3*\R*\St*\ST/8,{-5*0.25*\R/\St + \R*\St})
+    -- (-\R*\St*\ST/8,0.25*7*\R/\St);
+\undef\R
+\undef\ST
+\undef\St
+\end{tikzpicture}}
 
 Suppose there is a KS system and a non-contextual deterministic theory satisfying
 the SPIN Axiom.

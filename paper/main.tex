@@ -2,7 +2,7 @@
 
 \providecommand{\event}{QPL2014}
 
-\usepackage{algorithm2e}
+\usepackage{algpseudocode}
 \usepackage{breakurl}
 \usepackage{hyperref}
 \usepackage{paralist}
@@ -14,6 +14,37 @@
 \usepackage{picins}
 \usepackage{amsthm}
 \usepackage{tikz}
+
+
+% begin vertical rule patch for algorithmicx
+% http://tex.stackexchange.com/questions/144840/
+\makeatletter
+\newcommand*{\algrule}[1][\algorithmicindent]{\makebox[#1][l]{\hspace*{.5em}\vrule height .75\baselineskip depth .25\baselineskip}}%
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{%
+    \ifnum \theALG@nested>0%
+        \ifx\ALG@text\ALG@x@notext%
+            % do nothing
+            \addvspace{-3pt}%
+        \else
+            \unskip
+            % 
+            \ALG@printindent@tempcnta=1
+            \loop
+                \algrule[\csname ALG@ind@\the%
+                    \ALG@printindent@tempcnta\endcsname]%
+                \advance \ALG@printindent@tempcnta 1
+            \ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax%
+            \repeat
+        \fi
+    \fi
+    }%
+% 
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}%
+        {\ALG@printindent}{}{\errmessage{failed to patch}}
+\makeatother
+% end vertical line thingy
 
 \newcommand{\keyword}[1]{\textbf{#1}}
 
@@ -89,12 +120,18 @@
 % TODO whose idea is this orthogonality graph
 \subsection{The experiment}
 
-Consider the following experiment. Measure the spin of a spin 1
-particle along a direction. For example, shoot a deuterium
-atom through a certain fixed inhomogeneous magnetic field,
-such as that in the Stern-Gerlach experiment. Depending
-on the direction it was shot through the field, the particle will
-move undisturbed or deviate.
+Consider the following experiment.  Shoot a deuterium
+atom (or another neutral spin 1 particle)
+through a certain fixed inhomogeneous magnetic field,
+such as that in the Stern-Gerlach experiment.
+The particle will then move undisturbed or deviate.
+What we have done is measure the spin component%
+\footnote{%
+As we are only interested in whether the particle deviates or
+    not, we actually only consider the square of the spin component.}
+ of the particle
+along a certain direction.  This direction depends on the specifics of the
+field and the movement of the particle.
 
 Quantum Mechanics only predicts the probability, given the direction,
 whether the particle will deviate.
@@ -290,8 +327,8 @@ are orthogonal.
 \end{dfn}
 \begin{dfn}
 A graph~$G$ is called~\keyword{embeddable},
-if it occurs as a subgraph of an orthogonality graph;
-that is: if there is a finite subset~$S$ of the projective plane,
+if it occurs as a subgraph of an orthogonality graph.
+That is: if there is a finite subset~$S$ of the projective plane,
 such that~$G \leq G(S)$.
 \end{dfn}
 % TODO add remark on subgraph definition?
@@ -466,8 +503,8 @@ to graphs with minimal vertex order 3.
 
 We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
 \begin{prop}\label{prop:ks-biconn}
-A minimal Kochen-Specker graph is edge-biconnected,
-that is: removing any single edge leaves the graph connected.
+A minimal Kochen-Specker graph is edge-biconnected.
+That is: removing any single edge leaves the graph connected.
 \end{prop}
 We need some preparation, before we can prove this Proposition.
 \begin{dfn}
@@ -577,8 +614,8 @@ the notion of fixed color.
    Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
    Let~$C(G)$ denote the set of $010$-colorings of~$G$.
    The \keyword{type~$t$ of~$(v_1,\ldots,v_n)$ (in~$G$)}
-   is the set of all possible ways $\{v_1, \ldots, v_n\}$ can be colored;
-   that is: $t = \{ (c(v_1), \ldots, c(v_n));
+   is the set of all possible ways $\{v_1, \ldots, v_n\}$ can be colored.
+   That is: $t = \{ (c(v_1), \ldots, c(v_n));
                 \ c \in C(G) \}.$ 
     A type of~$n$ vertices is
     called an~\keyword{$n$-type}.
@@ -898,27 +935,31 @@ remaining vertices.  Finally, we find an equation relating some of
 the cross-product expressions and show it is unsatisfiable.
 We can automate this reasoning as follows.
 
-\begin{algorithm}
-    \While{there are unassigned vertices}{
-        pick an unassigned vertex~$v$\;
-        assign~$V(v)=v$\;
-        mark~$v$ as free\;
+\begin{algorithmic}[5]
+    \While{there are unassigned vertices}
+        \State pick an unassigned vertex~$v$
+        \State assign~$V(v)=v$ 
+        \State mark~$v$ as free
         \While{there are unassigned vertices adjacent to two
-                different assigned vertices}{
-            pick such a vertex~$w$ adjacent to the assigned ~$w_1$ and~$w_2$\;
-            assign~$V(w)=V(w_1) \times V(w_2)$\;
-            mark edges~$(v,w_1)$ and~$(v,w_2)$ as accounted for\;
-        }   
-    }
-    \For{each pair of vertices~$(v_1, v_2)$}{
-        \If{$(v_1,v_2)$ is not an edge} {
-            record requirement:~``$V(v_1)$ is not collinear to $V(v_2)$''\;
-        }
-    }
-    \For{each edge~$(v_1,v_2)$ not accounted for}{
-        record requirement:~``$V(v_1)$ is orthogonal to~$V(v_2)$''\;
-    }
-\end{algorithm}
+                different assigned vertices}
+            \State pick such a vertex~$w$ adjacent to the
+                    assigned ~$w_1$ and~$w_2$
+            \State assign~$V(w)=V(w_1) \times V(w_2)$
+            \State mark edges~$(v,w_1)$ and~$(v,w_2)$ as accounted for
+        \EndWhile
+    \EndWhile
+    \pagebreak[2]
+    \For{each pair of vertices~$(v_1, v_2)$}
+        \If{$(v_1,v_2)$ is not an edge}
+            \State record requirement:~``$V(v_1)$
+                    is not collinear to $V(v_2)$''
+        \EndIf
+    \EndFor
+    \For{each edge~$(v_1,v_2)$ not accounted for}
+        \State record requirement:~``$V(v_1)$ is orthogonal to~$V(v_2)$''
+    \EndFor
+\end{algorithmic}
+
 At two points in the algorithm, there is a choice which vertex to pick.
 Depending on the vertices chosen, the number of recorded requirements
 and free points may significantly vary. By considering all possible choices,

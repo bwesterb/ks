@@ -6,7 +6,7 @@ A Kochen-Specker System has at least 22 vertices
 
 Abstract
 --------
-At the heart of the Conway's Free Will theorems and Kochen and
+At the heart of the Conway-Kochen Free Will theorem and Kochen and
 Specker's argument against non-contextual hidden variable theories
 is the existence of a Kochen-Specker (KS) system: a set of points
 on the sphere that has no {0, 1}-coloring such that at most one of

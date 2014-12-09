@@ -1,6 +1,5 @@
-\documentclass[submission,copyright,creativecommons]{eptcs}
-
-\providecommand{\event}{QPL2014}
+\documentclass{report}
+\usepackage{ohm-ngc}
 
 \usepackage{algpseudocode}
 \usepackage{breakurl}
@@ -12,7 +11,6 @@
 \usepackage{amsmath}
 \usepackage{wrapfig}
 \usepackage{picins}
-\usepackage{amsthm}
 \usepackage{tikz}
 
 
@@ -48,44 +46,15 @@
 
 \newcommand{\keyword}[1]{\textbf{#1}}
 
-\newcounter{main}
-\newtheorem{prop}[main]{Proposition}
-\newtheorem{comp}[main]{Computation}
-\newtheorem{cor}[main]{Corollary}
-\newtheorem{thm}[main]{Theorem}
-\newtheorem{lem}[main]{Lemma}
-\newtheorem{fact}[main]{Fact}
-\theoremstyle{definition}
-\newtheorem{dfn}[main]{Definition}
-\newtheorem{exa}[main]{Example}
-\newtheorem*{spin}{SPIN Axiom \cite{ck09}}
-\theoremstyle{remark}
-\newtheorem{rem}[main]{Remark}
-
-
-\title{A Kochen-Specker system has at least 22 vectors\\
-        {\small (extended abstract)%
-            \footnote{This is a condensed version of the article
-                        to be published in Ohmsha-Springer's
-                        New Generation Computing.
-                    One can find a preprint of the full version at
-                    \url{http://westerbaan.name/\~bas/math/ks.pdf}}}}
-\def\titlerunning{A Kochen-Specker system has at least 22 vectors
-            (extended abstract)}
-\def\authorrunning{Uijlen \& Westerbaan}
-
-\author{Sander Uijlen
-    \institute{Radboud Universiteit}
-    \email{suijlen@cs.ru.nl}
-\and
-    Bas Westerbaan
-    \institute{Radboud Universiteit}
-    \email{bwesterb@cs.ru.nl}}
-
+\newtheorem{fact}{Fact}[section]
+\newtheorem{comp}{Computation}[section]
+\newtheorem{spin}{SPIN Axiom \cite{ck09}}[section]
 
 \begin{document}
-
-\maketitle
+\title{A Kochen-Specker system has at least 22 vectors}
+\author{Sander Uijlen}{Radboud Universiteit, The Netherlands}
+\author{Bas Westerbaan}{Radboud Universiteit, The Netherlands}
+\E-mail{\{suijlen,bwesterb\}@cs.ru.nl}
 
 \begin{abstract}
     At the heart of the Conway-Kochen
@@ -114,11 +83,11 @@
     embeddability to improve the lower bound to 22.
 \end{abstract}
 
+\clearpage
 \section{Introduction}
 
 % TODO whose idea is this orthogonality graph
 \subsection{The experiment}
-
 Consider the following experiment.  Shoot a deuterium
 atom (or another neutral spin 1 particle)
 through a certain fixed inhomogeneous magnetic field,
@@ -142,12 +111,12 @@ outcome of this experiment?
 Kochen and Specker have shown that such a non-contextual deterministic
 theory must be odd: it cannot satisfy the plausible SPIN
 axiom, that is:
-\begin{spin}
+\begin{spin} % TODO
     Given three pairwise orthogonal directions.
     In exactly one of the directions, the particle will not deviate.
 \end{spin}
 Their argument is based on the existence of a Kochen-Specker system.
-\begin{dfn}
+\begin{definition}
     A \keyword{Kochen-Specker (KS) system} is
     a finite set of points on the sphere\footnote{
             We define KS systems to be three dimensional,
@@ -174,7 +143,7 @@ Their argument is based on the existence of a Kochen-Specker system.
             of three pairwise orthogonal points exactly one is colored~$1$;
             or alternatively: they are colored~$0$, $1$ and~$0$ in some order.
     \end{enumerate}
-\end{dfn}
+\end{definition}
 % TODO shorten this proof.
 A point on the sphere obviously corresponds to a direction in space.
 Because of this, the term point, vector and direction
@@ -311,7 +280,7 @@ Therefore, we may assume antipodal points are identified on the sphere.
 That is: a Kochen-Specker system is a finite subset of the projective plane
 that is not 010-colorable.
 
-\begin{dfn}
+\begin{definition}
 Given a finite subset~$S$ of the projective plane
 (or equivalently, a finite subset of the northern
 hemisphere without equator\footnote{%
@@ -323,15 +292,15 @@ Define its \keyword{orthogonality graph}~$G(S)$ as follows.
 The vertices are the points of~$S$.
 Two vertices are joined by an edge, if their corresponding points
 are orthogonal.
-\end{dfn}
-\begin{dfn}
+\end{definition}
+\begin{definition}
 A graph~$G$ is called~\keyword{embeddable},
 if it occurs as a subgraph of an orthogonality graph.
 That is: if there is a finite subset~$S$ of the projective plane,
 such that~$G \leq G(S)$.
-\end{dfn}
+\end{definition}
 % TODO add remark on subgraph definition?
-\begin{dfn}
+\begin{definition}
 A graph is called~\keyword{010-colorable}
 if there is a~$\{0,1\}$-coloring of the vertices,
 such that
@@ -341,13 +310,13 @@ for each triangle there is exactly one vertex that is colored~$1$ and
 \item
 adjacent vertices are not both colored~$1$.
 \end{enumerate}
-\end{dfn}
+\end{definition}
 
 
-\begin{dfn}
+\begin{definition}
 A \keyword{Kochen-Specker graph}
 is a embeddable graph that is not 010-colorable.
-\end{dfn}
+\end{definition}
 It is an easy, but important, consequence of the definitions that:
 \begin{fact}
     A finite subset~$S$ of the projective plane
@@ -363,7 +332,7 @@ However, this is infeasible as there are
 already~${\sim}10^{26}$ non-isomorphic
 graphs on~$17$ points.\cite{oeisA000088}
 Luckily, we can restrict ourselves to certain classes of graphs.
-\begin{prop}[\cite{aow11}]
+\begin{proposition}[\cite{aow11}]
     An embeddable graph is squarefree.
     That is: it does not contain the square as a subgraph.%
     \footnote{Some authors call a graph squarefree if it does not
@@ -373,7 +342,7 @@ Luckily, we can restrict ourselves to certain classes of graphs.
         call a graph squarefree if it does not
         contain the square as subgraph.
         For us the complete graph on four vertices is not squarefree.}
-\end{prop}
+\end{proposition}
 
 \parpic[r]{%
 \begin{tikzpicture}[scale=1.0,thick,
@@ -407,9 +376,9 @@ The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$
 vertices.\cite{sf-sloane}
 Next, we show we can restrict ourselves to connected graphs.
-\begin{prop}[\cite{aow11}]\label{prop:ks-conn}
+\begin{proposition}[\cite{aow11}]\label{prop:ks-conn}
     A minimal Kochen-Specker graph is connected.
-\end{prop}
+\end{proposition}
 \begin{proof}
     Suppose~$G$ is a non-connected Kochen-Specker graph.
     Then one of its components is not 010-colorable.
@@ -473,10 +442,10 @@ system has at least 18 points.
 \label{sec:ilb}
 Continuing the effort of Arends, Ouaknine and Wambler,
 we consider another restriction.
-\begin{prop}
+\begin{proposition}
     A minimal Kochen-Specker graph has minimal vertex-order three.
     That is: every vertex is adjacent to at least three other vertices.
-\end{prop}
+\end{proposition}
 \begin{proof}
     Given a minimal Kochen-Specker graph~$G$.
     Suppose~$v$ is a vertex with order less than or equal~$2$.
@@ -501,24 +470,24 @@ surprisingly, they did not restrict their graph enumeration
 to graphs with minimal vertex order 3.
 
 We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
-\begin{prop}\label{prop:ks-biconn}
+\begin{proposition}\label{prop:ks-biconn}
 A minimal Kochen-Specker graph is edge-biconnected.
 That is: removing any single edge leaves the graph connected.
-\end{prop}
+\end{proposition}
 We need some preparation, before we can prove this Proposition.
-\begin{dfn}
+\begin{definition}
 Given a graph~$G$ and a vertex~$v$ of~$G$.
 We say, \keyword{$v$ has fixed color~$c$ (in~$G$)},
 if~$G$ is~$010$-colorable
 and for every~$010$-coloring of~$G$,
 the vertex~$v$ is assigned color~$c$.
-\end{dfn}
+\end{definition}
 We are interested in these graphs because of the following observation.
-\begin{lem}\label{lem:biconn}
+\begin{lemma}\label{lem:biconn}
 If there is an embeddable graph~$G$ on~$n$ vertices with a vertex
 with fixed color~$1$,
 then there is a Kochen-Specker graph on~$2n$ vertices.
-\end{lem}
+\end{lemma}
 \begin{proof}
 Let~$G$ be a graph and~$v$ a vertex of~$G$ with fixed color~$1$.
 Consider two copies of the graph~$G$.
@@ -599,17 +568,17 @@ Contradiction with~$G$'s minimality.
 
 We can go one step further.
 
-\begin{prop}\label{prop:ks-triconn}
+\begin{proposition}\label{prop:ks-triconn}
     A minimal Kochen-Specker graph is edge-triconnected.
     That is: removing any two edges keeps the graph connected.
-\end{prop}
+\end{proposition}
 
 Again, we need some preparation for the proof.  First, we generalize
 the notion of fixed color.
 
 
 
-\begin{dfn}
+\begin{definition}
    Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
    Let~$C(G)$ denote the set of $010$-colorings of~$G$.
    The \keyword{type~$t$ of~$(v_1,\ldots,v_n)$ (in~$G$)}
@@ -618,9 +587,9 @@ the notion of fixed color.
                 \ c \in C(G) \}.$ 
     A type of~$n$ vertices is
     called an~\keyword{$n$-type}.
-\end{dfn}
+\end{definition}
 
-\begin{exa}
+\begin{example}
 \begin{itemize}
 \item The triangle has~$3$-type~$\{(1,0,0), (0,1,0), (0,0,1)\}$.
 \item Every vertex in a Kochen-Specker graph has type~$\emptyset$.
@@ -628,7 +597,7 @@ the notion of fixed color.
     A vertex~$v$ has the~$1$-type~$\{(1)\}$ in~$G$ if and only if
         it has fixed color~$1$ in~$G$.
 \end{itemize}
-\end{exa}
+\end{example}
 
 Just as verteces with fixed color are rare,
 we are interested in types,
@@ -752,7 +721,7 @@ p/.style={circle, draw, fill=white,
         for otherwise~$G$ is colorable.
         Similarly, the type of~$(b_1,b_2)$ in~$B$ cannot contain~$(0,0)$.
         Thus both~$\#A \geq 17$ and~$\#B \geq 17$.
-        Hence~$\#G \geq 34$. Contradiction with minimality. \qedhere
+        Hence~$\#G \geq 34$. Contradiction with minimality. % \qedhere
     \end{enumerate}
 \end{proof}
 
@@ -767,13 +736,13 @@ Concerning excluding unconnected graphs:
     squarefree connected graphs
     with minimal vertex order 3 and they have 10 vertices.
 \end{comp}
-\begin{cor}
+\begin{corollary}
     Any unconnected
     squarefree graph with minimal vertex order 3
     has at least 20 vertices, for it has two connected components,
     each with at least 10 vertices.
     With 20 vertices, there are exactly 25 of these.
-\end{cor}
+\end{corollary}
 This justifies, at this stage, not checking for connectedness.
 Similarly, we believe there are very few connected but not
 edge-biconnected graphs.
@@ -872,10 +841,10 @@ which for all graphs we considered,
 could decide
 whether they were embeddable or not.
 First we give a pen-and-paper example.
-\begin{prop}\label{prop:unemb-10-2}
+\begin{proposition}\label{prop:unemb-10-2}
 The graph in Figure~\ref{fig:unemb-10-2}
 is not embeddable.
-\end{prop}
+\end{proposition}
 \begin{proof}
 Suppose it is embeddable.
 Consider~$p_1$.
@@ -921,7 +890,7 @@ Since~$v$ and~$w$ are not collinear,
 we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
 Now we find the contradiction:
 \begin{equation*}
-1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1. \qedhere
+1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1. %\qedhere
 \end{equation*}
 \end{proof}
 
@@ -1124,7 +1093,7 @@ in which he discusses in detail several other
 properties that a minimal KS system must enjoy, as well as
 some failed attempts.
 
-\section{Acknowledgments}
+\begin{acknowledgment}
 We wish to thank the following for their generous contribution to the
 distributed computation:
     the Digital Security group, Intelligent Systems group
@@ -1136,12 +1105,13 @@ We are grateful to prof.~McKay for discussing
 the feasibility of certain graph restrictions and
 to Judith van Stegeren\footnote{\url{http://jd7h.com/}}
 for drawing figures for the draft version of this paper.
+\end{acknowledgment}
 
 % attribute mckay for answering questions?
 % TODO attribute geng
 \clearpage
 \bibliography{main}{}
-\bibliographystyle{eptcs}
+\bibliographystyle{kenta}
 
 
 \end{document}

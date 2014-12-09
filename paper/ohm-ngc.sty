@@ -1,0 +1,808 @@
+%% LaTeX document style `ohm-ngc', for use with LaTeX2e.
+%% This is a style for typesetting `NEW GENERATION COMPUTING'.
+%%  
+%% version 1.01  (Apr 1998)
+%%   Original Style File
+%% version 1.02  (Nov 1998)
+%%   modified Newtheorem 
+%% version 1.03  (Oct 2004)
+%%   added comments on pdfTeX
+%%
+%% Copyright (C) 1998, 2004 by Ohmsha, Ltd.
+%%
+%% Copying of part or all of this ohm-ngc.sty file is allowed
+%% under the following conditions only:
+%% (1) You may freely distribute unchanged copies of the file.
+%%     Please include the documentation when you do so.
+%% (2) You may modify the file and make a renamed copy, but only for personal
+%%     use or use within an organization.
+%% (3) You may copy fragments from the file,
+%%     for personal use or for use in a macro package for distribution,
+%%     as long as credit is given where credit is due.
+%%
+%% You are NOT ALLOWED to take money for the distribution or use of
+%% this file or modified versions or fragments thereof,
+%% except for a nominal charge for copying etc.
+%%
+%% This Style File
+%%
+%% The document must begin with the preamble by using 
+%% the following two commands.
+%%
+%% \documentclass{report}
+%%
+%% \usepackage{ohm-ngc}
+%%
+%% All commands produced by authors must be noted in the preamble.
+%% Any changes added to the commands defined in this ohm-ngc.sty 
+%% must also be noted in the preamble, with author's explanation 
+%% of the changes he made, in order to avoid spreading the affect 
+%% to other papers included in the same issue.
+%%
+%% For regular papers, the following should be included:
+%%   *Title, name(s) of the author(s), and their academic or 
+%%   professional affiliation(s)
+%%   *Abstract (10 to 15 lines)
+%%   *Keywords (about 5 words)
+%%   *Introduction (about 30 lines)
+%%   *Main Text
+%%   *Conclusion
+%%   *Acknowledgements (if necessary)
+%%   *References
+%%
+%% The journal includes about 550-580 words per page.
+%% The adequate length for a regular paper should be 10-30 journal pages.
+%% Short notes and communications related to new flash on studies, small
+%% papers, spot-information, conference reports, etc., 
+%% will also be welcomed.
+%% The length should be 2-10 journal pages.
+%%
+%% \begin{document}
+%%
+%% \title{Paper Title}
+%%   e.g. 
+%%   \title{New Generation Computing}
+%%
+%% \author{Name of the author}{its academic or professional affiliation}
+%%   Family names should be capitalized
+%%   e.g. 
+%%   \author{Hidehiko TANAKA}{The University of Tokyo\\7-3-1 Hongo,
+%%           Bunkyo-ku, Tokyo 113 JAPAN}
+%%   or
+%%  \author{Names of the authors}{Their academic or professional affiliations}
+%%   e.g. 
+%%   \author{Hidehiko TANAKA and Takashi CHIKAYAMA}{The University of
+%%           Tokyo\\7-3-1 Hongo, Bunkyo-ku, Tokyo 113 JAPAN}
+%%   \author{Koichi FURUKAWA}{Keio University\\5322 Endo, Fujisawa, 
+%%           Kanagawa 252 JAPAN}
+%%
+%% \E-mail{e-mail address}
+%%   e.g. \E-mail{ngcj@ohmsha.co.jp}
+%%
+%% \date{Day Month Year}
+%%    Insert your submission date
+%%   e.g. \date{2 July 1998}
+%%
+%%  Note your submission date also for revised paper.
+%%
+%% \begin{abstract}
+%%    10 to 15 lines
+%% \end{abstract}
+%%
+%% \begin{keywords}
+%%    about 5 words
+%%    The first letters of each words should be capitalized
+%% \end{keywords}
+%% e.g.
+%% \begin{keywords}
+%%    Functional Programming,
+%%    Logic and Constraint Programming,
+%%    Object-Oriented Programming,
+%%    Concurrent Programming,
+%%    Programming Environments.
+%% \end{keywords}
+%%
+%% \section{Introduction}
+%%    about 30 lines
+%%
+%% Main Text
+%% The text after each section title should begin with new line.
+%%
+%% theorem-like environment
+%% \begin{theorem}[ ] ...  \end{theorem}
+%% \begin{definition}[ ] ...  \end{definition}
+%% \begin{axiom}[ ] ...  \end{axiom}
+%% \begin{conjecture}[ ] ...  \end{conjecture}
+%% \begin{proposition}[ ] ...  \end{proposition}
+%% \begin{corollary}[ ] ...  \end{corollary}
+%% \begin{lemma}[ ] ...  \end{lemma}
+%% \begin{problem}[ ] ...  \end{problem}
+%% \begin{example}[ ] ...  \end{example}
+%% \begin{remark}[ ] ...  \end{remark}
+%% \begin{proof} ...  \end{proof}
+%%
+%% \section{Conclusion}
+%%    Conclusion to the article must be included.
+%%
+%% Figures and Tables
+%%    Figures and Tables should be numbered consecutively according 
+%%    to the appearance in the text as Fig. 1, Fig. 2, Fig. 3 ... or, 
+%%    as Table 1, Table 2, Table 3....
+%%    Those numbers are automatically assigned by creating \label command
+%%    in conjunction with \caption command. The numbers are then printed 
+%%    in the text by \ref command.
+%%    Figures and Photographs are to be scaled by the Publisher.
+%%    Figure/Table Titles should be indicated in \caption command. 
+%%    \caption command on Figures must be put below the figure, 
+%%    and \caption command on Tables must be put above the table.
+%%
+%% Equations
+%%    No specific regulations are added to equations.
+%%    Equations in displaystyle will be printed with a defined indent,
+%%    not be printed in centered style.
+%%    Equation numbers are recognized and can be referred in the text 
+%%    by \ref command.
+%%
+%% \begin{acknowledgment}
+%%    Acknowledgements can be included if necessaary. 
+%%    Full Names should be used.
+%% \end{acknowledgment}
+%%
+%% References
+%%    Bibliographic reference should be indicated by \cite command
+%%    in the text, which will automatically appear with superscript 
+%%    numbers such as 1), 2), 3).... in the alphabetical sequence.
+%%    Details of all references should be given in a consecutively 
+%%    numbered list at the end of the paper, in the following style.
+%%
+%% For a book: 
+%%    Authors(Family Name, First Name Initial.), 
+%%    Book Title,
+%%    Publisher, 
+%%    Publication Date.
+%% e.g.
+%% \begin{thebibliography}{99}
+%% \bibitem{logicprog} Lloyd, J. W.,
+%%  \newblock {\em Foundations of Logic Programming (Second Edition)},
+%%  \newblock Springer-Verlag, Berlin, 1987.
+%% \end{thebibliography}
+%%
+%% For a paper in a journal: 
+%%    Authors(Family Name, First Name Initial.),
+%%    "Paper Title," 
+%%    Journal Title, 
+%%    Volume, 
+%%    Number, 
+%%    Pages(pp. XX-YY), 
+%%    Publication
+%%    Date.
+%% e.g.
+%% \begin{thebibliography}{99}
+%  \bibitem{hermtick89} Hermenegildo, M. and Tick, E.,
+%%  \newblock "Memory Referencing Characteristics and Caching
+%%  Performance of AND-parallel Prolog on Shared-Memory Multiprocessors,"
+%%  \newblock {\em New Gener. Comput. 7, 1}, pp. 37-58, 1989.
+%% \end{thebibliography}
+%%
+%% For a paper in contributed volume: 
+%%    Authors(Family Name, First Name Initial.), 
+%%    "Paper Title," 
+%%    Contributed Volume Title(Editors), 
+%%    Publisher,
+%%    Pages(pp. XX-YY), 
+%%    Publication Date.
+%% e.g.
+%% \begin{thebibliography}{99}
+%%  \bibitem{wedafurukawa88} Ueda, K. and Furukawa, K.,
+%%  \newblock "Transformation Rules for GHC Programs,"
+%%  \newblock in {\em Proceedings of the International Conference on
+%%   Fifth Generation Computer Systems 1988}(ICOT ed.),
+%%   Ohmsha and Springer-Verlag, pp. 582-591, 1988.
+%% \end{thebibliography}
+%%
+%% For an unpublished paper: 
+%%    Authors(Family Name, First Name Initial.),
+%%    "Paper Title," 
+%%    to appear in Journal Title, 
+%%    Pages(pp. XX-YY).
+%% e.g.
+%% \begin{thebibliography}{99}
+%%  \bibitem{haridi90} Haridi, S.,
+%%  \newblock "A Logic Programming Language Based on the Andorla Model,"
+%%  \newblock to appear in {\em New Gener. Comput.}, 1990.
+%% \end{thebibliography}
+%%
+%% Appendix(if necessary)
+%%    Appendix should be defined by \section command and added 
+%%    after the Reference if necessary.
+%%
+%% \end{document}
+%%
+%% Using pdfTeX is recommended when images in jpeg or gif format are to be included.
+%% pdfTeX can handle such images and directly produces its output in PDF.
+%% pdfTeX is available for a wide variety of systems freely.
+%% See http://www.tug.org/applications/pdftex/ for its source, binaries,
+%% documentation, and examples.
+%%
+%%
+\NeedsTeXFormat{LaTeX2e}
+%%
+%%\ExecuteOptions{letterpaper,10pt,twoside,onecolumn,final,openright}
+%%\DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
+\typeout{Document Style `ohm-ngc'}
+\RequirePackage{ohm-ngc}
+%%
+\message{
+, Ver1.01<1998/04/20>
+, Ver1.02<1998/11/17>
+}
+%%, Ver1.03<1998/0/0>
+
+\setlength{\textheight}{192mm}%
+\setlength{\textwidth}{122mm}%
+
+\def\title#1{\vspace*{3\baselineskip}%
+\noindent
+{\LARGE\bfseries #1}
+\chaptermark{#1}%
+\vskip\baselineskip
+}
+
+\def\author#1#2{%
+ {\baselineskip12pt
+ \begin{verse}#1\end{verse}
+ \begin{verse}\itshape #2\end{verse}}
+ \sectionmark{#1}%\markright{#1}
+}
+
+\def\E-mail#1{
+ \begin{verse}{\tt #1}\end{verse}
+}
+
+\def\date#1{\vskip\baselineskip
+ \noindent
+ {\quotation\small Received #1}
+}
+
+\renewenvironment{abstract}{\vskip\baselineskip%
+ \quotation\baselineskip13pt
+ \noindent  
+ {\large\bfseries\itshape\abstractname }\hspace{1em}%
+}
+
+\newenvironment{keywords}{\vskip\baselineskip%
+ \quotation\baselineskip13pt
+ \noindent  
+ {\bfseries\keywordsname }\hspace{1em}%
+}
+
+\def\acknowledgment{\vskip\baselineskip%
+  \leftskip0pt \rightskip0pt \noindent
+  {\reset@font\Large\bfseries\itshape \acknowledgmentname}%
+  \addcontentsline{toc}{section}{\protect\numberline{}{\acknowledgmentname}}
+\main}
+
+\renewenvironment{enumerate}
+  {\ifnum \@enumdepth >3\relax\@toodeep\else
+   \advance\@enumdepth\@ne
+   \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
+   \list{\csname label\@enumctr\endcsname}{%
+         \ifnum \@listdepth=\@ne \topsep.5\normalbaselineskip
+           \else\topsep\z@ \fi
+         \parskip\z@ \itemsep\z@ \parsep\z@ \topsep7pt
+         \labelwidth1.5em \labelsep.5em
+         \ifnum \@enumdepth=\@ne \leftmargin3em\relax
+           \else\leftmargin\leftskip\fi
+         \advance\leftmargin1em
+         \advance\displayindent by-\leftmargin
+         \usecounter{\@enumctr}%
+         \def\makelabel##1{\hss\llap{##1}}}%
+   \fi}{\endlist}
+
+\renewenvironment{description}
+        {\list{}{\labelwidth\z@ 
+            \itemindent     \listparindent
+            \rightmargin0em \leftmargin4.5em
+            \itemindent-\leftmargin
+            \let\makelabel\descriptionlabel}}
+        {\endlist}
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep
+        \normalfont\bfseries #1}
+
+\renewenvironment{itemize}
+  {\ifnum \@itemdepth >3\relax\@toodeep\else
+   \advance\@itemdepth\@ne
+   \edef\@itemitem{item\romannumeral\the\@itemdepth}%
+   \list{\csname label\@itemitem\endcsname}{%
+         \ifnum \@listdepth=\@ne \topsep.5\normalbaselineskip
+           \else\topsep\z@\fi
+         \parskip\z@ \itemsep\z@ \parsep\z@
+         \labelwidth2em \labelsep1em
+         \ifnum \@itemdepth =\@ne \leftmargin2em\relax
+           \else\leftmargin\leftskip\fi
+         \advance\leftmargin 1em
+         \def\makelabel##1{\hss\llap{##1}}}%
+   \fi}{\endlist}
+
+\renewenvironment{verse}
+               {\let\\\@centercr
+                \list{}{\itemsep      \z@
+                        \itemindent   -1.5em%
+                        \listparindent\itemindent
+                        \rightmargin  \leftmargin
+                        \advance\leftmargin 1.5em}%
+                \item\relax}
+               {\endlist}
+\renewenvironment{quotation}
+               {\list{}{\listparindent 1.5em%
+                        \itemindent    \listparindent
+                        \rightmargin1.5em   \leftmargin1.5em
+                        \parsep        \z@ \@plus\p@}%
+                \item\relax}
+               {\endlist}
+\renewenvironment{quote}
+               {\list{}{\rightmargin\leftmargin}%
+                \item\relax}
+               {\endlist}
+
+\renewcommand{\normalsize}{\@setfontsize\normalsize\@xpt{15pt}}
+
+\long\def\main{\normalsize%
+ \parindent3.5em 
+ \baselineskip15pt
+ \lineskiplimit .2em
+ \lineskip .5em
+ \abovedisplayskip=0.5em plus.4em
+ \belowdisplayskip=\abovedisplayskip
+ \abovedisplayshortskip=.5em plus.4em
+ \belowdisplayshortskip=.5em plus.4em
+ %\listparindent0pt
+ %\labelsep0pt
+ %\leftskip0pt
+ %\rightskip0pt
+ \leftmargin0pt
+ \rightmargin0pt
+ \topsep7pt
+ \parsep0pt
+ \displayindent7em
+% \def\labelenumi{\arabic{enumi}.}
+ \def\labelenumi{\hbox to1.5em{\hss\arabic{enumi}. \hss}}
+ \def\labelenumii{\hbox to1.5em{\hss\alph{enumii}. \hss}}
+ \def\labelenumiii{\hbox to1.5em{\hss\arabic{enumiii}\hss}}
+}
+
+%%% setting count
+%% \newcommand*\chaptermark[1]{}
+%% \setcounter{secnumdepth}{2}
+%% \newcounter {part}
+%% \newcounter {chapter}
+%% \newcounter {section}[chapter]
+%% \newcounter {subsection}[section]
+%% \newcounter {subsubsection}[subsection]
+%% \newcounter {paragraph}[subsubsection]
+%% \newcounter {subparagraph}[paragraph]
+\renewcommand\thepart         {\@Roman\c@part}
+\renewcommand\thechapter      {\@arabic\c@chapter}
+\renewcommand\thesection      {\@arabic\c@section}
+\renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}
+\renewcommand\thesubsubsection{\@arabic\c@subsubsection}
+\renewcommand\theparagraph    {\@arabic\c@paragraph}
+\renewcommand\thesubparagraph {\@arabic\c@subparagraph}
+
+%% basic counter define %%
+\newcount\tmpcounter
+\def\setupchapter{\setcounter{chapter}{0}}
+\def\setupsection{\setcounter{section}{0}}
+\def\setupsubsection{\setcounter{subsection}{0}}
+\def\setupsubsubsection{\setcounter{subsubsection}{0}}
+\def\setupparagraph{\setcounter{paragraph}{0}}
+\def\setupsubparagraph{\setcounter{subparagraph}{0}}
+\def\setupcounters{\setupchapter\setupsection\setupsubsection%
+\setupsubsubsection\setupparagraph\setupsubparagraph}
+\setupcounters
+%
+
+%% chapter style %%
+\renewcommand\chapter{%
+   \if@openright\cleardoublepage\else\clearpage\fi
+   \thispagestyle{myheadings}%\thispagestyle{plain}%
+   \global\@topnum\z@
+   \@afterindentfalse
+   \secdef\@chapter\@schapter}
+\def\@chapter[#1]#2{%
+   \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{chapter}%
+    \setcounter{equation}{0}
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    \setcounter{footnote}{0}
+   \typeout{\@chapapp\space\thechapter.}%
+   \addcontentsline{toc}{chapter}%
+     {\protect\numberline{\thechapter}#1}%
+   \else
+   \addcontentsline{toc}{chapter}{#1}%
+   \fi
+   %\chaptermark{#1}%
+   \@makechapterhead{#2}\thispagestyle{plain}%
+   \@afterheading}
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\def\@schapter#1{%
+ \@makeschapterhead{#1}%
+ \@afterheading
+}
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent\z@
+   \raggedright
+   \normalfont
+   \interlinepenalty\@M
+   \Huge \bfseries  #1\par\nobreak
+\vskip 40\p@}}
+
+%% section style %%
+\def\section#1{\vskip\baselineskip%
+    \refstepcounter{section}
+    \setcounter{subsection}{0}
+    \setcounter{theorem}{0}
+    \leftskip0pt \rightskip0pt \noindent
+  {\reset@font\Large\bfseries \S\thesection \hskip1.2em #1 \hfill}%
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}{#1}}
+  %\markright{\thesection \hspace{.5zw} #1}
+\par\main}
+
+%% subsection style %%
+\def\subsection#1{\vskip\baselineskip%
+ \refstepcounter{subsection}
+ \setcounter{subsubsection}{0}
+ \vskip0pt\leftskip0pt\rightskip0pt\noindent
+ {\reset@font\large\bfseries \thesubsection \hskip1.2em #1}
+\par\main}
+
+%% subsection style %%
+\def\subsubsection#1{\vskip\baselineskip%
+ \refstepcounter{subsubsection}
+ \setcounter{paragraph}{0}
+ \vskip0pt\leftskip0pt\rightskip0pt\noindent
+ {\reset@font\normalsize\bfseries \hbox to1.5em{[\hss \thesubsubsection\hss ]}\hskip1em #1}
+\par\main}%
+
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+      {3.25ex \@plus1ex \@minus.2ex}%
+      {-1em}%
+      {\normalfont\normalsize\bfseries}
+}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+      {3.25ex \@plus1ex \@minus .2ex}%
+      {-1em}%
+      {\normalfont\normalsize\bfseries}
+}
+%
+\if@twoside
+  \def\ps@headings{%
+      \let\@oddfoot\@empty\let\@evenfoot\@empty
+      \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+      \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+      \let\@mkboth\markboth
+    \def\chaptermark##1{%
+      \markboth {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+            %\@chapapp\ \thechapter. \ %
+        \fi
+        ##1}}{}}%
+    \def\sectionmark##1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+          %\thesection. \ %
+        \fi
+        ##1}}}}
+\else
+  \def\ps@headings{%
+    \let\@oddfoot\@empty
+    \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+    \let\@mkboth\markboth
+    \def\chaptermark##1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+            \@chapapp\ \thechapter. \ %
+        \fi
+        ##1}}}}
+\fi
+%\mark{{}{}}
+\def\ps@myheadings{%
+\let\@mkboth=\markboth%
+%    \def\@evenhead{\thepage\hfil\slshape\leftmark}%
+%    \def\@oddhead{{\slshape\rightmark}\hfil\thepage}%
+\def\@oddhead{{\footnotesize\rmfamily \leftmark}\hfil
+{\small\slshape \hbox{\thepage}}}
+\def\@oddfoot{}
+\def\@evenhead{{\small\slshape \hbox{\thepage}}\hfil
+{\footnotesize\rmfamily \rightmark}}
+\def\@evenfoot{}
+\def\chaptermark##1{\markboth{##1}{}}
+\def\sectionmark##1{\markright{##1}{}}
+}
+
+\pagestyle{myheadings}
+
+%% theorem-like environment
+%% From File: ltthm.dtx
+%% And Package `theorem' to use with LaTeX2e
+%% Copyright (C) 1989-1995 Frank Mittelbach, all rights reserved.
+\def\newtheorem#1{%
+  \@ifnextchar[{\@othm{#1}}{\@nthm{#1}}}
+\def\@nthm#1#2{%
+  \@ifnextchar[{\@xnthm{#1}{#2}}{\@ynthm{#1}{#2}}}
+\def\@xnthm#1#2[#3]{%
+  \expandafter\@ifdefinable\csname #1\endcsname
+    {\@definecounter{#1}\@newctr{#1}[#3]%
+     \expandafter\xdef\csname the#1\endcsname{%
+       \expandafter\noexpand\csname the#3\endcsname \@thmcountersep
+          \@thmcounter{#1}}%
+     \global\@namedef{#1}{\@thm{#1}{#2}}%
+     \global\@namedef{end#1}{\@endtheorem}}}
+\def\@ynthm#1#2{%
+  \expandafter\@ifdefinable\csname #1\endcsname
+    {\@definecounter{#1}%
+     \expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
+     \global\@namedef{#1}{\@thm{#1}{#2}}%
+     \global\@namedef{end#1}{\@endtheorem}}}
+\def\@othm#1[#2]#3{%
+  \@ifundefined{c@#2}{\@nocounterr{#2}}%
+    {\expandafter\@ifdefinable\csname #1\endcsname
+    {\global\@namedef{the#1}{\@nameuse{the#2}}%
+  \global\@namedef{#1}{\@thm{#2}{#3}}%
+  \global\@namedef{end#1}{\@endtheorem}}}}
+\def\@thm#1#2{%
+  \refstepcounter{#1}%
+  \@ifnextchar[{\@ythm{#1}{#2}}{\@xthm{#1}{#2}}}
+\def\@xthm#1#2{%
+  \@begintheorem{#2}{\csname the#1\endcsname}\ignorespaces}
+\def\@ythm#1#2[#3]{%
+  \@opargbegintheorem{#2}{\csname the#1\endcsname}{#3}\ignorespaces}
+\def\@thmcounter#1{\noexpand\arabic{#1}}
+\def\@thmcountersep{.}
+\def\@begintheorem#1#2{\par\trivlist%
+   \@topsep \theorempreskipamount               % used by first \item
+   \@topsepadd \theorempostskipamount           % used by \@endparenv
+  \item[\rlap{\vbox{\hbox{\hskip\labelsep \bfseries #1\ #2}%
+                    \hbox{\strut}}}]}%
+\def\@opargbegintheorem#1#2#3{\par\trivlist%
+   \@topsep \theorempreskipamount               % used by first \item
+   \@topsepadd \theorempostskipamount           % used by \@endparenv
+  \item[\rlap{\vbox{\hbox{\hskip\labelsep \bfseries #1\ #2\ (#3)}%
+                    \hbox{\strut}}}]}
+%\def\@begintheorem#1#2{\trivlist%
+%   \item[\hskip \labelsep{\bfseries #1\ #2}]\hskip1em }%\itshape}
+%\def\@opargbegintheorem#1#2#3{\trivlist
+%      \item[\hskip \labelsep{\bfseries #1\ #2\ (#3)}]\hskip1em }%\itshape}
+\def\@endtheorem{\endtrivlist%\topsep.5\baselineskip%
+}
+\newskip\theorempreskipamount
+\newskip\theorempostskipamount
+\global\setlength\theorempreskipamount{10pt plus 0pt minus 0pt}%
+\global\setlength\theorempostskipamount{8pt plus 0pt minus 0pt}%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+%
+\def\BK{\rule{2mm}{2mm}}
+\long\def\proof{\par%
+\noindent
+{\bfseries Proof}\hskip2em }
+\def\endproof{\hfill \BK\vskip7pt}%
+
+%\long\def\remark{\par%
+%\noindent
+%{\bfseries Remark}\par}
+%\def\endremark{\endtrivlist}
+
+\everymath{\displaystyle}
+
+\newdimen\mathindent
+\mathindent=0pt
+%% \chardef\@ne=1
+%% \chardef\tw@=2
+%% \chardef\thr@@=3
+\def\eqnarray{%
+   \stepcounter{equation}%
+   \def\@currentlabel{\p@equation\theequation}%
+   \global\@eqnswtrue
+   \m@th
+   \global\@eqcnt\z@
+   \tabskip\displayindent%\tabskip\@centering  %<----centering(original)
+   \let\\\@eqncr
+   $$\everycr{}\halign to\displaywidth\bgroup
+%%  \hskip\@centering$\displaystyle\tabskip\z@skip{##}$\@eqnsel%%<---- original
+%%  &\global\@eqcnt\@ne\hskip \tw@\arraycolsep \hfil${##}$\hfil%%<---- original
+%%  &\global\@eqcnt\tw@ \hskip \tw@\arraycolsep                %%<---- original
+   \hskip\mathindent$\displaystyle\tabskip\z@skip{##}$\@eqnsel
+   &\global\@eqcnt\@ne\hskip .8\arraycolsep \hfil${##}$\hfil
+   &\global\@eqcnt\tw@ \hskip .8\arraycolsep
+         $\displaystyle{##}$\hfil\tabskip\@centering
+      &\global\@eqcnt\thr@@ \hb@xt@\z@\bgroup\hss##\egroup
+         \tabskip\z@skip
+      \cr
+}
+\def\endeqnarray{%
+      \@@eqncr
+      \egroup
+      \global\advance\c@equation\m@ne
+   $$\global\@ignoretrue
+\par\noindent}
+%%}%%<---- original
+\let\@eqnsel=\relax
+
+%% original from latex.ltx %%
+%%  \@definecounter{equation}
+%%  \def\equation{$$\refstepcounter{equation}}
+%% displayindent setting
+\def\equation{\topsep=.5em plus.4em
+\refstepcounter{equation}\trivlist%
+\item[]\leavevmode
+\hbox to\linewidth\bgroup $ \displaystyle
+\hskip\displayindent}
+
+%% original from latex.ltx
+%%  \def\endequation{\eqno \hbox{\@eqnnum}$$\global\@ignoretrue}
+%% displayindent setting
+\def\endequation{$\hfil \displaywidth\linewidth\@eqnnum\egroup \endtrivlist}
+
+%% displayindent setting \[....\]
+\def\[{\relax\ifmmode\@badmath\else
+\topsep=0.5em plus0.4em\begin{trivlist}\item[]\leavevmode
+\hbox to\linewidth\bgroup$ \displaystyle
+\hskip\displayindent\bgroup\fi}
+\def\]{\relax\ifmmode \egroup $\hfil \egroup \end{trivlist}
+\else \@badmath \fi}
+
+\@addtoreset{equation}{chapter}
+%\renewcommand\theequation{(\@arabic\c@equation)\hspace*{2em}}
+\renewcommand\theequation{{\@arabic\c@equation}}
+\def\@eqnnum{{\normalfont (\theequation)}\hspace*{1em}}
+\displayindent=6em
+
+\def\@verbatim{\topsep9pt \footnotesize%
+\trivlist \item[]\if@minipage\else\vskip\parskip\fi
+\leftskip\@totalleftmargin\rightskip\z@
+\leftskip5em
+\parindent\z@\parfillskip\@flushglue\parskip\z@
+\@tempswafalse \def\par{\if@tempswa\hbox{}\fi\@tempswatrue\@@par}
+\obeylines \tt \catcode``=13 \@noligs \let\do\@makeother \dospecials}
+
+\def\verbatim{\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+\let\endverbatim=\endtrivlist
+
+\@namedef{verbatim*}{\@verbatim\@sxverbatim}
+\expandafter\let\csname endverbatim*\endcsname =\endtrivlist
+
+%%\newcounter{figure}[chapter]
+\renewcommand\thefigure{\@arabic\c@figure}
+\def\fps@figure{tbp}
+\def\ftype@figure{1}
+\def\ext@figure{lof}
+\def\fnum@figure{\figurename~\thefigure}
+\renewenvironment{figure}
+               {\@float{figure}}
+               {\end@float}
+\renewenvironment{figure*}
+               {\@dblfloat{figure}}
+               {\end@dblfloat}
+%%\newcounter{table}[chapter]
+\renewcommand\thetable{\@arabic\c@table}
+\def\fps@table{tbp}
+\def\ftype@table{2}
+\def\ext@table{lot}
+\def\fnum@table{\tablename~\thetable}
+\renewenvironment{table}
+               {\@float{table}}
+               {\end@float}
+\renewenvironment{table*}
+               {\@dblfloat{table}}
+               {\end@dblfloat}
+%%\newlength\abovecaptionskip
+%%\newlength\belowcaptionskip
+\setlength\abovecaptionskip{0\p@}
+\setlength\belowcaptionskip{0\p@}
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{\reset@font\footnotesize {\bfseries #1}\hskip1em #2}%
+  \ifdim \wd\@tempboxa >\hsize
+  {\reset@font\footnotesize {\bfseries #1}\hskip1em #2}
+  \relax\par
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\renewcommand\figurename{Fig.}
+\renewcommand\tablename{Table}
+
+\@addtoreset{footnote}{chapter}
+%\renewcommand\@makefntext[1]{%
+%    \parindent 1em%
+%    \noindent
+%    \hb@xt@1.8em{\hss\@makefnmark}#1}
+
+\renewcommand{\@makefntext}[1]{\setlength{\parindent}{0pt}
+\begin{list}{}{\footnotesize%
+\samepage
+\setlength{\labelwidth}{1.5em}
+\setlength{\leftmargin}{2em}
+\setlength{\labelsep}{.5em}
+\setlength{\itemindent}{0em}
+\setlength{\listparindent}{1em}
+\setlength{\topsep}{0pt}
+\setlength{\parsep}{0pt}
+}
+\item[\hfill\@makefnmark]#1
+\end{list}}
+
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\def\@textsuperscript#1{%
+  {\m@th\ensuremath{^{\mbox{\fontsize\sf@size\z@#1}}}}}
+
+\def\thefootnote{${\hbox{\tiny $\ast$\slshape\@arabic\c@footnote}}$}
+%\def\thefootnote{$\ast$\slshape\@arabic\c@footnote}
+
+\def\thebibliography#1{\vskip\baselineskip%
+ \noindent{\Large\bfseries\itshape References}\small\list
+ {{\hss \hbox to1.5em{\hss\arabic{enumi})}\hss}}
+ {\settowidth\labelwidth{[#1]}
+ \leftmargin=2em \labelsep=1em
+  \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+% \def\newblock{\hskip .11em plus .33em minus .07em}
+ \def\newblock{\hskip .3em plus .33em minus .07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+\def\LINE#1#2{%
+\hbox to#1{\vbox to#2{\hsize #1 \hrule \vss
+ \hbox to #1{\vrule height #2 \hss \vrule height #2}
+ \vss \hrule}}}
+
+\long\def\profile#1#2{%\newpage
+\noindent
+\begin{minipage}[t]{29mm}
+\raisebox{-33mm}{\LINE{25mm}{35mm}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{92mm}
+\baselineskip12pt
+{\small\bfseries #1}\hskip1em{\small #2}
+\end{minipage}
+}
+\newcommand\acknowledgmentname{Acknowledgment}
+\newcommand\keywordsname{Keywords}
+
+\main
+\@twosidetrue
+
+%\def\@cite#1#2{[{#1\if@tempswa , #2\fi}]}
+\def\@cite#1#2{$^{\hbox{\tiny{#1\if@tempswa , #2\fi})}}$}
+
+\endinput
+%%
+%%%end of file `ohm-ngc.sty'.%%%
+
+

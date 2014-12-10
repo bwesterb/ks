@@ -470,6 +470,31 @@ Even though Arends, Ouaknine and Wampler
 note this restriction once,
 surprisingly, they did not restrict their graph enumeration
 to graphs with minimal vertex order 3.
+We present another considerable restriction.
+
+\begin{proposition}\label{prop:ks-enoughtriangles}
+    In a minimal Kochen-Specker graph,
+        every node is part of a triangle.
+\end{proposition}
+\begin{proof}
+    Given any graph~$G$ together with a vertex~$v$ of~$G$
+        such that~$v$ is not part of a triangle.
+    Let~$G'$ denote~$G$ without~$v$.
+    Suppose~$G'$ is~$010$-colorable.
+    Then so is~$G$, as we may extend the coloring of~$G'$
+        to~$G$ by coloring~$v$ with~$0$.
+    Contraposing: if~$G$ is not~$010$-colorable,
+        then~$G'$ is not~$010$-colorable.
+    Clearly, if~$G$ is embeddable, then so is~$G'$.
+    Thus if~$G$ is Kochen-Specker, then so is~$G'$.
+\end{proof}
+There are only TODO squarefree non-isomorphic 
+graphs on 17 vertices with minimal vertex degree 3
+where every node is part of a triangle.
+Unfortunately,
+we could not find an efficient algorithm
+to restrict the enumeration of graphs
+to those where every node is part of a triangle.
 
 We continue with a strengthening of Proposition~\ref{prop:ks-conn}.
 \begin{proposition}\label{prop:ks-biconn}

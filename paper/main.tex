@@ -556,12 +556,12 @@ Unfortunately, these graphs are not small.
     on less than 17 vertices.%
         \footnote{Source code at \texttt{code/comp5.py} of \cite{GH}.}
 \end{comp}
-
-We are ready to prove that a minimal Kochen-Specker graph
+We are ready to prove that a minimal KS graph
 is edge-biconnected.
 \begin{proofof}{Proof of Proposition~\ref{prop:ks-biconn}}
 Given a minimal Kochen-Specker graph~$G$.
-\parpic(0cm,1cm)[r]{%
+\parpic[r]{%
+%\parpic(0cm,1cm)[r]{%
     \begin{tikzpicture}[thick,scale=1.4,
         p/.style={circle, draw, fill=white,
                         inner sep=0pt, minimum width=5pt}]
@@ -574,12 +574,12 @@ Given a minimal Kochen-Specker graph~$G$.
                   (-0.8, -0.6) node[below] {$A$}
                   (0.8, -0.6) node[below] {$B$}
                 ;
-        \end{tikzpicture}}
+        \end{tikzpicture}}\vspace{-0.6mm}
 Recall it must be connected.  Suppose it is not edge-biconnected.
 Then there must be an edge~$(a,b)$ in~$G$,
-which removal disconnects~$G$.
+whose removal disconnects~$G$.
 Thus~$G$ decomposes into two connected graphs~$A$ and~$B$
-such that~$a\in A$, $b \in B$ and~$(a,b)$ is the only edge
+with~$a\in A$, $b \in B$ and~$(a,b)$ is the only edge
 between~$A$ and~$B$.
 Clearly~$A$ and~$B$ are embeddable.
 
@@ -605,12 +605,8 @@ We can go one step further.
     A minimal Kochen-Specker graph is edge-triconnected.
     That is: removing any two edges keeps the graph connected.
 \end{proposition}
-
-Again, we need some preparation for the proof.  First, we generalize
+Again, we need some preparation.  First, we generalize
 the notion of fixed color.
-
-
-
 \begin{definition}
    Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
    Let~$C(G)$ denote the set of $010$-colorings of~$G$.
@@ -674,7 +670,8 @@ because most types do not occur in small graphs.
 
     Given a minimal Kochen-Specker graph~$G$.
 
-\parpic(0cm,1cm)[r]{%
+%\parpic(0cm,1cm)[r]{%
+\parpic[r]{%
 \begin{tikzpicture}[thick,scale=1.4,
 p/.style={circle, draw, fill=white,
                 inner sep=0pt, minimum width=5pt}]
@@ -696,7 +693,7 @@ p/.style={circle, draw, fill=white,
     Then it splits into two graphs~$A$ and~$B$
     together with verteces~$a_1, a_2 \in A$
     and~$b_1,b_2 \in B$
-    such that~$(a_1, b_1)$ and~$(a_2,b_2)$
+    s.t.~$(a_1, b_1)$ and~$(a_2,b_2)$
     are the only edges between~$A$ and~$B$.
     Note that~$A$ and~$B$ must be $010$-colorable,
     for otherwise~$G$ would not be a minimal Kochen-Specker graph.
@@ -715,7 +712,6 @@ p/.style={circle, draw, fill=white,
             \item
             Suppose~$b_1=b_2$ has fixed color~$1$ in~$B$.
             Note~$\#B \geq 17$ by Computation~\ref{comp:types}.
-
             Suppose there is a coloring of~$A$
             in which both~$a_1$ and~$a_2$ have color~$0$.
             Then, regardless whether~$a_1$ and~$a_2$ are adjacent or not,
@@ -730,7 +726,6 @@ p/.style={circle, draw, fill=white,
             \item
             Apparently~$b_1=b_2$ has fixed color~$0$ in~$B$.
             Hence, by Computation~\ref{comp:types}, $\#B \geq 15$.
-
             Suppose~$a_1$ is not adjacent to~$a_2$.
             Then any coloring of~$A$ can be extended with a coloring
             of~$B$ to a coloring of~$G$. Contradiction.

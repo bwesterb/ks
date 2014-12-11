@@ -1,6 +1,12 @@
 \documentclass{report}
 \usepackage{ohm-ngc}
 
+% Adaptation of ohm-ngc's proof environment to allow for a
+% "Proof of Proposition 2    lorum ipsum ..."
+\newenvironment{proofof}[1]{%
+    \par\noindent{\bfseries #1}\hskip2em}{%
+    \hfill \BK\vskip7pt}
+
 \usepackage{draftwatermark}
 
 \usepackage{algpseudocode}
@@ -152,7 +158,7 @@ Because of this, the term point, vector and direction
 can be used interchangeably. Antipodal points correspond to opposite
 vectors and these span the same direction in space.
 
-\piccaption{Conway's 31 vector Kochen-Specker system\label{fig:conway31}}
+\piccaption{John Conway's 31 vector Kochen-Specker system\label{fig:conway31}}
 \parpic[r]{%
 %  Based on  <http://www.latex-community.org/viewtopic.php?f=4&t=2111>
 \begin{tikzpicture}[scale=0.75,
@@ -274,7 +280,7 @@ this paper, can be found here\cite{GH}.
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
 We follow \cite{aow11} and reduce the search for Kochen-Specker systems
-to the search of a certain class of graphs.
+to the search for a certain class of graphs.
 First note that in a Kochen-Specker system we may replace a point with its
 antipodal point.  They are both orthogonal to the same points and hence
 the non-010-colorability is preserved.
@@ -297,7 +303,7 @@ are orthogonal.
 \end{definition}
 \begin{definition}
 A graph~$G$ is called~\keyword{embeddable},
-if it occurs as a subgraph of an orthogonality graph.
+if it is as a subgraph of an orthogonality graph.
 That is: if there is a finite subset~$S$ of the projective plane,
 such that~$G \leq G(S)$.
 \end{definition}
@@ -305,7 +311,7 @@ such that~$G \leq G(S)$.
 \begin{definition}
 A graph is called~\keyword{010-colorable}
 if there is a~$\{0,1\}$-coloring of the vertices,
-such that
+with
 \begin{enumerate}
 \item
 for each triangle there is exactly one vertex that is colored~$1$ and
@@ -317,7 +323,7 @@ adjacent vertices are not both colored~$1$.
 
 \begin{definition}
 A \keyword{Kochen-Specker graph}
-is a embeddable graph that is not 010-colorable.
+is an embeddable graph that is not 010-colorable.
 \end{definition}
 It is an easy, but important, consequence of the definitions that:
 \begin{fact}
@@ -553,7 +559,7 @@ Unfortunately, these graphs are not small.
 
 We are ready to prove that a minimal Kochen-Specker graph
 is edge-biconnected.
-\begin{proof}[Proof of Proposition~\ref{prop:ks-biconn}]
+\begin{proofof}{Proof of Proposition~\ref{prop:ks-biconn}}
 Given a minimal Kochen-Specker graph~$G$.
 \parpic(0cm,1cm)[r]{%
     \begin{tikzpicture}[thick,scale=1.4,
@@ -591,7 +597,7 @@ Thus by Computation~\ref{comp:bic1},
 we have~$\#A \geq 17$ and~$\#B \geq 17$.
 Consequently~$\#G \geq 34$.
 Contradiction with~$G$'s minimality.
-\end{proof}
+\end{proofof}
 
 We can go one step further.
 
@@ -663,7 +669,7 @@ because most types do not occur in small graphs.
 \end{comp}
 
 
-\begin{proof}[Proof of Proposition~\ref{prop:ks-triconn}]
+\begin{proofof}{Proof of Proposition~\ref{prop:ks-triconn}}
 
 
     Given a minimal Kochen-Specker graph~$G$.
@@ -750,7 +756,7 @@ p/.style={circle, draw, fill=white,
         Thus both~$\#A \geq 17$ and~$\#B \geq 17$.
         Hence~$\#G \geq 34$. Contradiction with minimality. % \qedhere
     \end{enumerate}
-\end{proof}
+\end{proofof}
 
 Although these restrictions are theoretically pleasing,
 they seem to be of little use as a practical restriction.

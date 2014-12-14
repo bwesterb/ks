@@ -835,8 +835,11 @@ to test embeddability of a graph.  None of these methods could decide
 for all graphs considered, whether they were embeddable or not.
 % TODO give a small description of their deficiencies
 % TODO give intermediate computation.
-
-
+We propose a new method,
+which for all graphs we considered,
+could decide
+whether they were embeddable or not.
+First we give a pen-and-paper example.
 \piccaption{One of the two minimal non-embeddable graphs \label{fig:unemb-10-2}}
 \parpic[r]{%
 \begin{tikzpicture}[thick,scale=1.4,%
@@ -871,26 +874,22 @@ for all graphs considered, whether they were embeddable or not.
                 (330+30:1.3) node[right]{$p_5$}
                 (330-30:1.3) node[below]{$a$} ;
 \end{tikzpicture}}
-
-We propose a new method,
-which for all graphs we considered,
-could decide
-whether they were embeddable or not.
-First we give a pen-and-paper example.
+\par\noindent\parbox{\textwidth}{%
 \begin{proposition}\label{prop:unemb-10-2}
 The graph in Figure~\ref{fig:unemb-10-2}
 is not embeddable.
-\end{proposition}
+\end{proposition}}
 \begin{myproof}
 Suppose it is embeddable.
-Consider~$p_1$.
+Consider (the point associated to)~$p_1$.
 It is orthogonal to both~$a$ and~$v$.
 Since $a$ and~$v$ are not collinear,
 $p_1$ must be collinear to~$v \times a$,
 the cross-product of~$v$ and~$a$.
 Similarly, $p_2$ is collinear to~$v \times p_1 = v \times (v \times a)$.
-Continuing in this fashion,
-we see that
+Continuing in this fashion, walking the circumference of the graph,
+we find
+\par\vskip-\lastskip % HACK to prevent eq. to mess with parpic
 \begin{equation}\label{eq:ue1}
     a \text{ is collinear to }
     x \times (x \times( w \times (w\times (v \times (v \times a))))).

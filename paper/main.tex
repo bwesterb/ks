@@ -33,7 +33,6 @@
 
 \newtheorem{fact}{Fact}[section]
 \newtheorem{comp}{Computation}[section]
-\newtheorem{spin}{SPIN Axiom \cite{ck09}}[section]
 
 \begin{document}
 \title{A Kochen-Specker system has at least 22 vectors}
@@ -96,10 +95,17 @@ outcome of this experiment?
 Kochen and Specker have shown that such a non-contextual deterministic
 theory must be odd: it cannot satisfy the plausible SPIN
 axiom, that is:
-\begin{spin} % TODO
+
+% HACK to make a unnumbered "SPIN Axiom" theore environment.
+\begingroup\makeatletter\def\@thmcounter#1{}
+\newtheorem{spin}{SPIN Axiom}
+\begin{spin}[see \cite{ck09}]
     Given three pairwise orthogonal directions.
     In exactly one of the directions, the particle will not deviate.
 \end{spin}
+\def\@thmcounter#1{\noexpand\arabic{#1}}\makeatother\endgroup
+% /HACK
+
 Their argument is based on the existence of a Kochen-Specker system.
 \begin{definition}
     A \keyword{Kochen-Specker (KS) system} is
@@ -317,7 +323,7 @@ However, this is infeasible as there are
 already~${\sim}10^{26}$ non-isomorphic
 graphs on~$17$ points.\cite{oeisA000088}
 Luckily, we can restrict ourselves to certain classes of graphs.
-\begin{proposition}[\cite{aow11}]
+\begin{proposition}[by \cite{aow11}]
     An embeddable graph is squarefree.
     That is: it does not contain the square as a subgraph.%
     \footnote{Some authors call a graph squarefree if it does not
@@ -361,7 +367,7 @@ The squarefreeness is a considerable restriction.  There are
 only~${\sim}10^{10}$ non-isomorphic squarefree graphs on~$17$
 vertices.\cite{sf-sloane}
 Next, we show we can restrict ourselves to connected graphs.
-\begin{proposition}[\cite{aow11}]\label{prop:ks-conn}
+\begin{proposition}[by \cite{aow11}]\label{prop:ks-conn}
     A minimal Kochen-Specker graph is connected.
 \end{proposition}
 \begin{proof}
@@ -743,6 +749,9 @@ Concerning excluding unconnected graphs:
     There are five non-isomorphic minimal
     squarefree connected graphs
     with minimal vertex order 3 and they have 10 vertices.
+    \footnote{They are the first five graphs
+            listed on:
+    \url{http://kochen-specker.info/smallGraphs/}.}
 \end{comp}
 \begin{corollary}
     Any unconnected
@@ -906,7 +915,7 @@ which is a contradiction.  Apparently the graph is not embeddable.
 
 In the previous proof, we fixed, without loss of generality, the position
 of a few vertices.  Then we derived cross-product expressions for the
-remaining vertices.  Finally, we find an equation relating some of
+remaining vertices.  Finally, we found an equation relating some of
 the cross-product expressions and show it is unsatisfiable.
 We can automate this reasoning as follows.
 
@@ -976,7 +985,7 @@ if the sentence is true, we know the graph is embeddable.
 
 With this method, we have decided in a day the embeddability
 of every squarefree graph with minimal vertex order three of
-less than 15, except for one.\footnote{
+less than 15, except for one.\footnote{%
 A list of all squarefree graphs with minimal vertex order three of
 less than 15 vertices together with their embeddability can
 be found here:

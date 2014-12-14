@@ -29,37 +29,6 @@
 \usepackage{picins}
 \usepackage{tikz}
 
-
-% begin vertical rule patch for algorithmicx
-% http://tex.stackexchange.com/questions/144840/
-\makeatletter
-\newcommand*{\algrule}[1][\algorithmicindent]{\makebox[#1][l]{\hspace*{.5em}\vrule height .75\baselineskip depth .25\baselineskip}}%
-
-\newcount\ALG@printindent@tempcnta
-\def\ALG@printindent{%
-    \ifnum \theALG@nested>0%
-        \ifx\ALG@text\ALG@x@notext%
-            % do nothing
-            \addvspace{-3pt}%
-        \else
-            \unskip
-            % 
-            \ALG@printindent@tempcnta=1
-            \loop
-                \algrule[\csname ALG@ind@\the%
-                    \ALG@printindent@tempcnta\endcsname]%
-                \advance \ALG@printindent@tempcnta 1
-            \ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax%
-            \repeat
-        \fi
-    \fi
-    }%
-% 
-\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}%
-        {\ALG@printindent}{}{\errmessage{failed to patch}}
-\makeatother
-% end vertical line thingy
-
 \newcommand{\keyword}[1]{\textbf{#1}}
 
 \newtheorem{fact}{Fact}[section]
@@ -944,7 +913,7 @@ We can automate this reasoning as follows.
         \State assign~$V(v)=v$ 
         \State mark~$v$ as free
         \While{there are unassigned vertices adjacent to two
-                different assigned vertices}
+                distinct assigned}
             \State pick such a vertex~$w$ adjacent to the
                     assigned ~$w_1$ and~$w_2$
             \State assign~$V(w)=V(w_1) \times V(w_2)$
@@ -1015,9 +984,15 @@ here: \url{http://kochen-specker.info/smallGraphs/4d4b3f4b3f603f4741464165495362
 }
 In particular:
 \begin{comp}\label{comp:unemb20}
-    Every squarefree graph of minimal vertex order three
-    that is not 010-colorable
-    of order less than or equal to 20
+Every squarefree graph of minimal vertex order three that is
+not~$010$-colorable of order less than or equal 21
+contains an unembeddable subgraph.%
+\footnote{A list of these graphs together with their unembeddable
+subgraphs, can be found here:
+\url{http://kochen-specker.info/candidates/}.
+The source code for this computation can be found
+at~\texttt{code/comp2.py} of~\cite{GH}.}
+In particular, those of order less than or equal 20
     contains, as a subgraph, one of the following three graphs:
     \begin{center}
     \begin{tikzpicture}[thick,scale=1.0,
@@ -1090,15 +1065,6 @@ In particular:
 For the first graph, we have proven directly that it is unembeddable.
 See Proposition~\ref{prop:unemb-10-2}.
 For the second graph, we also have a similar direct proof. The third graph is shown to not be embeddable using our algorithm.
-
-Every squarefree graph of minimal vertex order three that is
-not~$010$-colorable of order 21 contains an unembeddable subgraph.%
-\footnote{A list of these graphs together with their unembeddable
-subgraphs, can be found here:
-\url{http://kochen-specker.info/candidates/}.
-The source code for this computation can be found
-at~\texttt{code/comp2.py} of~\cite{GH}.
-}
 \end{comp}
 
 \section{Conclusion and future research}

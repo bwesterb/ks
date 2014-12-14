@@ -1,11 +1,20 @@
 \documentclass{report}
 \usepackage{ohm-ngc}
 
+\usepackage{etoolbox}
+
 % Adaptation of ohm-ngc's proof environment to allow for a
 % "Proof of Proposition 2    lorum ipsum ..."
-\newenvironment{proofof}[1]{%
-    \par\noindent{\bfseries #1}\hskip2em}{%
-    \hfill \BK\vskip7pt}
+\newbool{qedplaced} % keeps track whether QED symbol has been placed
+\newenvironment{myproof}[1][Proof]{%
+    \newcommand{\placeqed}{\ifmmode\quad\hbox{\hfill \BK}%
+                    \else\hfill \BK\vskip7pt%
+                    \fi}%
+    \global\boolfalse{qedplaced}%
+    \newcommand{\qed}{\ifbool{qedplaced}% Places QED symbol if not placed
+                              {}%
+                              {\placeqed\global\booltrue{qedplaced}}}%
+    \par\noindent{\bfseries #1}\hskip2em}{\qed}
 
 \usepackage{draftwatermark}
 
@@ -13,7 +22,6 @@
 \usepackage{breakurl}
 \usepackage{hyperref}
 \usepackage{paralist}
-\usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{mdwlist}
 \usepackage{amsmath}
@@ -558,7 +566,7 @@ Unfortunately, these graphs are not small.
 \end{comp}
 We are ready to prove that a minimal KS graph
 is edge-biconnected.
-\begin{proofof}{Proof of Proposition~\ref{prop:ks-biconn}}
+\begin{myproof}[Proof of Proposition~\ref{prop:ks-biconn}]
 Given a minimal Kochen-Specker graph~$G$.
 \parpic[r]{%
 %\parpic(0cm,1cm)[r]{%
@@ -597,7 +605,7 @@ Thus by Computation~\ref{comp:bic1},
 we have~$\#A \geq 17$ and~$\#B \geq 17$.
 Consequently~$\#G \geq 34$.
 Contradiction with~$G$'s minimality.
-\end{proofof}
+\end{myproof}
 
 We can go one step further.
 
@@ -665,7 +673,7 @@ because most types do not occur in small graphs.
 \end{comp}
 
 
-\begin{proofof}{Proof of Proposition~\ref{prop:ks-triconn}}
+\begin{myproof}[Proof of Proposition~\ref{prop:ks-triconn}]
 
 
     Given a minimal Kochen-Specker graph~$G$.
@@ -749,9 +757,9 @@ p/.style={circle, draw, fill=white,
         for otherwise~$G$ is colorable.
         Similarly, the type of~$(b_1,b_2)$ in~$B$ cannot contain~$(0,0)$.
         Thus both~$\#A \geq 17$ and~$\#B \geq 17$.
-        Hence~$\#G \geq 34$. Contradiction with minimality. % \qedhere
+        Hence~$\#G \geq 34$. Contradiction with minimality. \qed
     \end{enumerate}
-\end{proofof}
+\end{myproof}
 
 Although these restrictions are theoretically pleasing,
 they seem to be of little use as a practical restriction.
@@ -873,7 +881,7 @@ First we give a pen-and-paper example.
 The graph in Figure~\ref{fig:unemb-10-2}
 is not embeddable.
 \end{proposition}
-\begin{proof}
+\begin{myproof}
 Suppose it is embeddable.
 Consider~$p_1$.
 It is orthogonal to both~$a$ and~$v$.
@@ -915,12 +923,12 @@ Consequently
 &= 1.
 \end{align*}
 Since~$v$ and~$w$ are not collinear,
-we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$.
-Now we find the contradiction:
+we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$. Thus
 \begin{equation*}
-1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1. %\qedhere
+1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1,
 \end{equation*}
-\end{proof}
+which is a contradiction.  Apparently the graph is not embeddable.
+\end{myproof}
 
 % TODO Can we prove: if G is embeddable, then we can add any new vertex of
 %      order 2 and G is still embeddable?

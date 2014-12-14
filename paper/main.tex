@@ -33,6 +33,7 @@
 
 \newtheorem{fact}{Fact}[section]
 \newtheorem{comp}{Computation}[section]
+\newtheorem{algorithm}{Algorithm}[section]
 
 \begin{document}
 \title{A Kochen-Specker system has at least 22 vectors}
@@ -540,6 +541,7 @@ Unfortunately, these graphs are not small.
 \end{comp}
 We are ready to prove that a minimal KS graph
 is edge-biconnected.
+\vskip7pt% HACK add space because the proof is not after a thm
 \begin{myproof}[Proof of Proposition~\ref{prop:ks-biconn}]
 Given a minimal Kochen-Specker graph~$G$.
 \parpic[r]{%
@@ -918,6 +920,7 @@ remaining vertices.  Finally, we found an equation relating some of
 the cross-product expressions and show it is unsatisfiable.
 We can automate this reasoning as follows.
 
+\begin{algorithm}
 \begin{algorithmic}[5]
     \While{there are unassigned vertices}
         \State pick an unassigned vertex~$v$
@@ -942,6 +945,7 @@ We can automate this reasoning as follows.
         \State record requirement:~``$V(v_1)$ is orthogonal to~$V(v_2)$''
     \EndFor
 \end{algorithmic}
+\end{algorithm}
 
 At two points in the algorithm, there is a choice which vertex to pick.
 Depending on the vertices chosen, the number of recorded requirements

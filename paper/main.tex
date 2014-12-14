@@ -326,10 +326,30 @@ graphs on~$17$ points.\cite{oeisA000088}
 Luckily, we can restrict ourselves to certain classes of graphs.
 \begin{proposition}[by \cite{aow11}]
     An embeddable graph is squarefree.
-    That is: it does not contain the square as a subgraph.%
+    That is: it does not contain the square%
+    ~\begin{tikzpicture}[thick,scale=0.15,
+                        line width=0.4pt,
+        p/.style={circle, draw, fill=white,
+                        inner sep=0pt, minimum width=2pt}]
+            \draw
+            (0,0) node[p]{} -- (0,1) node[p]{} --
+            (1,1) node[p]{} -- (1,0) node[p]{} -- (0,0);
+    \end{tikzpicture}
+as a subgraph.%
     \footnote{Some authors call a graph squarefree if it does not
         contain the square as induced subgraph.
-        For them the complete graph on four vertices is squarefree.
+        For them the complete graph on four vertices%
+    ~\begin{tikzpicture}[thick,scale=0.15,
+                        line width=0.3pt,
+        p/.style={circle, draw, fill=white,
+                        inner sep=0pt, minimum width=2pt}]
+            \draw
+            (0,0) node[p]{} -- (0,1) node[p]{} --
+            (1,1) node[p]{} -- (1,0) node[p]{} -- (0,0)
+            (0,0) -- (1,1)
+            (1,0) -- (0,1);
+    \end{tikzpicture}
+        is squarefree.
         We follow~Weisstein\cite{sf-weisstein} and~Sloane\cite{sf-sloane} and
         call a graph squarefree if it does not
         contain the square as subgraph.
@@ -607,7 +627,15 @@ the notion of fixed color.
 
 \begin{example}
 \begin{itemize}
-\item The triangle has~$3$-type~$\{(1,0,0), (0,1,0), (0,0,1)\}$.
+\item The triangle~\begin{tikzpicture}[thick,scale=0.15,
+                        line width=0.4pt,
+        p/.style={circle, draw, fill=white,
+                        inner sep=0pt, minimum width=2pt}]
+            \draw
+            (210:0.5) node[p]{} -- (330:0.5) node[p]{} --
+            (90:0.5) node[p]{} -- (210:0.5);
+    \end{tikzpicture}
+has~$3$-type~$\{(1,0,0), (0,1,0), (0,0,1)\}$.
 \item Every vertex in a Kochen-Specker graph has type~$\emptyset$.
 \item
     A vertex~$v$ has the~$1$-type~$\{(1)\}$ in~$G$ if and only if

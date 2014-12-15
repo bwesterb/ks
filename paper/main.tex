@@ -124,7 +124,8 @@ Their argument is based on the existence of a Kochen-Specker system.
                 the~$0$ and~$1$ are swapped; they consider 101-colorings.
                 These colorings are of course equivalent and the
                 difference arises from considering either squared
-                spin measurements $S^2$, or $1-S^2$.
+                spin measurements $S_v^2$, or $1-S_v^2$
+                for spin in direction~$v$.
                 %Then the colors correspond directly to the squared measurement
                	%outcome of the spin.
                	}
@@ -138,7 +139,7 @@ Their argument is based on the existence of a Kochen-Specker system.
 \end{definition}
 % TODO shorten this proof.
 A point on the sphere obviously corresponds to a direction in space.
-Because of this, the term point, vector and direction
+Because of this, the terms point, vector and direction
 can be used interchangeably. Antipodal points correspond to opposite
 vectors and these span the same direction in space.
 
@@ -403,6 +404,7 @@ There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
 vertices that are not connected.
 In our computations, checking for connectedness
 required more time than would be gained by reducing the number of graphs.
+Cf.~Corollary~\ref{cor:littlecon}.
 
 We have verified the main result of \cite{aow11}:
 
@@ -613,13 +615,13 @@ Again, we need some preparation.  First, we generalize
 the notion of fixed color.
 \begin{definition}
    Given a graph~$G$ together with selected vertices~$v_1, \ldots, v_n \in G$.
-   Let~$C(G)$ denote the set of $010$-colorings of~$G$.
    The \keyword{type~$t$ of~$(v_1,\ldots,v_n)$ (in~$G$)}
    is the set of all possible ways $\{v_1, \ldots, v_n\}$ can be colored.
         That is:
 \begin{equation*}
-  t = \{ (c(v_1), \ldots, c(v_n));
-                \ c \in C(G) \}.
+  t = \bigl\{ (c(v_1), \ldots, c(v_n)); \ 
+        c \colon G \to \{0,1\},\ 
+        \text{$c$ is a $010$-coloring of~$G$} \bigr\}
 \end{equation*}
     A type of~$n$ vertices is
     called an~\keyword{$n$-type}.
@@ -708,7 +710,7 @@ p/.style={circle, draw, fill=white,
     Then it splits into two graphs~$A$ and~$B$
     together with vertices~$a_1, a_2 \in A$
     and~$b_1,b_2 \in B$
-    s.t.~$(a_1, b_1)$ and~$(a_2,b_2)$
+    such that~$(a_1, b_1)$ and~$(a_2,b_2)$
     are the only edges between~$A$ and~$B$.
     Note that~$A$ and~$B$ must be $010$-colorable,
     for otherwise~$G$ would not be a minimal Kochen-Specker graph.
@@ -782,7 +784,7 @@ Concerning excluding unconnected graphs:
             listed on:
     \url{http://kochen-specker.info/smallGraphs/}.}
 \end{comp}
-\begin{corollary}
+\begin{corollary}\label{cor:littlecon}
     Any unconnected
     squarefree graph with minimal vertex order 3
     has at least 20 vertices, for it has two connected components,
@@ -936,7 +938,7 @@ we have by Cauchy-Schwarz $|\left<v,w\right>| < 1$. Thus
 \begin{equation*}
 1 > |v_1w_2\left<v,w\right>| = |v_1w_2(v_1w_1+v_2w_2)| = 1,
 \end{equation*}
-which is a contradiction.  Apparently the graph is not embeddable.
+which is a contradiction.  Apparently this graph is not embeddable.
 \end{myproof}
 
 % TODO Can we prove: if G is embeddable, then we can add any new vertex of
@@ -1003,10 +1005,12 @@ yield a sentence that could not be decided (directly).
 Therefore, when determining embeddability of a graph,
 we try several assignments in parallel.
 
-In this way, there were still a few (010-colorable) graphs of which
-we could not decide embeddability.
-With some guessing,
-we determined embeddings for these graphs by hand.
+Using this algorithm, we could determine embeddability for most graphs
+with less than 15 vertices.  However, there were  a few (010-colorable)
+graphs for which the algorithm would not terminate and hence
+their embeddability was not decided.
+By hand, we found with trial and error an embedding for
+some of these graphs.
 Once we knew the troublesome graphs were embeddable,
 we adapted the algorithm, as to guess
 for some assignments the position of one of the vectors.
@@ -1129,7 +1133,15 @@ Enumerating all candidate graphs of less than 31 vertices
 is computationally infeasable.
 To bridge the enormous the gap between 22 and 31,
 requires a new insight.
-For instance: another restriction on which graphs to consider.
+Most likely, this would be a new
+practical restriction on which graphs to consider.
+In particular
+(following Prop.~\ref{prop:ks-enoughtriangles})
+a fast algorithm to enumerate
+square-free graphs of minimal vertex order three
+where each node is part of a triangle,
+would probably allow to test for KS-systems
+up to and including 24 vertices.
 
 The Reader, interested in pursuing this line of research,
 is encouraged to read the master thesis\cite{a09} of Arends,

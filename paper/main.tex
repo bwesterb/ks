@@ -250,7 +250,7 @@ number of points required to be non-010-colorable.
 This is how we count in this paper.
 Another way is to require that for every pair of orthogonal points
 in the system, there is a third point orthogonal to both.
-This way of counting is used in~\cite{pavivcic}.
+This way of counting is for example used in~\cite{pavivcic}.
 \item
 We consider three-dimensional Kochen-Specker systems
 for two reasons.
@@ -1282,11 +1282,150 @@ Stegeren\footnote{\url{http://jd7h.com/}} for drawing figures for
 the draft version of this paper.
 \end{acknowledgment}
 
-% attribute mckay for answering questions?
-% TODO attribute geng
 \clearpage
 \bibliography{main}{}
 \bibliographystyle{plain}
+
+\appendix
+\clearpage
+\section{Appendix}
+In this appendix, we show by hand, that indeed the 19 vertex graph
+considered at the start of section 3 %TODO
+is indeed not embeddable.
+We restrict the calculation to the~$13$-vertex unembeddable
+subgraph.
+
+\begin{center}
+    \footnotesize
+    \begin{tikzpicture}[thick,scale=3.5,
+        p/.style={fill=white, circle, inner sep=1pt, minimum width=45pt}]
+        \draw
+
+                (45:0.9) node[p, align=center]{0 \\ $(1,0,0)$} -- (65:1.3) node[p, align=center]{6 \\$(0,x_3,\cdot)$}
+                (45:0.9)  -- (25:1.3) node[p, align=center]{15 \\ $(0,\cdot,\text{-}x_3)$}
+                (65:1.3)  -- (25:1.3)
+            
+                (90+45:0.9) node[p, align=center]{3 \\ $(\cdot,\text{-}x_1,0)$} -- (90+65:1.3) node[p, align=center]{8 \\ $(g,h,\cdot)$ }
+                (90+45:0.9)  -- (90+25:1.3) node[p, align=center]{13 \\ $(e,f,\cdot)$}
+                (90+65:1.3)  -- (90+25:1.3)
+            
+                (180+45:0.9) node[p, align=center]{10 \\ $(0,1,0)$} -- (180+65:1.3) node[p, align=center]{4 \\ $(x_2,0,\cdot)$}
+                (180+45:0.9)  -- (180+25:1.3) node[p, align=center]{14 \\ $(\cdot,0,\text{-}x_2)$}
+                (180+65:1.3)  -- (180+25:1.3)
+
+                (270+45:0.9) node[p, align=center]{9 \\$(x_1,\cdot,0)$} -- (270+65:1.3) node[p, align=center]{2 \\ $(a,b,\cdot)$}
+                (270+45:0.9)  -- (270+25:1.3) node[p, align=center]{17 \\ $(c,d,\cdot)$}
+                (270+65:1.3)  -- (270+25:1.3)
+   
+             
+            
+            \foreach \x in {0,180} {
+                (\x+25:1.3) -- (\x-25:1.3)
+                (\x+65:1.3) -- (\x+115:1.3)
+           }
+ 
+
+        (90:0.6) -- (90:0.6)  node[p, align=center]{18 \\ $(0,0,1)$}
+        (90:0.6) -- (270+45:0.9)
+        (90:0.6) -- (270-45:0.9)
+        (90:0.6) -- (90+45:0.9)
+	(90:0.6) -- (90-45:0.9)
+
+(45:1)--(225:1)
+(135:1)--(315:1) ;
+    \end{tikzpicture}
+\end{center}
+
+This is the subgraph and we have given the vertices names corresponding
+to the original, 19 vertex, graph. Below each name is a coordinate
+on the sphere (whenever there is a $\cdot$ in the coordinate, we
+mean that this component of the coordinate is fixed by the other
+components, as it must be a point on the sphere, where we do take
+this $\cdot$ to be the positive square root).
+
+Now if two vertices are connected via an edge, we have that the
+inner product of their coordinates is zero. Vertices connected to
+the points 0,10 and 18 are trivially zero. The non trivial equations
+then become:
+\begin{align}
+&ax_1 + b\sqrt{1-{x_1}^2}=0\\
+&cx_1 + d\sqrt{1-{x_1}^2}=0\\
+&e\sqrt{1-{x_1}^2} - fx_1=0\\
+&g\sqrt{1-{x_1}^2} - hx_1=0\\
+&g\sqrt{1-{x_2}^2} - x_2 \sqrt{1-g^2-h^2}=0\\
+&cx_2 + \sqrt{1-{x_2}^2}\sqrt{1-c^2-d^2}=0\\
+&b\sqrt{1-{x_3}^2} - x_3 \sqrt{1-a^2-b^2}=0\\
+&fx_3 + \sqrt{1-e^2-f^2}\sqrt{1-{x_3}^2}=0\\
+&ac + bd + \sqrt{1-a^2-b^2}\sqrt{1-c^2 - d^2} = 0\\
+&eg + fh + \sqrt{1-e^2-f^2}\sqrt{1-g^2 - h^2} = 0
+\end{align}
+
+From the equations containing only $x_1$ we can eliminate four variables.
+\begin{equation}
+b = \frac{-a x_1}{\sqrt{1-{x_1}^2}} \tag{1'}
+\end{equation}
+\begin{equation}
+d = \frac{-c x_1}{\sqrt{1-{x_1}^2}} \tag{2'}
+\end{equation}
+\begin{equation}
+e = \frac{f x_1}{\sqrt{1-{x_1}^2}} \tag{3'}
+\end{equation}
+\begin{equation}
+g = \frac{h x_1}{\sqrt{1-{x_1}^2}} \tag{4'}
+\end{equation}
+Note that this is possible since all $x_i \in (-1,1)\backslash
+\{0\}$ since otherwise we would have coinciding coordinates of
+vertices in the graph.
+
+Substituting these expressions in the other six equations and using
+that~$\tfrac{x}{1-x} +1 = \tfrac{1}{1-x}$, we obtain:
+
+\begin{align}
+&\frac{h x_1}{\sqrt{1-{x_1}^2}}\sqrt{1-{x_2}^2} - x_2 \sqrt{1-\frac{h^2}{1-{x_1}^2}}=0 \tag{5'}\\
+&cx_2 + \sqrt{1-{x_2}^2}\sqrt{1-\frac{c^2}{1-{x_1}^2}}=0 \tag{6'}\\
+&\frac{-a x_1}{\sqrt{1-{x_1}^2}}\sqrt{1-{x_3}^2} - x_3 \sqrt{1-\frac{a^2}{1-{x_1}^2}}=0\tag{7'}\\
+&fx_3 + \sqrt{1-\frac{f^2}{1-{x_1}^2}}\sqrt{1-{x_3}^2}=0\tag{8'}\\
+&ac + \frac{-a x_1}{\sqrt{1-{x_1}^2}}\frac{-c x_1}{\sqrt{1-{x_1}^2}} + \sqrt{1-\frac{a^2}{1-{x_1}^2}}\sqrt{1-\frac{c^2}{1-{x_1}^2}} = 0 \tag{9'}\\
+&\frac{f x_1}{\sqrt{1-{x_1}^2}}\frac{h x_1}{\sqrt{1-{x_1}^2}} + fh + \sqrt{1-\frac{f^2}{1-{x_1}^2}}\sqrt{1-\frac{h^2}{1-{x_1}^2}} = 0\tag{10'}
+\end{align}
+
+These can then almost trivially be rewritten to:
+
+\begin{align}
+&h x_1\sqrt{1-{x_2}^2} - x_2 \sqrt{1-{x_1}^2 - h^2}=0 \tag{5''}\label{5''}\\
+&cx_2\sqrt{1-{x_1}^2} + \sqrt{1-{x_2}^2}\sqrt{1-{x_1}^2 - c^2}=0\tag{6''}\label{6''}\\
+&a x_1\sqrt{1-{x_3}^2} + x_3 \sqrt{1-{x_1}^2 - a^2}=0\tag{7''}\label{7''}\\
+&fx_3\sqrt{1-{x_1}^2} + \sqrt{1-{x_1}^2 - f^2}\sqrt{1-{x_3}^2}=0\tag{8''}\label{8''}\\
+&ac + \sqrt{1- {x_1}^2 - a^2}\sqrt{1- {x_1}^2 - c^2} = 0\tag{9''}\label{9''}\\
+&fh + \sqrt{1- {x_1}^2 - f^2}\sqrt{1- {x_1}^2 - h^2} = 0\tag{10''}\label{10''}
+\end{align}
+
+It then follows from \eqref{7''}, \eqref{9''} and \eqref{6''} that:
+\begin{eqnarray*}
+\frac{\sqrt{1-{x_3}^2}}{x_3} &=& \frac{-\sqrt{1-{x_1}^2 - a^2}}{ax_1}\\
+&=& \frac{c}{x_1 \sqrt{1-{x_1}^2 -c^2}}\\
+&=& \frac{-\sqrt{1-{x_2}^2}}{x_1 x_2 \sqrt{1-{x_1}^2}}
+\end{eqnarray*}
+
+While using \eqref{5''},\eqref{10''} and \eqref{8''} we find that:
+\begin{eqnarray*}
+\frac{\sqrt{1-{x_2}^2}}{x_2} &=& \frac{\sqrt{1-{x_1}^2 - h^2}}{hx_1}\\
+&=& \frac{-f}{x_1 \sqrt{1-{x_1}^2 -f^2}}\\
+&=& \frac{\sqrt{1-{x_3}^2}}{x_1 x_3 \sqrt{1-{x_1}^2}}
+\end{eqnarray*}
+
+Inserting this expression for $\frac{\sqrt{1-{x_2}^2}}{x_2}$ into
+the expression for $\frac{\sqrt{1-{x_3}^2}}{x_3}$ we obtain the
+equation:
+
+\begin{equation}
+\frac{\sqrt{1-{x_3}^2}}{x_3} = \frac{-\sqrt{1-{x_3}^2}}{x_3 {x_1}^2  (1-{x_1}^2)}
+\end{equation}
+But then, eliminating the $x_3$ terms we find:
+\begin{equation}
+{x_1}^2 (1-{x_1}^2) = -1
+\end{equation}
+Which is our desired contradicton.
 
 
 \end{document}

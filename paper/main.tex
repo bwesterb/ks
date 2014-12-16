@@ -37,8 +37,7 @@
 
 \begin{document}
 \title{A Kochen-Specker system has at least 22 vectors}
-\author{Sander Uijlen}{Radboud Universiteit, The Netherlands}
-\author{Bas Westerbaan}{Radboud Universiteit, The Netherlands}
+\author{Sander Uijlen \& Bas Westerbaan}{Radboud Universiteit, The Netherlands}
 \E-mail{\{suijlen,bwesterb\}@cs.ru.nl}
 
 \begin{abstract}
@@ -872,7 +871,103 @@ We propose a new method,
 which for all graphs we considered,
 could decide
 whether they were embeddable or not.
-First we give a pen-and-paper example.
+But first, we give two pen-and-paper proofs of the non-embeddability
+of the following graph. 
+These two pictures
+represent a single connected graph of minimal vertex degree three.
+For presentation,
+some vertices have been drawn twice.
+\begin{center}
+\footnotesize
+\begin{tikzpicture}[thick,scale=1.4,%
+        p/.style={circle, fill=white,%
+                        inner sep=1pt, minimum width=5pt}]
+            \draw
+                (0:0) node [p] {18} (0:0.8) node [p] {3}
+                (60:0.8) node [p] {10} (120:0.8) node [p] {0}
+                (180:0.8) node [p] {5} (240:0.8) node [p] {12}
+                (300:0.8) node [p] {9} (15:1.2) node [p] {13}
+                (45:1.2) node [p] {14} (75:1.2) node [p] {4}
+                (105:1.2) node [p] {6} (135:1.2) node [p] {15}
+                (165:1.2) node [p] {11} (195:1.2) node [p] {16}
+                (225:1.2) node [p] {1} (255:1.2) node [p] {7}
+                (285:1.2) node [p] {17} (315:1.2) node [p] {2}
+                (345:1.2) node [p] {8}
+                \foreach \x in {0, 120, 240} { (\x:0.8) -- (\x-60:0.8) }
+                \foreach \x in {0,60,120,180,240,300} {
+                    (0:0) -- (\x:0.8) (\x:0.8) -- (\x+15:1.2) 
+                    (\x:0.8) -- (\x-15:1.2) (\x+15:1.2) -- (\x-15:1.2)
+                }
+            ;
+    \end{tikzpicture}\qquad
+\begin{tikzpicture}[thick,scale=1.4,%
+        p/.style={circle, fill=white,%
+                        inner sep=1pt, minimum width=5pt}]
+            \draw
+                (90:0.3) node[p] {14} (210:0.3) node[p] {8}
+                (330:0.3) node[p] {1} (90:0.8) node[p] {4}
+                (210:0.8) node[p] {13} (330:0.8) node[p] {7}
+                (60:1.3) node[p] {17} (120:1.3) node[p] {11}
+                (180:1.3) node[p] {16} (240:1.3) node[p] {6}
+                (300:1.3) node[p] {15} (0:1.3) node[p] {2}
+                \foreach \x in {90, 210, 330} {
+                    (\x:0.3) -- (\x+120:0.3)
+                    (\x:0.3) -- (\x:0.8)
+                    (\x:0.8) -- (\x+30:1.3)
+                    (\x:0.8) -- (\x-30:1.3)
+                    (\x-30:1.3) -- (\x+30:1.3)
+                    (\x+30:1.3) -- (\x-30+120:1.3)
+                }
+            ;
+    \end{tikzpicture}
+\end{center}
+\subsection{First pen-and-paper proof}
+Of the graphs of 19 vertices,
+the above graph was the
+the only not excluded by the unembeddable graphs
+known by AOW.
+%[referentie naar IpD?GUbV?].
+In order to show that this graph is not embeddable,
+we proceded as follows.
+If the graph is embeddable, there is always an embedding such that
+the coordinates on the sphere of some triangle in this graph
+are~$(1,0,0)$, $(0,1,0)$ and~$(0,0,1)$.
+We chose to assign these values
+to the points 0, 10 and~18, respectively. For each of these vertices,
+any vertex adjacent to it
+must lie on a certain great circle.
+For example, we can assign to the vertices 9 and 3, which
+are both connected to 18, the coordinates~$(\sqrt{1-x^{2}}, -x,0)$
+and~$(x,\sqrt{1-x^{2}},0)$, for some $x\in(-1,1)$ and~$x\neq 0$.
+We find similar
+expressions for the coordinates of the other triangles containing the
+vertices 0, 10 and 18. The remaining vertices are assigned a variable
+value on the sphere, where we always choose the component containing
+the square-root positive, so we obtain coordinates of the
+form~$(a,b,\sqrt{1-a^2-b^2})$, for $a,b \in (-1,0)\cup (0,1)$.
+In this way we
+obtain no variables for the first triangle, 4 for attached triangles
+and then 16 for the left over vertices giving 20 unknowns. The
+relations for these variables are given by the fact that the inner
+product of the vectors should be zero if they are adjacent. Not
+counting the inner products that are trivially zero, we obtain 24
+equations. By tedious calculations, one
+derives the equation $x^2(1-x^2) = -1$, which is not satisfiable.
+Hence this system is not embeddable.
+
+If we only consider the points used to obtain the
+contradiction, we find an unembeddable subgraph of the system
+containing 13 vertices\footnote{These are the vetices
+0,2,3,4,6,8,9,10,13,14,15,17 and 18.}.
+In the appendix we included the  derivation of contradiction.
+In theory, this approach can be mechanically performed by
+a computer.  However, there are too many variables
+to solve this in reasonable time.
+
+\subsection{Second pen-and-paper proof}
+We give a second simpler pen-and-paper proof of the unembeddability
+of the graph, by showing a subgraph is unembeddable.
+
 \piccaption{One of the two minimal non-embeddable graphs \label{fig:unemb-10-2}}
 \parpic[r]{%
 \begin{tikzpicture}[thick,scale=1.4,%
@@ -966,11 +1061,12 @@ which is a contradiction.  Apparently this graph is not embeddable.
 % TODO Can we prove: if G is embeddable, then we can add any new vertex of
 %      order 2 and G is still embeddable?
 
+\subsection{An algorithm to decide embeddability}
 In the previous proof, we fixed, without loss of generality, the position
 of a few vertices.  Then we derived cross-product expressions for the
 remaining vertices.  Finally, we found an equation relating some of
 the cross-product expressions and show it is unsatisfiable.
-We can automate this reasoning as follows.
+We automate this reasoning as follows.
 
 \begin{algorithm}
 \begin{algorithmic}[5]

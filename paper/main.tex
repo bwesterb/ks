@@ -275,9 +275,21 @@ to cut down the number of graphs to consider drastically,
 and state the results of our main computation.
 Finally, in Section~\ref{sec:emb},
 we describe our practical embeddability test.
-
+In Section~\ref{sec:related},
+we discuss related work.
 The software and results of the various computations performed for
 this paper, can be found here\cite{GH}.
+
+This is an extended version of the paper published in proceedings
+of the 11th workshop on Quantum Physics and Logic.\cite{UW14}
+Compared to the results presented on the workshop,
+we have improved the lower-bound to~$22$.
+We also include new restrictions on the graph enumeration
+of which we would like to emphasize~Prop.~\ref{prop:ks-enoughtriangles},
+which promises to push the bound when implemented efficiently.
+Furthermore we expand on methods to prove unembeddability.
+Finally we discuss how the related results in the literature
+compare to ours.
 
 \subsection{Kochen-Specker graphs}
 \label{sec:ksgraphs}
@@ -695,7 +707,7 @@ because most types do not occur in small graphs.
             \draw
             (0,0) node[p]{} -- (0.3,0) node[p]{} ;
     \end{tikzpicture}.
-    Because the two vertices are adjacent, this occurance of
+    Because the two vertices are adjacent, this occurrence of
     the type is called trivial.
 \end{comp}
 
@@ -777,7 +789,7 @@ p/.style={circle, draw, fill=white,
             with minimality.
         \end{enumerate}
     \item Suppose~$a_1 = a_2$ and~$b_1 \neq b_2$.
-            This leads to a contradication in the same way
+            This leads to a contradiction in the same way
             as in case~\ref{tricase1}.
     \item Apparently~$a_1 \neq a_2$ and~$b_1 \neq b_2$.
         The type of~$(a_1,a_2)$ in~$A$ cannot contain~$(0,0)$,
@@ -926,7 +938,7 @@ the only not excluded by the unembeddable graphs
 known by AOW.
 %[referentie naar IpD?GUbV?].
 In order to show that this graph is not embeddable,
-we proceded as follows.
+we proceeded as follows.
 If the graph is embeddable, there is always an embedding such that
 the coordinates on the sphere of some triangle in this graph
 are~$(1,0,0)$, $(0,1,0)$ and~$(0,0,1)$.
@@ -955,7 +967,7 @@ Hence this system is not embeddable.
 
 If we only consider the points used to obtain the
 contradiction, we find an unembeddable subgraph of the system
-containing 13 vertices\footnote{These are the vetices
+containing 13 vertices\footnote{These are the vertices
 0,2,3,4,6,8,9,10,13,14,15,17 and 18.}.
 In the appendix we included the  derivation of contradiction.
 In theory, this approach can be mechanically performed by
@@ -1230,6 +1242,49 @@ See Proposition~\ref{prop:unemb-10-2}.
 For the second graph, we also have a similar direct proof. The third graph is shown to not be embeddable using our algorithm.
 \end{comp}
 
+\section{Related work}
+\label{sec:related}
+This paper improves the lower bound of
+Arends, Ouaknine and Wampler\cite{a09,aow11}
+on the size of a minimal Kochen-Specker system.
+Pavi\v{c}i\'c, Merlet, McKay and Norman\cite{pavivcic}
+count the size of a Kochen-Specker system differently
+and have demonstrated a different bound.
+\begin{definition}
+    A Kochen-Specker graph is called \keyword{complete}
+        if every edge is part of a triangle.
+\end{definition}
+Pavi\v{c}i\'c et al have given a lower bound on the size
+of the minimal \emph{complete} Kochen-Specker system.
+Similar to our approach, they reduce the problem
+to a question about discrete structures
+which can be considered as a subclass of graphs.
+They discovered several uncolorable candidates
+of which they could prove unembeddability
+using either symbolic computation or interval analysis.
+
+Clearly, a bound on the minimal size of a KS system
+is also a bound on the minimal size of a complete system.
+Conversely, a KS system can be completed by adding missing vectors.
+However, it is not clear how many vectors have to be added in general
+to complete the system.
+A history of the different bounds on 3-dimensional Kochen-Specker
+systems is given in the table below.
+\begin{center}
+    \begin{tabular}{llll}
+        Authors & year & KS & complete KS \\ \hline
+        Kochen and Specker\cite{ks} & 1975 & $\leq 117$ & $\leq 192$ \\
+        Penrose, Peres\cite{peres}
+                (independendly)& 1991 & $\leq 33$ & $\leq 57$ \\
+        Conway & $\sim$1995 & $\leq 31$ & $\leq 51$ \\
+        UW\cite{UW14} & 2014 & $\geq 22$ & $\geq 22$ \\
+        Pavi\v{c}i\'c et al.\cite{pavivcic}& 2004 & $?$ & $\geq 30$ \\
+    \end{tabular}
+\caption{A history of the bounds on the size of the minimal
+    (complete) three-dimensional Kochen-Specker system.}
+\end{center}
+
+
 \section{Conclusion and future research}
 Arends, Ouaknine and Wampler struggled with two problems:
 enumerating candidate graphs of less than 31 vertices
@@ -1246,7 +1301,7 @@ The authors have a wager whether there is a minimal KS system of less
 than 25 vertices.}
 
 Enumerating all candidate graphs of less than 31 vertices
-is computationally infeasable.
+is computationally infeasible.
 To bridge the enormous the gap between 22 and 31,
 requires a new insight.
 Most likely, this would be a new
@@ -1289,7 +1344,7 @@ the draft version of this paper.
 \section{Appendix}
 In this appendix, we show by hand, that indeed the 19 vertex graph
 considered at the start of section 3 %TODO
-is indeed not embeddable.
+is not embeddable.
 We restrict the calculation to the~$13$-vertex unembeddable
 subgraph.
 
@@ -1423,7 +1478,7 @@ But then, eliminating the $x_3$ terms we find:
 \begin{equation}
 {x_1}^2 (1-{x_1}^2) = -1
 \end{equation}
-Which is our desired contradicton.
+Which is our desired contradiction.
 
 
 \end{document}

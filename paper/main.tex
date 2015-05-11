@@ -422,7 +422,7 @@ Next, we show we can restrict ourselves to connected graphs.
     A minimal Kochen-Specker graph is connected.
 \end{proposition}
 \begin{proof}
-    Suppose~$G$ is a non-connected Kochen-Specker graph.
+    Suppose~$G$ is a disconnected Kochen-Specker graph.
     Then one of its components is not 010-colorable.
     As a subgraph of an embeddable graph, is embeddable,
     this component is embeddable as well.
@@ -430,7 +430,7 @@ Next, we show we can restrict ourselves to connected graphs.
 \end{proof}
 The gain, however, is small.
 There are only~${\sim}10^9$ non-isomorphic squarefree graphs on~$17$
-vertices that are not connected.
+vertices that are disconnected.
 In our computations, checking for connectedness
 required more time than would be gained by reducing the number of graphs.
 Cf.~Corollary~\ref{cor:littlecon}.
@@ -802,7 +802,7 @@ p/.style={circle, draw, fill=white,
 
 Although these restrictions are theoretically pleasing,
 they seem to be of little use as a practical restriction.
-Concerning excluding unconnected graphs:
+Concerning excluding disconnected graphs:
 % TODO Add argument or computation for {2,3}-connected
 % TODO note that restricting to (bi/tri)-connected is a waste of time
 % TODO add graph 
@@ -815,7 +815,7 @@ Concerning excluding unconnected graphs:
     \url{http://kochen-specker.info/smallGraphs/}.}
 \end{comp}
 \begin{corollary}\label{cor:littlecon}
-    Any unconnected
+    Any disconnected
     squarefree graph with minimal vertex order 3
     has at least 20 vertices, for it has two connected components,
     each with at least 10 vertices.

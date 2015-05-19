@@ -809,10 +809,75 @@ Concerning excluding disconnected graphs:
 \begin{comp}
     There are five non-isomorphic minimal
     squarefree connected graphs
-    with minimal vertex order 3 and they have 10 vertices.
-    \footnote{They are the first five graphs
+    with minimal vertex order 3 and they have 10
+    vertices.\footnote{They are the first five graphs
             listed on:
     \url{http://kochen-specker.info/smallGraphs/}.}
+    Three of them are embeddable and shown below.
+    The remaining two
+    are depicted in Comptutation~\ref{comp:unemb20}.
+\begin{center}
+\begin{tikzpicture}[thick,scale=1.0,
+    p/.style={circle, draw, fill=white,
+                    inner sep=0pt, minimum width=5pt}]
+
+        \draw
+                (30:0.5) node[p]{} -- (65:1.3) node[p]{}
+                (30:0.5)  -- (25:1.3) node[p]{}
+                (65:1.3)  -- (25:1.3)
+            
+                (150:0.5) node[p]{} -- (155:1.3) node[p]{}
+                (150:0.5)  -- (115:1.3) node[p]{}
+                (155:1.3)  -- (115:1.3)
+            
+            (90:0.5) node[p]{}
+            (90:-0.5) node[p]{}
+            (115:1.3) -- (65:1.3) -- (90:0.5) -- (115:1.3)
+            (90:0.5) -- (90:-0.5)
+            (350:1) node[p]{}
+            (190:1) node[p]{}
+            (155:1.3) -- (190:1) -- (270:0.5) -- (350:1) -- (25:1.3)
+            (150:0.5) -- (350:1)
+            (30:0.5) -- (190:1)
+            ;
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[thick,scale=1.0,
+    p/.style={circle, draw, fill=white,
+                    inner sep=0pt, minimum width=5pt}]
+        \draw
+            \foreach \x in {0,60,120,180,240,300} {
+                (\x:1.3) node[p]{} -- (\x+60:1.3) node[p]{}
+            }
+	(0,0) node[p]{} -- (270:0.5) node[p]{}
+	(0,0) -- (45:0.5) node[p]{} -- (300:1.3)
+	(0:0) -- (135:0.5) node[p]{} -- (240:1.3)
+	(180:1.3) -- (270:0.5) -- (0:1.3)
+	(60:1.3) -- (135:0.5)
+	(120:1.3) -- (45:0.5);
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[thick,scale=1.0,
+    p/.style={circle, draw, fill=white,
+                    inner sep=0pt, minimum width=5pt}]
+                            \draw
+                (30:0.5) node[p]{} -- (65:1.3) node[p]{}
+                (30:0.5)  -- (25:1.3) node[p]{}
+                (65:1.3)  -- (25:1.3)
+                (150:0.5) node[p]{} -- (155:1.3) node[p]{}
+                (150:0.5)  -- (115:1.3) node[p]{}
+                (155:1.3)  -- (115:1.3)
+                (90:1) node[p]{}
+                (90:-0.5) node[p]{}
+                (65:1.3) -- (90:1) -- (115:1.3)
+                (90:1) -- (90:-0.5)
+                (350:1) node[p]{}
+                (190:1) node[p]{}
+                (155:1.3) -- (190:1) -- (270:0.5) -- (350:1) -- (25:1.3)
+                (150:0.5) -- (350:1)
+                (30:0.5) -- (190:1) ;
+\end{tikzpicture}
+\end{center}
 \end{comp}
 \begin{corollary}\label{cor:littlecon}
     Any disconnected

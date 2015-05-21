@@ -28,6 +28,7 @@
 \usepackage{tikz}
 
 \newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\coll}{\mathrel{\text{coll.}}}
 
 \newtheorem{fact}{Fact}[section]
 \newtheorem{comp}{Computation}[section]
@@ -1305,7 +1306,10 @@ In particular, those of order less than or equal 20
     are the only minimal unembeddable squarefree graph.
 For the first graph, we have proven directly that it is unembeddable.
 See Proposition~\ref{prop:unemb-10-2}.
-For the second graph, we also have a similar direct proof. The third graph is shown to not be embeddable using our algorithm.
+For the second graph, we also have a similar direct proof.
+See Proposition~\ref{prop:unemb-10-1} in the appendix.
+The third graph is shown to not be embeddable using our
+algorithm.
 \end{comp}
 
 \section{Related work}
@@ -1405,9 +1409,14 @@ the draft version of this paper.
 \bibliography{main}{}
 \bibliographystyle{plain}
 
+% Apparently, \appendix does not work properly.
+% Thus, we set \thesubsection by hand
 \appendix
 \clearpage
-\section{Appendix}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesection}{\Alph{subsection}}
+\section*{Appendix}
+\subsection{Original pen-and-paper proof}
 In this appendix, we show by hand, that indeed the 19 vertex graph
 considered at the start of section 3 %TODO
 is not embeddable.
@@ -1545,6 +1554,92 @@ But then, eliminating the $x_3$ terms we find:
 {x_1}^2 (1-{x_1}^2) = -1
 \end{equation}
 Which is our desired contradiction.
+
+\subsection{Second cross-product unembeddability proof}
+
+\parpic(5cm,3.5cm)[r]{%
+\begin{tikzpicture}[thick,scale=1.4,
+    p/.style={circle, draw, fill=white,
+                    inner sep=0pt, minimum width=5pt}]
+        \draw
+            \foreach \x in {0,180} {
+                (\x+15:1.3) node[p]{} -- (\x+90:0.9) node[p]{}
+                (\x+15:1.3) -- (\x+45:0.5) node[p]{}
+                (\x+45:0.5) -- (\x+90:0.9)
+                (\x-15:1.3) node[p]{} -- (\x-90:0.9)
+                (\x-15:1.3) -- (\x-45:0.5) node[p]{}
+                (\x-45:0.5) -- (\x-90:0.9)
+                (\x-15:1.3) -- (\x+15:1.3)
+            }
+            (45:0.5) -- (45+180:0.5)
+            (45+90:0.5) -- (45+90+180:0.5)
+            (90:0.9) node[above] {$x$}
+            (270:0.9) node[below] {$w$}
+            (15:1.3) node[right] {$y$}
+            (-15:1.3) node[right] {$v$}
+            (45:0.5) node[below] {$z$}
+            (-45:0.5) node[above] {$p_5$}
+            (135:0.5) node[below] {$p_1$}
+            (-135:0.5) node[above] {$p_4$}
+            (165:1.3) node[left] {$p_2$}
+            (-165:1.3) node[left] {$p_3$}
+        ;
+    \end{tikzpicture}}
+
+\par\noindent\parbox{\textwidth}{%
+\begin{proposition}\label{prop:unemb-10-1}
+The graph on the right is not embeddable.
+\end{proposition}}
+\begin{myproof}
+    Suppose it is embeddable.
+    Note (the point associated to) $p_5$
+        is orthogonal to (the points associated to) $v$ and~$w$.
+    As~$v \neq w$, we see~$p_5$ is collinear
+    to cross-product~$v \times w$.
+    Similarly, we derive
+    \begin{align*}
+        p_1 &\coll x \times (v \times w) &
+        p_4 &\coll w \times z \\
+        p_2 &\coll x \times (x \times v \times w) &
+        p_3 & \coll w \times (w \times z) \\
+        \omit\rlap{$
+        p_3 \coll (w \times z) \times (x \times (x \times (v \times w)))$}
+    \end{align*}
+    And thus
+    \begin{equation}
+        (w \times (w \times z)) \times
+        ((w \times z) \times (x \times (x\times (v \times w)))) =0.
+            \label{eq:coll2}
+    \end{equation}
+    By rotating the embedding,
+        we may assume without loss of generality
+            that we have~$z=(0,0,1)$, $y=(0,1,0)$ and~$x=(1,0,0)$.
+    Write
+\begin{align*}
+    v&=\Bigl(v_1,0,\sqrt{1-v_1^2}\Bigr) &
+        w &= \Bigl(w_1,w_2,\sqrt{1-w_1^2-w_2^2}\Bigr).
+\end{align*}
+Now, equation~\ref{eq:coll2} becomes
+\begin{align*}
+    w_2^2 \Bigl(v_1-\sqrt{1-v_1^2}w_1\sqrt{1-w_1^2-w_2^2}\Bigr) &= 0 \\
+    w_1w_2\Bigl(\sqrt{1-v_1^2}w_1 \sqrt{1-w_1^2 - w_2^2} - v_1 \Bigr) &= 0.
+\end{align*}
+Note~$w_1 \neq 0$,
+for otherwise~$w$ would be orthogonal to~$x$,
+which would imply~$w = y$, quod non.
+Similarly~$w_2 \neq 0$, for otherwise~$w$ would be orthogonal to~$y$
+and then~$v = p_4$, quod non.
+And finally, $v_1 \neq 0$, for otherwise~$v$ would be orthogonal to~$x$
+and then~$x = p_5$, quod non.
+It follows~$v_1 - \sqrt{1-v_1^2}  w_1 \sqrt{1-w_1^2 - w_2^2} = 0$.
+Thus $v_1 = \sqrt{1-v_1^2}  w_1 \sqrt{1-w_1^2 - w_2^2}$.
+As $v$ is orthogonal to~$w$,
+we have~$-v_1 w_1 = \sqrt{1-v_1^2}\sqrt{1-w_1^2-w_2^2}$.
+Substituting this in the previous equation,
+we get~$v_1 = -v_1w_1^2$.
+That is: $w_1^2 = -1$, which is absurd.
+Apparently, the graph cannot be embeddable.
+\end{myproof}
 
 
 \end{document}

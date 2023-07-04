@@ -13,3 +13,8 @@ uw:
     authors: Sander Uijlen and Bas Westerbaan
     links:
         paper: http://westerbaan.name/~bas/math/ks-extended-abstract.pdf
+li:
+    title: A SAT Solver and Computer Algebra Attack on the Minimum Kochen-Specker Problem
+    authors: Zhengyu Li, Curtis Bright and Vijay Ganesh
+    links:
+        arxiv: https://arxiv.org/pdf/2306.13319.pdf

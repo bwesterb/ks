@@ -21,7 +21,9 @@ search proved to be the sheer number of graphs on more than 17
 vertices and deciding embeddability.  Continuing their effort, we
 prove a restriction on the class of graphs we need to consider and
 develop a more practical decision procedure for embeddability to
-improve the lower bound to 22.
+improve the lower bound to 22. In 2022, Li, Bright, and Ganesh improved
+the lower bound to 23, then shortly after to 24 in 2023 using a SAT solver + 
+Computer Algebra System approach to dramatically reduce the search space.
 
 This repository
 ---------------
